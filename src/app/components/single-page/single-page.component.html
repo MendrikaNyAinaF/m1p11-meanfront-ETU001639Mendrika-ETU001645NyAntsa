@@ -1,0 +1,13 @@
+<mat-card>
+     <mat-card-content>
+          <p>single-page works!</p>
+          <app-table [data]="data" [columns]="columns" [editable]="true">
+          </app-table>
+          
+          <form [formGroup]="form" class="row">
+               <app-select [props]="selectOption" [form]="form" key="food"></app-select>
+               <app-input [props]="inputProps" [form]="form" key="name"></app-input>
+          </form>
+     </mat-card-content>
+
+</mat-card>

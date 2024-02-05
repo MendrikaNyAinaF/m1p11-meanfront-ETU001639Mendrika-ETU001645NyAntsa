@@ -11,7 +11,7 @@ import { TabsComponent } from './tabs/tabs.component';
 import { ExpansionComponent } from './expansion/expansion.component';
 import { ChipsComponent } from './chips/chips.component';
 import { ProgressComponent } from './progress/progress.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ProgressSnipperComponent } from './progress-snipper/progress-snipper.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
@@ -19,6 +19,16 @@ import { SliderComponent } from './slider/slider.component';
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { TooltipsComponent } from './tooltips/tooltips.component'
+import { TableComponent } from './table/table.component';
+import { SinglePageComponent } from './single-page/single-page.component';
+import { RowEditComponent } from './table-detail/row-edit/row-edit.component';
+import { RowDeleteComponent } from './table-detail/row-delete/row-delete.component';
+import { DialogValidationComponent } from './dialog-validation/dialog-validation.component';
+import { SelectComponent } from './forms-input/select/select.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { InputComponent } from './forms-input/input/input.component';
+import { ImageInputComponent } from './forms-input/image-input/image-input.component';
 
 
 @NgModule({
@@ -38,12 +48,23 @@ import { TooltipsComponent } from './tooltips/tooltips.component'
     SlideToggleComponent,
     ButtonsComponent,
     TooltipsComponent,
+    TableComponent,
+    SinglePageComponent,
+    RowEditComponent,
+    RowDeleteComponent,
+    DialogValidationComponent,
+    SelectComponent,
+    InputComponent,
+    ImageInputComponent
   ],
   imports: [
     CommonModule,
     FeatherModule.pick(allIcons),
     DemoFlexyModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
   exports: [
     AlertsComponent,
@@ -60,6 +81,7 @@ import { TooltipsComponent } from './tooltips/tooltips.component'
     SliderComponent,
     SlideToggleComponent,
     ButtonsComponent,
+    TableComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,0 +1,15 @@
+<form [formGroup]="form" class="row">
+     <ng-container *ngFor="let key of keys()">
+          <div [class.d-none]="inputs[key]?.type === 'hidden'" class="{{inputClass}}">
+               <app-inputs [form]="form" [props]="inputs[key]" [key]="key">
+               </app-inputs>
+          </div>
+     </ng-container>
+     <ng-content></ng-content>
+
+
+     <div class="col-md-12">
+          <button mat-raised-button class="me-8 mb-8" [color]="action.color" type="submit"
+               (click)="validate()">{{action.label}}</button>
+     </div>
+</form>

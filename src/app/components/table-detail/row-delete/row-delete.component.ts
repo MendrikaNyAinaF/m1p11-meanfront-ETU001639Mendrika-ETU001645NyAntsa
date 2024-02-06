@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, Input, OnInit, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { DeleteAction } from '../../interfaces';
 
 @Component({
   selector: 'app-row-delete',
@@ -12,15 +13,19 @@ export class RowDeleteComponent implements OnInit {
   private _row!:any;
   private _disabled:boolean = false;
   private _icon:string = 'delete';
-  private _urlDelete!:string ;
 
   constructor(public dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  delete(){
-    //TO DO
+  open() {
+    this.dialog.open(RowDeleteDialogComponent, {
+      data: {
+        uid:"",
+        deleteAction: this.deleteAction
+      }
+    });
   }
 
   @Output() set emitDelete(urlDelete:string){
@@ -59,15 +64,30 @@ export class RowDeleteComponent implements OnInit {
     return this._icon;
   }
 
-  @Input() set urlDelete(urlDelete:string){
-    this._urlDelete=urlDelete;
+  @Input()deleteAction:DeleteAction | undefined;
+  @Input()uid:string | undefined;
+
+}
+
+@Component({
+  selector: 'app-row-delete-dialog',
+  templateUrl: './row-delete-dialog.html',
+})
+export class RowDeleteDialogComponent implements OnInit {
+  deleteAction! :DeleteAction;
+  uid!:string;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  ngOnInit(): void {
+    this.deleteAction = this.data.deleteAction;
+    this.uid = this.data.uid;
   }
 
-  get urlDelete(){
-    return this._urlDelete;
+  delete(){
+    this.deleteAction(this.uid)
+      .then((res:any) => {})
+      .catch((err:any) => {})
+    ;
   }
-
-  
-
-
 }

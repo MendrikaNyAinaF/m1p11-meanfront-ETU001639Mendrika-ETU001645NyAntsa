@@ -1,13 +1,23 @@
 <mat-card>
      <mat-card-content>
           <p>single-page works!</p>
-          <app-table [data]="data" [columns]="columns" [editable]="true">
+          <app-table [data]="data" [columns]="columns" [editable]="true"
+               [updateFormProps]="updateProps"
+               [deletable]="true"
+               [deleteAction]="deleteAction"
+               >
           </app-table>
-          
-          <form [formGroup]="form" class="row">
+
+          <!-- <form [formGroup]="form" class="row">
                <app-select [props]="selectOption" [form]="form" key="food"></app-select>
                <app-input [props]="inputProps" [form]="form" key="name"></app-input>
-          </form>
-     </mat-card-content>
+               <app-image-input [props]="imageProps" [form]="form" key="image"></app-image-input>
+          </form> -->
 
+          <!-- <app-table-paginate [data]="data" [columns]="columns" [editable]="true"
+               [deletable]="false" [length]="4" [rowsPerPage]="2" [currentPage]="0"
+          > -->
+
+          <!-- </app-table-paginate> -->
+     </mat-card-content>
 </mat-card>

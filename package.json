@@ -26,7 +26,8 @@
     "ng-apexcharts": "1.7.1",
     "rxjs": "~7.5.5",
     "tslib": "^2.4.0",
-    "zone.js": "~0.11.6"
+    "zone.js": "~0.11.6",
+    "sweetalert2": "^11.7.12"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.2",

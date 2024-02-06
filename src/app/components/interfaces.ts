@@ -15,6 +15,8 @@ functions to get each value of the columns on the list
 */
 export type Getter = (item: any) => any;
 
+export type DeleteAction= (id:any) => any;
+
 /* Column interface for a table  */
 export interface Column {
      name: string,
@@ -35,12 +37,12 @@ export interface InputProps {
 }
 
 /** props for auto-complete component*/
-export interface SelectProps extends InputProps{
+export interface SelectProps extends InputProps {
      /**
       * if options is not an array then it must be the url for a get all API call,
       * if it's an array of object then the auto-completion will be on the client side
       */
-     options: any[] ;
+     options: any[];
      /**
       * get value of the object for the selection
       */
@@ -59,4 +61,48 @@ export interface SelectProps extends InputProps{
       * if set to false then the auto-completion will be on the client side
       */
      autoComplete?: boolean;
-   }
+}
+
+export interface SubmitProps {
+     // 'label' is a required property of type string
+     label: string;
+
+     // 'color' is an optional property that can be of type ThemePalette (presumably defined elsewhere)
+     // The question mark indicates that this property is optional
+     color?: string;
+
+     // 'disabled' is an optional boolean property, indicating whether the submit button should be disabled
+     disabled?: boolean;
+
+     // 'submit' is an optional function property that takes an object of any type as a parameter and returns any type
+     // The component use this interface may have a submit function that can be passed as a prop
+     submit: (obj: any) => any;
+}
+
+export interface CrudProps {
+     present: boolean;
+     title: string;
+     action?: (obj: any, id?:any) => any;
+}
+
+export interface CrudField {
+     name: string; //ce sera le key utilisé pour les formulaire et pour le tableau 
+     inputProps: InputProps | SelectProps;
+     listProps: Column;
+     inCreate?: boolean;
+     inUpdate?: boolean;
+     inDelete?: boolean; 
+     isPaginated?: boolean; 
+}
+
+export interface FormProps{
+     inputs:any;
+     action: SubmitProps;
+     title?: string;
+}
+export function isForm(value: any) {
+     let val;
+     return Object.keys(value).length > 0 && ((val = value[Object.keys(value)[0]]) && typeof val === "object");
+}
+
+

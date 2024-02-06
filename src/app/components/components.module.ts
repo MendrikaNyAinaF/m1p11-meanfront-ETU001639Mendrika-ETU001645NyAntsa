@@ -21,14 +21,18 @@ import { ButtonsComponent } from './buttons/buttons.component';
 import { TooltipsComponent } from './tooltips/tooltips.component'
 import { TableComponent } from './table/table.component';
 import { SinglePageComponent } from './single-page/single-page.component';
-import { RowEditComponent } from './table-detail/row-edit/row-edit.component';
-import { RowDeleteComponent } from './table-detail/row-delete/row-delete.component';
+import { RowEditComponent, RowEditDialogComponent } from './table-detail/row-edit/row-edit.component';
+import { RowDeleteComponent, RowDeleteDialogComponent } from './table-detail/row-delete/row-delete.component';
 import { DialogValidationComponent } from './dialog-validation/dialog-validation.component';
 import { SelectComponent } from './forms-input/select/select.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { InputComponent } from './forms-input/input/input.component';
 import { ImageInputComponent } from './forms-input/image-input/image-input.component';
+import { InputsComponent } from './forms-input/inputs/inputs.component';
+import { FormComponent } from './form/form.component';
+import { TablePaginateComponent } from './table-paginate/table-paginate.component';
+import { OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
 
 
 @NgModule({
@@ -51,11 +55,17 @@ import { ImageInputComponent } from './forms-input/image-input/image-input.compo
     TableComponent,
     SinglePageComponent,
     RowEditComponent,
+    RowEditDialogComponent,
     RowDeleteComponent,
+    RowDeleteDialogComponent,
     DialogValidationComponent,
     SelectComponent,
     InputComponent,
-    ImageInputComponent
+    ImageInputComponent,
+    InputsComponent,
+    FormComponent,
+    TablePaginateComponent,
+    OnePageCrudComponent
   ],
   imports: [
     CommonModule,

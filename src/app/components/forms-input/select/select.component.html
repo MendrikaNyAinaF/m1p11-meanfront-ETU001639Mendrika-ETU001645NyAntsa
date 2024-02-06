@@ -1,11 +1,11 @@
-<mat-form-field class="w-100 fs-16" appearance="outline">
-     <mat-label>{{props.label}}</mat-label>
-     <mat-select [formControlName]="key" value="props.default">
-          <mat-option *ngFor="let option of props.options" [value]="props.getValue(option)">
-               {{props.getText(option)}}
-          </mat-option>
-     </mat-select>
-     <mat-error>{{readError()}}</mat-error>
-</mat-form-field>
-
-
+<ng-container [formGroup]="form">
+     <mat-form-field appearance="outline">
+          <mat-label>{{props.label}}</mat-label>
+          <mat-select [formControlName]="key" value="props.default">
+               <mat-option *ngFor="let option of props.options" [value]="props.getValue(option)">
+                    {{props.getText(option)}}
+               </mat-option>
+          </mat-select>
+          <mat-error>{{readError()}}</mat-error>
+     </mat-form-field>
+</ng-container>

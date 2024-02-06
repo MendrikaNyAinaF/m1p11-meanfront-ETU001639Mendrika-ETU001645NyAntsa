@@ -35,6 +35,44 @@ export class SinglePageComponent implements OnInit {
       class: ""
     }
   ]
+  //pour tester l'edit
+  updateProps = {
+    inputs: {
+      name: {
+        label: "Name",
+        type: "text"
+      },
+      age: {
+        label: "Age",
+        type: "number"
+      },
+      email: {
+        label: "Email",
+        type: "email"
+      }
+    },
+    action: {
+      label: "Update",
+      color:"primary",
+      submit: (values: any) => {
+        console.log(values);
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            reject("success");
+          }, 1);
+        });
+      }
+    }
+  }
+  deleteAction(uid: any) {
+    console.log("delete ", uid);
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject("success");
+      }, 1);
+    });
+  }
+
   titles: string[] = ["Name", "Age", "Email"];
   form !: FormGroup;
   selectOption = {
@@ -46,14 +84,19 @@ export class SinglePageComponent implements OnInit {
     getText: (item: any) => item,
   }
 
-  inputProps={
+  inputProps = {
     label: "Name",
     validators: Validators.required,
     default: "John",
     type: "text"
   }
+  imageProps = {
+    label: "Image",
+    default: "",
+    type: "file"
+  }
   constructor(
-    private formBuilder : FormBuilder
+    private formBuilder: FormBuilder
 
   ) { }
 

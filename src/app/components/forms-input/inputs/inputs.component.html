@@ -1,0 +1,23 @@
+<ng-container *ngIf="isSelect()">
+     <app-select
+          [key]="key"
+          [form]="form"
+          [props]="props"
+     ></app-select>
+</ng-container>
+
+<ng-container *ngIf="isImgInput()">
+     <app-image-input
+          [key]="key"
+          [form]="form"
+          [props]="props"
+     ></app-image-input>
+</ng-container>
+
+<ng-container *ngIf="isOtherInput()">
+     <app-input
+          [key]="key"
+          [form]="form"
+          [props]="props"
+     ></app-input>
+</ng-container>

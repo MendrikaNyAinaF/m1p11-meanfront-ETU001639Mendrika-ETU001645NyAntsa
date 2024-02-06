@@ -1,5 +1,11 @@
-<h1 mat-dialog-title>Dialog with elements</h1>
-<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
+<h3 mat-dialog-title>{{formProps.title?formProps:"Modifier"}}</h3>
+<div mat-dialog-content>
+  <app-form
+    [inputs]="formProps.inputs"
+    [action]="formProps.action"
+  >
+  </app-form>
+</div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
 </div>

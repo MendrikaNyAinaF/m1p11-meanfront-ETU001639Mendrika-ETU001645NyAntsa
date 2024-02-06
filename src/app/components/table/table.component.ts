@@ -1,26 +1,32 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
-import { Column, Getter, RowAction } from '../interfaces';
+import { Column, DeleteAction, FormProps, Getter, RowAction } from '../interfaces';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
+  
   private _data !: any[];
   private _titles !: string[];
   private _columns!: Column[];
   private _editable :boolean=false;
   private _deletable :boolean=false;
 
+  @Input() updateFormProps?: FormProps= undefined;
+  @Input()deleteAction?: DeleteAction = undefined;
+
   /** list of actions for each row */
-  @Input() actions : RowAction[] = [];
+  @Input() actions?: (row: any) => any;
 
   /** function to call on row click */
-  @Output() onRowClick = new EventEmitter<any>();
+  @Input() onRowClick?: (row: any) => any;
 
   dataSource : MatTableDataSource<any> = new MatTableDataSource();
+
+  /* props edit */
 
   /** the list of the object that will be displayed on the table*/
   @Input() set data (val: any[]) {
@@ -31,7 +37,6 @@ export class TableComponent {
   /** columns of the table */
   @Input() set columns (val: Column[]) {
     this._columns = val;
-    this._titles=[...val.map((col: Column) => col.name),"Edit","Supprimer"];
   }
 
   @Input() set editable (val: boolean) {
@@ -60,5 +65,22 @@ export class TableComponent {
   getEditable(): boolean {
     return this._editable;
   }
+  getDeletable(): boolean {
+    return this._deletable;
+  }
 
+  click(row: any) {
+    if (this.actions) return;
+    if (this.onRowClick) this.onRowClick(row);
+  }
+
+  ngOnInit(): void {
+    this._titles=[...this._columns.map((col: Column) => col.name)];
+    if(this._editable){
+      this._titles.push("Edit");
+    }
+    if(this._deletable){
+      this._titles.push("Delete");
+    }
+  }
 }

@@ -1,47 +1,58 @@
-<div class="mat-elevation-z2 table-responsive mb-4"
-     *ngIf="columns!==undefined && data !== undefined && titles !== undefined">
-     <table mat-table [dataSource]="dataSource" class="text-nowrap w-100">
+<ng-container *ngIf="!loader">
+     <div class="mat-elevation-z2 table-responsive mb-4"
+          *ngIf="columns!==undefined && data !== undefined && titles !== undefined">
+          <table mat-table [dataSource]="dataSource" class="text-nowrap w-100">
 
-          <!--Define columns-->
-          <ng-container *ngFor="let col of getColumns(); index as i">
-               <ng-container [matColumnDef]="col.name">
-                    <th mat-header-cell *matHeaderCellDef>{{col.name}}</th>
-                    <td mat-cell class="fw-medium {{col.class}}" *matCellDef="let element"
-                         [innerHTML]="col.selector(element)">
-
-                    </td>
+               <!--Define columns-->
+               <ng-container *ngFor="let col of getColumns(); index as i">
+                    <ng-container [matColumnDef]="col.name">
+                         <th mat-header-cell *matHeaderCellDef>{{col.name}}</th>
+                         <!--si c'est une image-->
+                         <ng-container *ngIf="col.type && col.type=='img'; else elseCell">
+                              <td mat-cell class="fw-medium {{col.class}}" *matCellDef="let element">
+                                   <img src="{{ col.selector(element) }}" class="w-20" alt="">
+                              </td>
+                         </ng-container>
+                         <ng-template #elseCell>
+                              <td mat-cell class="fw-medium {{col.class}}" *matCellDef="let element"
+                                   [innerHTML]="col.selector(element)">
+                              </td>
+                         </ng-template>
+                    </ng-container>
                </ng-container>
-          </ng-container>
 
-          <!--Edit column-->
-          <ng-container *ngIf="getEditable()">
-               <ng-container matColumnDef="Edit">
-                    <th mat-header-cell *matHeaderCellDef>Modifier</th>
-                    <td mat-cell class="fw-medium" *matCellDef="let element">
-                         <app-row-edit 
-                         [updateFormProps]="updateFormProps"
-                         [row]="element"
-                         ></app-row-edit>
-                    </td>
+               <!--Edit column-->
+               <ng-container *ngIf="getEditable()">
+                    <ng-container matColumnDef="Edit">
+                         <th mat-header-cell *matHeaderCellDef>Modifier</th>
+                         <td mat-cell class="fw-medium" *matCellDef="let element">
+                              <button mat-icon-button (click)="openEditDialog(element)">
+                                   <mat-icon color="accent">edit</mat-icon>
+                              </button>
+                         </td>
+                    </ng-container>
                </ng-container>
-          </ng-container>
 
-          <!--Delete column-->
-          <ng-container *ngIf="getDeletable()==true">
-               <ng-container matColumnDef="Delete">
-                    <th mat-header-cell *matHeaderCellDef>Delete</th>
-                    <td mat-cell class="fw-medium" *matCellDef="let element">
-                         <app-row-delete
-                         [uid]="element.id"
-                         [deleteAction]="deleteAction"
-                         ></app-row-delete>
-                    </td>
+               <!--Delete column-->
+               <ng-container *ngIf="getDeletable()==true">
+                    <ng-container matColumnDef="Delete">
+                         <th mat-header-cell *matHeaderCellDef>Delete</th>
+                         <td mat-cell class="fw-medium" *matCellDef="let element">
+                              <button mat-icon-button (click)="openDeleteDialog(element.id)">
+                                   <mat-icon color="warn">delete</mat-icon>
+                              </button>
+                         </td>
+                    </ng-container>
                </ng-container>
-          </ng-container>
 
 
-          <tr mat-header-row *matHeaderRowDef="getTitles()"></tr>
-          <tr mat-row *matRowDef="let row; columns: getTitles();" (click)="click(row)"></tr>
-     </table>
+               <tr mat-header-row *matHeaderRowDef="getTitles()"></tr>
+               <tr mat-row *matRowDef="let row; columns: getTitles();" (click)="click(row)"></tr>
+          </table>
 
-</div>
+     </div>
+</ng-container>
+
+<ng-container *ngIf="loader">
+     <mat-spinner></mat-spinner>
+</ng-container>

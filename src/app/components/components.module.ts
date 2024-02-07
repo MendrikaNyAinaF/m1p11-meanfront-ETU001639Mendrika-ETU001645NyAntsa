@@ -19,10 +19,8 @@ import { SliderComponent } from './slider/slider.component';
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { TooltipsComponent } from './tooltips/tooltips.component'
-import { TableComponent } from './table/table.component';
+import { RowDeleteDialogComponent, RowEditDialogComponent, TableComponent } from './table/table.component';
 import { SinglePageComponent } from './single-page/single-page.component';
-import { RowEditComponent, RowEditDialogComponent } from './table-detail/row-edit/row-edit.component';
-import { RowDeleteComponent, RowDeleteDialogComponent } from './table-detail/row-delete/row-delete.component';
 import { DialogValidationComponent } from './dialog-validation/dialog-validation.component';
 import { SelectComponent } from './forms-input/select/select.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,7 +30,8 @@ import { ImageInputComponent } from './forms-input/image-input/image-input.compo
 import { InputsComponent } from './forms-input/inputs/inputs.component';
 import { FormComponent } from './form/form.component';
 import { TablePaginateComponent } from './table-paginate/table-paginate.component';
-import { OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
+import { CreateFormComponent, OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
+import { FilterComponent } from './filter/filter.component';
 
 
 @NgModule({
@@ -54,9 +53,7 @@ import { OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
     TooltipsComponent,
     TableComponent,
     SinglePageComponent,
-    RowEditComponent,
     RowEditDialogComponent,
-    RowDeleteComponent,
     RowDeleteDialogComponent,
     DialogValidationComponent,
     SelectComponent,
@@ -65,7 +62,9 @@ import { OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
     InputsComponent,
     FormComponent,
     TablePaginateComponent,
-    OnePageCrudComponent
+    OnePageCrudComponent,
+    FilterComponent,
+    CreateFormComponent
   ],
   imports: [
     CommonModule,

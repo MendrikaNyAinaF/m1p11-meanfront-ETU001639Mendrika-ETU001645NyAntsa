@@ -9,7 +9,13 @@
 
 
      <div class="col-md-12">
-          <button mat-raised-button class="me-8 mb-8" [color]="action.color" type="submit"
-               (click)="validate()">{{action.label}}</button>
+          <button mat-raised-button class="me-8 mb-8" [color]="action.color" type="submit" (click)="validate()">
+               <ng-container *ngIf="loaderSubmit">
+                    <mat-spinner [diameter]="40" color="#fff" id="spinner-btn"></mat-spinner>
+               </ng-container>
+               <ng-container *ngIf="!loaderSubmit">
+                    {{action.label}}
+               </ng-container>
+          </button>
      </div>
 </form>

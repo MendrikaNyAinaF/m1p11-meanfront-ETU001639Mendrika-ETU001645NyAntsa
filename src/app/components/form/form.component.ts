@@ -26,6 +26,8 @@ export class FormComponent implements OnInit{
   /* composant formulaire */
   form !: FormGroup;
 
+  loaderSubmit: boolean = false;
+
   keys() {
     return Object.keys(this.inputs);
   }
@@ -33,28 +35,29 @@ export class FormComponent implements OnInit{
   validate() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
+      this.loaderSubmit = true;
       this.action.submit(this.form.value)
-        .then((res: any) =>{
-          this.alertService.alertSuccess("La modification a été effectué avec succès");
-          this.submit.emit(res);
-        } )
-        .catch((res: any) =>{
-          this.alertService.alertError(res.message ||  "Une erreur s'est produite lors de la modification");
-          this.submit.emit()
+        .then((res?: any) =>{
+          this.alertService.alertSuccess(res?.message || "Le traitement a été effectué avec succès");
+          this.loaderSubmit = false;
+          this.submit.emit("success");
+        })
+        .catch((res?: any) =>{
+          this.alertService.alertError(res?.message ||  "Une erreur s'est produite lors du traitement");
+          this.loaderSubmit = false;
+          this.submit.emit("error")
         } );
     }
   }
 
   /* émettre quand on fait un submit, si besoin est, de remplacer les valeurs par défaut par exemple */
-  @Output() submit = new EventEmitter<any>();
+  @Output() submit = new EventEmitter<string>();
 
   
 
   ngOnInit(): void {
     /* construit le formulaire */
     this.form = this.formBuilder.group({});
-    console.log(this.inputs);
-    console.log("hello");
     
     Object.keys(this.inputs).forEach(key => {
       let value = this.inputs[key];

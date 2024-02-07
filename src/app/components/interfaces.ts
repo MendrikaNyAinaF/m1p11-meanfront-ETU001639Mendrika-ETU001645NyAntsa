@@ -22,6 +22,7 @@ export interface Column {
      name: string,
      selector: Getter, /* function to get the value of the column */
      class: string | "",
+     type?: "text" | "img"
 }
 
 /** props for input component */
@@ -85,14 +86,26 @@ export interface CrudProps {
      action?: (obj: any, id?:any) => any;
 }
 
+export interface CrudFilterProps {
+     present: boolean;
+     title: string;
+     inputs:any;
+}
+
+export interface CrudListProps extends CrudProps{
+     withPagination: boolean;
+     columns: Column[];
+     filterProps?: InputProps | SelectProps;
+}
+
+
 export interface CrudField {
      name: string; //ce sera le key utilisé pour les formulaire et pour le tableau 
-     inputProps: InputProps | SelectProps;
-     listProps: Column;
+     inputProps: any;
      inCreate?: boolean;
      inUpdate?: boolean;
-     inDelete?: boolean; 
-     isPaginated?: boolean; 
+     actionSelect?: (obj?: any) => any;
+
 }
 
 export interface FormProps{

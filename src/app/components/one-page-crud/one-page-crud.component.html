@@ -1,1 +1,51 @@
-<p>one-page-crud works!</p>
+<!--formulaire de création -->
+<ng-container *ngIf="create.present">
+     <div class="text-right">
+          <button mat-raised-button class="me-8 mb-8" color="primary" (click)="openCreateForm()">Nouveau</button>
+     </div>
+     <br />
+</ng-container>
+
+<!--filtre-->
+<ng-container *ngIf="filter.present">
+     <mat-card>
+          <mat-card-content>
+               <h4 class="mb-32">{{filter.title}}</h4>
+               <app-form [inputs]="filterFormProps.inputs" [action]="filterFormProps.action" inputClass="me-24 fs-16">
+               </app-form>
+          </mat-card-content>
+     </mat-card>
+</ng-container>
+
+<!--toute la liste-->
+<mat-card>
+     <mat-card-content>
+          <ng-container *ngIf="list.present">
+               <!--liste-->
+               <h4 class="mb-32">{{list.title}}</h4>
+
+               <!--pagination-->
+               <ng-container *ngIf="list.withPagination; else elseListNoPagination">
+                    <app-table-paginate [data]="dataList" [columns]="list.columns" [editable]="update.present"
+                         [updateFormProps]="updateFormProps" [deletable]="delete.present" [deleteAction]="delete.action"
+                         [length]="totalLength" [rowsPerPage]="lengthPage"
+                         [currentPage]="currentPage" 
+                         [loader]="loaderList"
+                         (currentPageChange)="handlePageChange($event)"
+                         [handleSubmitChange]="handleSubmitChange"
+                         ></app-table-paginate>
+               </ng-container>
+               <ng-template #elseListNoPagination>
+                    <app-table [data]="dataList" [columns]="list.columns" [editable]="update.present"
+                         [updateFormProps]="updateFormProps" [deletable]="delete.present"
+                         [deleteAction]="delete.action"
+                         [loader]="loaderList"
+                         [handleSubmitChange]="handleSubmitChange"
+                         ></app-table>
+               </ng-template>
+
+
+          </ng-container>
+
+     </mat-card-content>
+</mat-card>

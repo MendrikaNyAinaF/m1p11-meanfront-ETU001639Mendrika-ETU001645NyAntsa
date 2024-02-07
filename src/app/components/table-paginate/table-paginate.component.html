@@ -1,6 +1,14 @@
 <ng-container>
      <!-- Table -->
-     <app-table [data]="data" [columns]="columns" [editable]="editable" [deletable]="deletable">
+     <app-table 
+          [data]="data" 
+          [columns]="columns" 
+          [editable]="getEditable()" 
+          [updateFormProps]="updateFormProps"
+          [deletable]="getDeletable()"
+          [deleteAction]="deleteAction"
+          [loader]="loader"
+          >
      </app-table>
 
      <!-- pagination -->

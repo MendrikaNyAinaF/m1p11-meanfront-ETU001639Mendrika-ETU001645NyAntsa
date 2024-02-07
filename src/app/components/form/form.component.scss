@@ -1,0 +1,10 @@
+.mat-progress-spinner circle,
+.mat-spinner circle {
+     stroke: white;
+}
+
+.mat-spinner {
+     ::ng-deep circle {
+         stroke: white;
+     }
+}

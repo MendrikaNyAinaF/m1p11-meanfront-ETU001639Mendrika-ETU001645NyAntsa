@@ -26,14 +26,17 @@ export class FormComponent implements OnInit{
   /* composant formulaire */
   form !: FormGroup;
 
+  /* loader pour le submit */
   loaderSubmit: boolean = false;
 
   keys() {
     return Object.keys(this.inputs);
   }
 
+  /* soumettre le formulaire */
   validate() {
     this.form.markAllAsTouched();
+    
     if (this.form.valid) {
       this.loaderSubmit = true;
       this.action.submit(this.form.value)

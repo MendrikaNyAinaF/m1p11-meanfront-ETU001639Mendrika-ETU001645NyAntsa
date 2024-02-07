@@ -31,7 +31,7 @@ import { InputsComponent } from './forms-input/inputs/inputs.component';
 import { FormComponent } from './form/form.component';
 import { TablePaginateComponent } from './table-paginate/table-paginate.component';
 import { CreateFormComponent, OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
-import { FilterComponent } from './filter/filter.component';
+
 
 
 @NgModule({
@@ -63,7 +63,6 @@ import { FilterComponent } from './filter/filter.component';
     FormComponent,
     TablePaginateComponent,
     OnePageCrudComponent,
-    FilterComponent,
     CreateFormComponent
   ],
   imports: [

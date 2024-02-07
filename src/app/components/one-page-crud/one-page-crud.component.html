@@ -33,6 +33,7 @@
                          [loader]="loaderList"
                          (currentPageChange)="handlePageChange($event)"
                          [handleSubmitChange]="handleSubmitChange"
+                         [onRowClick]="list.onRowClick"
                          ></app-table-paginate>
                </ng-container>
                <ng-template #elseListNoPagination>
@@ -41,6 +42,7 @@
                          [deleteAction]="delete.action"
                          [loader]="loaderList"
                          [handleSubmitChange]="handleSubmitChange"
+                         [onRowClick]="list.onRowClick"
                          ></app-table>
                </ng-template>
 

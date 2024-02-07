@@ -7,6 +7,8 @@ import Swal, { SweetAlertOptions } from 'sweetalert2';
 export class AlertService {
 
   constructor() { }
+
+  /* alert success*/
   alertError(message: string,  options?: SweetAlertOptions) {
     return Swal.fire({
       title: "Error",
@@ -16,6 +18,7 @@ export class AlertService {
     });
   }
 
+  /* alert success*/
   alertSuccess(message: string, options?: SweetAlertOptions) {
     return Swal.fire({
       title: "Success",

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Column } from '../interfaces';
 import { PageEvent } from '@angular/material/paginator';
 import { TableCommon } from '../table-common.class';
 
@@ -10,12 +9,11 @@ import { TableCommon } from '../table-common.class';
 })
 export class TablePaginateComponent extends TableCommon implements OnInit{
   /* propriété de la pagination */
-  // h<andleChangePage, page, rowsPerPage = 10, loading = false, count
-  @Input() currentPage : number=0;
-  @Input() rowsPerPage : number=10;
-  @Input() length! : number;
+  @Input() currentPage : number=0; /* la page actuelle */
+  @Input() rowsPerPage : number=10; /* le nombre d'éléments par page */
+  @Input() length! : number; /* le nombre total d'éléments */
 
-  @Output() currentPageChange = new EventEmitter<number>();
+  @Output() currentPageChange = new EventEmitter<number>(); /* émettre le changement de la page actuelle */
 
   constructor() { 
     super();
@@ -27,14 +25,13 @@ export class TablePaginateComponent extends TableCommon implements OnInit{
 
   pageEvent!: PageEvent;
 
+  /* fonction de changement de page */
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.rowsPerPage = e.pageSize;
     this.currentPage = e.pageIndex;
 
-    /* il faudrait émettre la page reçu dans handlePageEvent la */
+    /* émission du changement de page*/
     this.currentPageChange.emit(e.pageIndex);
   }
-  
-  
 }

@@ -1,13 +1,5 @@
 import { ValidatorFn } from "@angular/forms";
-import { ThemePalette } from "@angular/material/core";
 
-/* action for each row in the list/table component */
-export interface RowAction {
-     color: ThemePalette,
-     icon: string,
-     onclick: (row: any, index: number) => any,
-     type?: "detail" | "edit" | "delete" | string
-}
 
 /* 
 function with item any for argument and render an object any
@@ -15,6 +7,7 @@ functions to get each value of the columns on the list
 */
 export type Getter = (item: any) => any;
 
+/* l'action à faire pour le formulaire de suppression  */
 export type DeleteAction= (id:any) => any;
 
 /* Column interface for a table  */
@@ -64,6 +57,7 @@ export interface SelectProps extends InputProps {
      autoComplete?: boolean;
 }
 
+/*propriété du bouton submit dans un formulaire*/
 export interface SubmitProps {
      // 'label' is a required property of type string
      label: string;
@@ -80,38 +74,40 @@ export interface SubmitProps {
      submit: (obj: any) => any;
 }
 
+/*propriété d'une action CRUD */
 export interface CrudProps {
-     present: boolean;
-     title: string;
-     action?: (obj: any, id?:any) => any;
+     present: boolean; //si l'action est présente ou non
+     title: string; //le titre de l'action dans le formulaire ou liste
+     action?: (obj: any, id?:any) => any; //la fonction à exécuter pour le formulaire ou la liste
 }
-
+/*propriété d'un filtre CRUD */
 export interface CrudFilterProps {
-     present: boolean;
-     title: string;
-     inputs:any;
+     present: boolean; //si le filtre est présent ou non
+     title: string; //le titre du filtre
+     inputs:any; //les inputs du filtre (pour le formulaire)
 }
 
+/*propriété d'une liste CRUD */
 export interface CrudListProps extends CrudProps{
-     withPagination: boolean;
-     columns: Column[];
-     filterProps?: InputProps | SelectProps;
+     withPagination: boolean; //si la liste est paginée ou non
+     columns: Column[]; //les colonnes de la liste
+     onRowClick?: (row: any) => any;     //la fonction à exécuter lorsqu'on clique sur une ligne
 }
 
-
+/*propriété d'un champ CRUD */
 export interface CrudField {
      name: string; //ce sera le key utilisé pour les formulaire et pour le tableau 
-     inputProps: any;
-     inCreate?: boolean;
-     inUpdate?: boolean;
+     inputProps: any; //les propriétés de l'input en cas de formulaire
+     inCreate?: boolean; //si le champ est present/visible dans le formulaire de création
+     inUpdate?: boolean; //si le champ est présent/visible dans le formulaire de modification
      actionSelect?: (obj?: any) => any;
 
 }
-
+/*propriété d'un formulaire */
 export interface FormProps{
-     inputs:any;
-     action: SubmitProps;
-     title?: string;
+     inputs:any; //les inputs du formulaire
+     action: SubmitProps; //le bouton submit du formulaire
+     title?: string; //le titre du formulaire
 }
 export function isForm(value: any) {
      let val;

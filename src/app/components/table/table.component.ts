@@ -17,6 +17,7 @@ export class TableComponent extends TableCommon implements OnInit {
     super.ngOnInit();
   }
 
+  /* ouvrir le dialog du formulaire de modification */
   openEditDialog(row: any) {
     this.dialog.open(RowEditDialogComponent, {
       data: {
@@ -27,6 +28,7 @@ export class TableComponent extends TableCommon implements OnInit {
     });
   }
 
+  /* ouvrir le dialog du formulaire de suppression */
   openDeleteDialog(id: any) {
     this.dialog.open(RowDeleteDialogComponent, {
       data: {
@@ -70,9 +72,9 @@ export class RowEditDialogComponent implements OnInit {
   templateUrl: './row-delete-dialog.html',
 })
 export class RowDeleteDialogComponent implements OnInit {
-  deleteAction!: DeleteAction;
-  uid!: string;
-  handleSubmitChange!: (status: string) => void;
+  deleteAction!: DeleteAction; //la fonction à exécuter pour la suppression
+  uid!: string; //l'identifiant de l'élément à supprimer
+  handleSubmitChange!: (status: string) => void; //la fonction à exécuter après la suppression pour signifier le changement
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private alertService: AlertService) { }

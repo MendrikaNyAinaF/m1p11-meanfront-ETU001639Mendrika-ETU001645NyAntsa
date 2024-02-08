@@ -19,6 +19,7 @@ import { ProductComponent } from './dashboard/dashboard-components/product/produ
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FullComponent } from './layouts/full/full.component';
 import { SinglePageComponent } from './components/single-page/single-page.component';
+import { PageServiceCrudComponent } from './views/page-service-crud/page-service-crud.component';
 
 const routes: Routes = [
   {
@@ -43,7 +44,8 @@ const routes: Routes = [
       {path:"slide-toggle", component:SlideToggleComponent},
       {path:"tooltip", component:TooltipsComponent},
       {path:"button", component:ButtonsComponent},
-      {path:"singlepage", component:SinglePageComponent}
+      {path:"singlepage", component:SinglePageComponent},
+      {path:"service", component:PageServiceCrudComponent},
     ]
   },
 

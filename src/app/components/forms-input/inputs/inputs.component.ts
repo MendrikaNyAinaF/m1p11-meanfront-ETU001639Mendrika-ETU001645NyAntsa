@@ -17,7 +17,7 @@ export class InputsComponent {
     return this.props.type === 'select';
   }
   isImgInput() {
-    return this.props.type === 'image';
+    return this.props.type === 'image' || this.props.type === 'file' || this.props.type === 'img';
   }
   isOtherInput(){
     return !this.isSelect() && !this.isImgInput();

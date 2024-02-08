@@ -90,9 +90,13 @@ export class OnePageCrudComponent implements OnInit {
   getFilterData() {
     if (this.list.withPagination) {
       return {
-        ...this.filterData,
-        offset: this.currentPage,
-        limit: this.lengthPage
+        search:{
+          ...this.filterData,
+        },
+        page:{
+          size: this.currentPage,
+          number: this.lengthPage
+        }
       }
     } else {
       return this.filterData;
@@ -148,6 +152,7 @@ export class OnePageCrudComponent implements OnInit {
   /* construire le formulaire  */
   buildFilterFormProps() {
     let inputs = { ...this.filter.inputs };
+    //TODO à rechercker parce que c'est bizarre
     Object.keys(inputs).forEach(async (input: any) => {
       for (let key in input) {
         if (this.filterData[key] != undefined)

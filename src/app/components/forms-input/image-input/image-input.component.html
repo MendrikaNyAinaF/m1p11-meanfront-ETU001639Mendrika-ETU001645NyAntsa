@@ -1,5 +1,5 @@
 <ng-container [formGroup]="form">
-     <mat-form-field appearance="outline">
+     <mat-form-field appearance="outline" [class]="props.class || ''">
           <mat-label>{{props.label}}</mat-label>
           <input matInput [value]="selectedImgName.length>0 ? selectedImgName : 'Choisir une image'" />
           <input type="file" id="fileInput" [formControlName]="key" accept="image/*" (change)="selectImage($event)" />

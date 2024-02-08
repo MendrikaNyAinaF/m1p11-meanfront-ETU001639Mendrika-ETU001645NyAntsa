@@ -1,10 +1,13 @@
 <form [formGroup]="form" class="row">
-     <ng-container *ngFor="let key of keys()">
-          <div [class.d-none]="inputs[key]?.type === 'hidden'" class="{{inputClass}}">
-               <app-inputs [form]="form" [props]="inputs[key]" [key]="key">
-               </app-inputs>
-          </div>
-     </ng-container>
+     <div>
+          <ng-container *ngFor="let key of keys()">
+               <!-- <span [class.d-none]="inputs[key]?.type === 'hidden'" class="{{inputClass}}"
+                     > -->
+                    <app-inputs [form]="form" [props]="inputs[key]" [key]="key">
+                    </app-inputs>
+               <!-- </span> -->
+          </ng-container>
+     </div>
      <ng-content></ng-content>
 
 

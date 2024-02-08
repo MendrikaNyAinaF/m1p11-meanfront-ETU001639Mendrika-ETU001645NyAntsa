@@ -13,6 +13,9 @@ import { DemoFlexyModule } from './demo-flexy-module'
 // Modules
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ComponentsModule } from './components/components.module';
+import { ViewsModule } from './views/views.module';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ import { ComponentsModule } from './components/components.module';
     FullComponent
   ],
   imports: [
+    HttpClientModule,
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -27,9 +32,11 @@ import { ComponentsModule } from './components/components.module';
     DemoFlexyModule,
     DashboardModule,
     ComponentsModule,
-    FormsModule
+    FormsModule,
+    ViewsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

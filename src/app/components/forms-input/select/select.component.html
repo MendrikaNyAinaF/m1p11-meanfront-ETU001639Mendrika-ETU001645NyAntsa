@@ -1,5 +1,5 @@
 <ng-container [formGroup]="form">
-     <mat-form-field appearance="outline">
+     <mat-form-field appearance="outline" [class]="props.class || ''">
           <mat-label>{{props.label}}</mat-label>
           <mat-select [formControlName]="key" value="props.default">
                <mat-option *ngFor="let option of props.options" [value]="props.getValue(option)">

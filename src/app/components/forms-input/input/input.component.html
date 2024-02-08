@@ -1,5 +1,5 @@
 <ng-container [formGroup]="form">
-     <mat-form-field appearance="outline">
+     <mat-form-field appearance="outline" [class]="props.class || ''">
           <mat-label>{{props.label}}</mat-label>
           <input [formControlName]="key" type="{{props.type}}" matInput value="{{props.default || null}}">
           <mat-error>{{readError()}}</mat-error>

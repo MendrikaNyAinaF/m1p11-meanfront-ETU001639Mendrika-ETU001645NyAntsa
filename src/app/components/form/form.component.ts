@@ -8,20 +8,22 @@ import { AlertService } from '../alert.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit{
+export class FormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private alertService: AlertService
   ) { }
 
-  /* from Props de la forme {key: inputprops} */ 
+  /* from Props de la forme {key: inputprops} */
   @Input() inputs!: any;
 
   @Input() action!: SubmitProps;
 
-
   /** css class for each inputs */
   @Input() inputClass: string = "col-md-6 mb-4";
+
+  /** si oui ou non mettre le sweetAlert à la fin du traitement */
+  @Input() withSweetAlert: boolean = true;
 
   /* composant formulaire */
   form !: FormGroup;
@@ -36,39 +38,41 @@ export class FormComponent implements OnInit{
   /* soumettre le formulaire */
   validate() {
     this.form.markAllAsTouched();
-    
+
     if (this.form.valid) {
       this.loaderSubmit = true;
       this.action.submit(this.form.value)
-        .then((res?: any) =>{
-          this.alertService.alertSuccess(res?.message || "Le traitement a été effectué avec succès");
+        .then((res?: any) => {
+          if (this.withSweetAlert)
+            this.alertService.alertSuccess(res?.message || "Le traitement a été effectué avec succès");
           this.loaderSubmit = false;
           this.submit.emit("success");
         })
-        .catch((res?: any) =>{
-          this.alertService.alertError(res?.message ||  "Une erreur s'est produite lors du traitement");
+        .catch((res?: any) => {
+          if (this.withSweetAlert)
+          this.alertService.alertError(res?.message || "Une erreur s'est produite lors du traitement");
           this.loaderSubmit = false;
           this.submit.emit("error")
-        } );
+        });
     }
   }
 
   /* émettre quand on fait un submit, si besoin est, de remplacer les valeurs par défaut par exemple */
   @Output() submit = new EventEmitter<string>();
 
-  
+
 
   ngOnInit(): void {
     /* construit le formulaire */
     this.form = this.formBuilder.group({});
-    
+
     Object.keys(this.inputs).forEach(key => {
       let value = this.inputs[key];
-        this.form.addControl(key, this.buildControl(value));
+      this.form.addControl(key, this.buildControl(value));
     });
   }
 
   private buildControl(input: any) {
-    return this.formBuilder.control({value: input.default ?? '', disabled: input.disabled}, input.validators ?? []);
+    return this.formBuilder.control({ value: input.default ?? '', disabled: input.disabled }, input.validators ?? []);
   }
 }

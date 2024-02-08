@@ -36,7 +36,7 @@
                <!--Delete column-->
                <ng-container *ngIf="getDeletable()==true">
                     <ng-container matColumnDef="Delete">
-                         <th mat-header-cell *matHeaderCellDef>Delete</th>
+                         <th mat-header-cell *matHeaderCellDef>Supprimer</th>
                          <td mat-cell class="fw-medium" *matCellDef="let element">
                               <button mat-icon-button (click)="openDeleteDialog(element.id)">
                                    <mat-icon color="warn">delete</mat-icon>

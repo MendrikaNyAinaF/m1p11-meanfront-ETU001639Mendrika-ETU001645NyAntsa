@@ -14,7 +14,7 @@ export type DeleteAction= (id:any) => any;
 export interface Column {
      name: string,
      selector: Getter, /* function to get the value of the column */
-     class: string | "",
+     class?: string | "",
      type?: "text" | "img"
 }
 
@@ -27,7 +27,8 @@ export interface InputProps {
      onChange?: (value: any, obj: any) => any,
      /** only for images count */
      max?: number,
-     disabled?: boolean
+     disabled?: boolean,
+     class?: string,
 }
 
 /** props for auto-complete component*/

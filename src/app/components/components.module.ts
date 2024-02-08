@@ -31,6 +31,7 @@ import { InputsComponent } from './forms-input/inputs/inputs.component';
 import { FormComponent } from './form/form.component';
 import { TablePaginateComponent } from './table-paginate/table-paginate.component';
 import { CreateFormComponent, OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
+import { PageCrudComponent } from './page-crud/page-crud.component';
 
 
 
@@ -63,7 +64,8 @@ import { CreateFormComponent, OnePageCrudComponent } from './one-page-crud/one-p
     FormComponent,
     TablePaginateComponent,
     OnePageCrudComponent,
-    CreateFormComponent
+    CreateFormComponent,
+    PageCrudComponent
   ],
   imports: [
     CommonModule,
@@ -89,7 +91,20 @@ import { CreateFormComponent, OnePageCrudComponent } from './one-page-crud/one-p
     SliderComponent,
     SlideToggleComponent,
     ButtonsComponent,
-    TableComponent
+    TableComponent,
+    SinglePageComponent,
+    RowEditDialogComponent,
+    RowDeleteDialogComponent,
+    DialogValidationComponent,
+    SelectComponent,
+    InputComponent,
+    ImageInputComponent,
+    InputsComponent,
+    FormComponent,
+    TablePaginateComponent,
+    OnePageCrudComponent,
+    CreateFormComponent,
+    PageCrudComponent,
   ]
 })
 export class ComponentsModule { }

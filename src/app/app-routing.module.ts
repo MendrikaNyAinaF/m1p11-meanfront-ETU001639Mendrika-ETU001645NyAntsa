@@ -20,11 +20,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FullComponent } from './layouts/full/full.component';
 import { SinglePageComponent } from './components/single-page/single-page.component';
 import { PageServiceCrudComponent } from './views/manager/page-service-crud/page-service-crud.component';
+import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
   {
     path:"manager/login",
-    component:PageServiceCrudComponent,
+    component:LoginComponent,
   },
   {
     path:"",

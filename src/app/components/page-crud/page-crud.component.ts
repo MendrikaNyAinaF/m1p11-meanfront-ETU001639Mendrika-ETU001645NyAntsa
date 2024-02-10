@@ -43,7 +43,7 @@ export class PageCrudComponent implements OnInit {
 
   @Input() onRowClick?: (row: any) => void;
 
-  
+
 
   constructor(public dialog: MatDialog) { }
 
@@ -105,6 +105,7 @@ export class PageCrudComponent implements OnInit {
       this.crudService.findAll(this.getFilterData())
         .then((data: any) => {
           this.dataList = data;
+          console.log(data);
           this.loaderList = false;
         })
         .catch((err: any) => {

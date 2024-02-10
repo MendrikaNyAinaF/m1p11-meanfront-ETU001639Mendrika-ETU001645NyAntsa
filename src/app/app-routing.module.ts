@@ -19,9 +19,13 @@ import { ProductComponent } from './dashboard/dashboard-components/product/produ
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FullComponent } from './layouts/full/full.component';
 import { SinglePageComponent } from './components/single-page/single-page.component';
-import { PageServiceCrudComponent } from './views/page-service-crud/page-service-crud.component';
+import { PageServiceCrudComponent } from './views/manager/page-service-crud/page-service-crud.component';
 
 const routes: Routes = [
+  {
+    path:"manager/login",
+    component:PageServiceCrudComponent,
+  },
   {
     path:"",
     component:FullComponent,
@@ -48,6 +52,7 @@ const routes: Routes = [
       {path:"service", component:PageServiceCrudComponent},
     ]
   },
+  
 
   {path:"", redirectTo:"/home", pathMatch:"full"},
   {path:"**", redirectTo:"/home", pathMatch:"full"},

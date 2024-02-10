@@ -15,7 +15,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ComponentsModule } from './components/components.module';
 import { ViewsModule } from './views/views.module';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { BaseApiService } from './services/base-api.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,13 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ViewsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseApiService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

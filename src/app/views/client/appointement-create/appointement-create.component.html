@@ -1,0 +1,26 @@
+<div class="update-pop-up">
+     <h3 mat-dialog-title>Créer un nouveau rendez-vous</h3>
+     <div mat-dialog-content>
+          <form [formGroup]="form">
+               <app-inputs [props]="{label: 'Date', type: 'datetime-local'}" key="date" [form]="form"
+                    validators=" Validators.required"></app-inputs>
+               <div formArrayName="services">
+                    <div *ngFor="let elt of form.get('services')['controls']; let i=index" formGroupName="{{i}}">
+                         <div class="row pt-2">
+                              <div class="col-md-5">
+                                   <app-inputs class="me-24 fs-16" [props]="{label: 'Service', type: 'text'}"
+                                        key="service" [form]="elt" validators=" Validators.required"></app-inputs>
+                                   <app-inputs class="me-24 fs-16" [props]="{label: 'Prix', type: 'number'}" key="price"
+                                        [form]="elt" validators=" Validators.required"></app-inputs>
+                              </div>
+                              <div class="col-md-2 remove-padding-right" >
+                                   <button mat-raised-button type="contained" color="warn" (click)="removeService(i)">
+                                        Supprimer
+                                   </button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </form>
+     </div>
+</div>

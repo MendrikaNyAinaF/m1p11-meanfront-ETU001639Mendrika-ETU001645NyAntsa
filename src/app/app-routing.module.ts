@@ -21,6 +21,7 @@ import { FullComponent } from './layouts/full/full.component';
 import { SinglePageComponent } from './components/single-page/single-page.component';
 import { PageServiceCrudComponent } from './views/manager/page-service-crud/page-service-crud.component';
 import { LoginComponent } from './views/login/login.component';
+import { AppointementCalendarComponent } from './views/client/appointement-calendar/appointement-calendar.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,7 @@ const routes: Routes = [
       {path:"button", component:ButtonsComponent},
       {path:"singlepage", component:SinglePageComponent},
       {path:"service", component:PageServiceCrudComponent},
+      {path:"client/appointement", component:AppointementCalendarComponent},
     ]
   },
   

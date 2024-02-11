@@ -17,6 +17,7 @@ import { ViewsModule } from './views/views.module';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BaseApiService } from './services/base-api.service';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { BaseApiService } from './services/base-api.service';
     ComponentsModule,
     FormsModule,
     ViewsModule,
+    FullCalendarModule
   ],
   providers: [
     {

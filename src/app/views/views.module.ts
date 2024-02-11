@@ -9,13 +9,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { allIcons } from 'angular-feather/icons';
+import { AppointementCalendarComponent } from './client/appointement-calendar/appointement-calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { AppointementCreateComponent } from './client/appointement-create/appointement-create.component';
 
 
 
 @NgModule({
   declarations: [
     PageServiceCrudComponent,
-    LoginComponent
+    LoginComponent,
+    AppointementCalendarComponent,
+    AppointementCreateComponent
   ],
   imports: [
     ComponentsModule,
@@ -25,6 +30,7 @@ import { allIcons } from 'angular-feather/icons';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    FullCalendarModule
   ]
 })
 export class ViewsModule { }

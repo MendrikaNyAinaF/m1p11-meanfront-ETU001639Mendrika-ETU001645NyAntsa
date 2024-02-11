@@ -20,7 +20,7 @@ export class FormComponent implements OnInit {
   @Input() action!: SubmitProps;
 
   /** css class for each inputs */
-  @Input() inputClass: string = "col-md-6 mb-4";
+  @Input() inputClass: string = "w-100 fs-16";
 
   /** si oui ou non mettre le sweetAlert à la fin du traitement */
   @Input() withSweetAlert: boolean = true;
@@ -63,12 +63,19 @@ export class FormComponent implements OnInit {
 
 
   ngOnInit(): void {
+    /* construire la classe du bouton */
+    if(this.action.class==undefined || this.action.class==null || this.action.class==""){
+      this.action.class="me-8 mb-8";
+    }
     /* construit le formulaire */
     this.form = this.formBuilder.group({});
 
     Object.keys(this.inputs).forEach(key => {
       let value = this.inputs[key];
       this.form.addControl(key, this.buildControl(value));
+      if(this.inputs[key].class==undefined || this.inputs[key].class==null || this.inputs[key].class==""){
+        this.inputs[key].class = this.inputClass;
+      }
     });
   }
 

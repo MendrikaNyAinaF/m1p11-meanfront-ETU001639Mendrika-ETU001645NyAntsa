@@ -69,6 +69,7 @@ export interface SubmitProps {
 
      // 'disabled' is an optional boolean property, indicating whether the submit button should be disabled
      disabled?: boolean;
+     class?:string;
 
      // 'submit' is an optional function property that takes an object of any type as a parameter and returns any type
      // The component use this interface may have a submit function that can be passed as a prop

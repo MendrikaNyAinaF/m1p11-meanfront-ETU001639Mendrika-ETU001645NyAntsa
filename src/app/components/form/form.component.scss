@@ -6,7 +6,10 @@
 .mat-spinner {
      ::ng-deep circle {
          stroke: white;
+         margin:auto;
      }
+     margin:auto;
 }
-
-
+.full-width{
+     width: 100%;
+}

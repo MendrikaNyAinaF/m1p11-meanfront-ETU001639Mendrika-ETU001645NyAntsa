@@ -1,3 +1,8 @@
+## Remarques sur les actions(function) à passer dans les crud généralise, liste et formulaire
+> passer un promise
+
+
+
 # Documentation du composant CRUD généralisé
 ## Petite présentation
 Composant sur une seule page pour faire les CRUD (peut marcher aussi si on veut rediriger quand on clique sur une ligne de la liste)
@@ -19,13 +24,15 @@ Composant sur une seule page pour faire les CRUD (peut marcher aussi si on veut 
 Un exemple qu'on peut retrouver dans views/page-service-crud avec le service services/service/service-crud
 
 
+
 # Documentation du formulaire qui va tout seul
 Ce composant emet un string success si le traitement du submit a bien été effectué, soit un error, grace à l'event "submit"
 
 ## Paramètre
 - inputs
-- action
+- action (les propriétés du bouton ainsi que l'action qu'il va effectuer)
 - inputClass (pour chaque inputs)
+- withSweetAlert: si oui ou non on veut qu'un sweetalert pop pour nous avertir
 (à voir dans le Composant FormComponent pour les détails)
 
 

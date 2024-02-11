@@ -35,6 +35,7 @@ export class BaseApiService implements HttpInterceptor{
       this.http.get(url, options).subscribe((data) => {
         resolve(data);
       }, (error) => {
+        console.error(error);
         reject(error);
       });
     });
@@ -45,6 +46,7 @@ export class BaseApiService implements HttpInterceptor{
       this.http.post(url, data, options).subscribe((data) => {
         resolve(data);
       }, (error) => {
+        console.error(error);
         reject(error);
       });
     });
@@ -55,6 +57,7 @@ export class BaseApiService implements HttpInterceptor{
       this.http.delete(url, options).subscribe((data) => {
         resolve(data);
       }, (error) => {
+        console.error(error);
         reject(error);
       });
     }
@@ -66,6 +69,7 @@ export class BaseApiService implements HttpInterceptor{
       this.http.put(url, data, options).subscribe((data) => {
         resolve(data);
       }, (error) => {
+        console.error(error);
         reject(error);
       });
     });

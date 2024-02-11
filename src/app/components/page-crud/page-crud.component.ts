@@ -155,7 +155,7 @@ export class PageCrudComponent implements OnInit {
         label: this.fields[key].label || key,
         type: this.fields[key].inputType,
         validators: [],
-
+        class:"w-100 fs-16"
       };
       //pour prendre les données du select
       if (this.fields[key].inputType == "select") {

@@ -190,6 +190,7 @@ export class OnePageCrudComponent implements OnInit {
 @Component({
   selector: 'app-create-from',
   templateUrl: './create-form.component.html',
+  styleUrls: ['./one-page-crud.component.scss']
 })
 export class CreateFormComponent {
   formProps: FormProps = { inputs: {}, action: { label: "", submit: () => { }, color: "" } };

@@ -1,23 +1,7 @@
-<ng-container *ngIf="isSelect()">
-     <app-select
-          [key]="key"
-          [form]="form"
-          [props]="props"
-     ></app-select>
-</ng-container>
+<input *ngIf="isHidden()" type="hidden" [formControlName]="key" [id]="key" [name]="key" [value]="props.value" />
 
-<ng-container *ngIf="isImgInput()">
-     <app-image-input
-          [key]="key"
-          [form]="form"
-          [props]="props"
-     ></app-image-input>
-</ng-container>
+<app-select [key]="key" [form]="form" [props]="props" *ngIf="isSelect()"></app-select>
 
-<ng-container *ngIf="isOtherInput()">
-     <app-input
-          [key]="key"
-          [form]="form"
-          [props]="props"
-     ></app-input>
-</ng-container>
+<app-image-input *ngIf="isImgInput()" [key]="key" [form]="form" [props]="props"></app-image-input>
+
+<app-input [key]="key" [form]="form" [props]="props" *ngIf="isOtherInput()"></app-input>

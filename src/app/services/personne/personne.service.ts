@@ -22,11 +22,11 @@ export class PersonneService {
 
   login(data: any) { //in the format {username: string, password: string}
     return new Promise((resolve, reject) => {
-      this.baseApi.post(`${this.personRole}/login`).then((res: any) => {
+      this.baseApi.post(`${this.baseUrl}/${this.personRole}/login`, data).then((res: any) => {
         this.storage.setItem('jwtToken', res.token);
         resolve(res);
       }).catch((error: any) => {
-        reject(error);
+        reject(error.error);
       });
     });
 

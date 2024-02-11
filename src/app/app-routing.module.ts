@@ -24,7 +24,7 @@ import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
   {
-    path:"manager/login",
+    path:":person/login", // allowed values for person: manager, client, employee
     component:LoginComponent,
   },
   {

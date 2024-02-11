@@ -43,6 +43,7 @@ export class TableComponent extends TableCommon implements OnInit {
 @Component({
   selector: 'app-row-edit-dialog',
   templateUrl: './row-edit-dialog.html',
+  styleUrls: ['./table.component.scss']
 })
 export class RowEditDialogComponent implements OnInit {
   row!: any;
@@ -70,6 +71,7 @@ export class RowEditDialogComponent implements OnInit {
 @Component({
   selector: 'app-row-delete-dialog',
   templateUrl: './row-delete-dialog.html',
+  styleUrls: ['./table.component.scss']
 })
 export class RowDeleteDialogComponent implements OnInit {
   deleteAction!: DeleteAction; //la fonction à exécuter pour la suppression

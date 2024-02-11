@@ -20,7 +20,10 @@ export class InputsComponent {
     return this.props.type === 'image' || this.props.type === 'file' || this.props.type === 'img';
   }
   isOtherInput(){
-    return !this.isSelect() && !this.isImgInput();
+    return !this.isSelect() && !this.isImgInput() && !this.isHidden();
+  }
+  isHidden(){
+    return this.props.type === 'hidden';
   }
 
   get(key: string) {

@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CalendarOptions, EventDropArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { CreateFormComponent } from 'src/app/components/one-page-crud/one-page-crud.component';
+import { AppointmentService } from 'src/app/services/appointment/appointment.service';
 
 @Component({
-  selector: 'app-appointement-calendar',
-  templateUrl: './appointement-calendar.component.html',
-  styleUrls: ['./appointement-calendar.component.scss']
+  selector: 'app-appointment-calendar',
+  templateUrl: './appointment-calendar.component.html',
+  styleUrls: ['./appointment-calendar.component.scss']
 })
-export class AppointementCalendarComponent implements OnInit {
+export class AppointmentCalendarComponent implements OnInit {
   initialDate: string = '2024-W34'
   calendarOptions: CalendarOptions = {
     initialView: 'timeGridWeek',
@@ -23,7 +26,8 @@ export class AppointementCalendarComponent implements OnInit {
     editable: true,
     eventDrop: this.handleEventDrop.bind(this)
   }
-  constructor() { }
+  constructor(public dialog: MatDialog, 
+    private appointmentService: AppointmentService) { }
 
   ngOnInit(): void {
   }
@@ -37,5 +41,19 @@ export class AppointementCalendarComponent implements OnInit {
     alert('Event Drop')
   }
 
+  findAllAppointment() {
+    //this.appo
+  }
+  openCreateForm(){
+    const dialogRefCreate=this.dialog.open(CreateFormComponent);
+    dialogRefCreate.afterClosed().subscribe((result:any)=>{
+      console.log(result);
+      if(result==='new'){
+        this.findAllAppointment();
+      }
+    })
+  }
+
+  
 
 }

@@ -12,4 +12,8 @@ export class EmployeeService extends PersonneService{
     public override storage: StorageService) { 
       super(baseApi, storage,{role:"employee"});
     }
+
+  findAll(params?:any){
+    return this.baseApi.get(`${this.baseUrl}/employee`, params);
+  }
 }

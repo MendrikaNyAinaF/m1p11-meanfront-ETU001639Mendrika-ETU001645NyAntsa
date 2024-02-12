@@ -1,7 +1,7 @@
 <mat-card>
      <mat-card-content>
           <h1>Liste des rendez vous</h1>
-          <button mat-raised-button  color="primary">Nouveau rendez vous</button>
+          <button mat-raised-button  color="primary" (click)="openCreateForm()">Nouveau rendez vous</button>
           <br/>
           <full-calendar [options]="calendarOptions">
           </full-calendar>

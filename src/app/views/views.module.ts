@@ -9,9 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { allIcons } from 'angular-feather/icons';
-import { AppointementCalendarComponent } from './client/appointement-calendar/appointement-calendar.component';
+import { AppointmentCalendarComponent } from './client/appointment-calendar/appointment-calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { AppointementCreateComponent } from './client/appointement-create/appointement-create.component';
+import { AppointmentCreateComponent } from './client/appointment-create/appointment-create.component';
 
 
 
@@ -19,8 +19,8 @@ import { AppointementCreateComponent } from './client/appointement-create/appoin
   declarations: [
     PageServiceCrudComponent,
     LoginComponent,
-    AppointementCalendarComponent,
-    AppointementCreateComponent
+    AppointmentCalendarComponent,
+    AppointmentCreateComponent
   ],
   imports: [
     ComponentsModule,

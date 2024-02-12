@@ -10,17 +10,26 @@
                               <div class="col-md-5">
                                    <app-inputs class="me-24 fs-16" [props]="{label: 'Service', type: 'text'}"
                                         key="service" [form]="elt" validators=" Validators.required"></app-inputs>
-                                   <app-inputs class="me-24 fs-16" [props]="{label: 'Prix', type: 'number'}" key="price"
+                                   <app-inputs class="me-24 fs-16" [props]="{label: 'employee', type: 'select'}" key="employee"
                                         [form]="elt" validators=" Validators.required"></app-inputs>
                               </div>
                               <div class="col-md-2 remove-padding-right" >
-                                   <button mat-raised-button type="contained" color="warn" (click)="removeService(i)">
+                                   <button mat-raised-button type="contained" color="warn" (click)="removeService(i)" *ngIf="isGtThanOneService()">
                                         Supprimer
                                    </button>
+                                   
                               </div>
                          </div>
                     </div>
                </div>
+               <button mat-raised-button color="primary" type="submit" (click)="handleCreateSubmit()" >
+                    <ng-container *ngIf="loaderSubmit">
+                         <mat-spinner [diameter]="40" color="#fff" id="spinner-btn"></mat-spinner>
+                    </ng-container>
+                    <ng-container *ngIf="!loaderSubmit">
+                         Créer
+                    </ng-container>
+               </button>
           </form>
      </div>
 </div>

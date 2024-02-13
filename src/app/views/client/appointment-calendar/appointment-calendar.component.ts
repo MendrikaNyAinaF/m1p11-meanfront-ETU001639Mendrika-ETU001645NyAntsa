@@ -48,7 +48,7 @@ export class AppointmentCalendarComponent implements OnInit {
   handleEventDrop(eventDropInfo: EventDropArg) {
     const { event, oldEvent } = eventDropInfo;
     console.log(eventDropInfo);
-    alert('Event Drop')
+    this.openUpdateForm(event, event.startStr);
   }
 
   /* pour prendre les données */
@@ -89,8 +89,11 @@ export class AppointmentCalendarComponent implements OnInit {
     })
   }
 
-  openUpdateForm(appointment: any) {
+  openUpdateForm(appointment: any, newDateEvent?: any) {
     console.log(appointment);
+    if(newDateEvent){
+      appointment.date = newDateEvent;
+    }
     const dialogRefUpdate = this.dialog.open(AppointmentUpdateComponent, {
       data: {
         employeeData: this.employeeData,

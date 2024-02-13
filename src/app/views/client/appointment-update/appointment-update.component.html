@@ -1,5 +1,5 @@
 <div class="update-pop-up">
-     <h3 mat-dialog-title>Créer un nouveau rendez-vous</h3>
+     <h3 mat-dialog-title>Modifier le rendez-vous</h3>
      <div mat-dialog-content>
           <form [formGroup]="form">
                <app-inputs [props]="{label: 'Date', type: 'datetime-local'}" key="date" [form]="form"></app-inputs>
@@ -28,7 +28,7 @@
                               <mat-spinner [diameter]="40" color="#fff" class="me-8 mb-8" id="spinner-btn"></mat-spinner>
                          </ng-container>
                          <ng-container *ngIf="!loaderSubmit">
-                              Créer
+                              Enregistrer les modifications
                          </ng-container>
                     </button>
                </div>

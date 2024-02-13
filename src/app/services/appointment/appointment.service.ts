@@ -16,8 +16,8 @@ export class AppointmentService {
     return this.baseApi.post(`${this.baseUrl}/appointement`, body);
   }
 
-  //c'est un client qui peut modifier un rendez vous, soit modifier l'heure ou la date
-  updateDateTime(id: string, body: any) {
+  //c'est un client qui peut modifier un rendez vous, soit modifier l'heure ou la date ou les serviecs
+  update(id: string, body: any) {
     //TODO traitement
     return this.baseApi.put(`${this.baseUrl}/appointement/${id}`, body);
   }

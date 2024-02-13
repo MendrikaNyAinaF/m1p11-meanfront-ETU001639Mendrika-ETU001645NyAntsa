@@ -12,6 +12,7 @@ import { allIcons } from 'angular-feather/icons';
 import { AppointmentCalendarComponent } from './client/appointment-calendar/appointment-calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppointmentCreateComponent } from './client/appointment-create/appointment-create.component';
+import { AppointmentUpdateComponent } from './client/appointment-update/appointment-update.component';
 
 
 
@@ -20,9 +21,11 @@ import { AppointmentCreateComponent } from './client/appointment-create/appointm
     PageServiceCrudComponent,
     LoginComponent,
     AppointmentCalendarComponent,
-    AppointmentCreateComponent
+    AppointmentCreateComponent,
+    AppointmentUpdateComponent
   ],
   imports: [
+    CommonModule,
     ComponentsModule,
     FeatherModule.pick(allIcons),
     DemoFlexyModule,

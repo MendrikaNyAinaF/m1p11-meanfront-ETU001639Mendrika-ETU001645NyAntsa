@@ -18,10 +18,11 @@
                     </ng-container>
                </div>
                <div class="text-right">
-                    <button mat-raised-button color="primary" (click)="addService()">
+                    <button mat-raised-button color="accent" (click)="addService()">
                          Ajouter service
                     </button>
                </div>
+               <br/>
                <div>
                     <button mat-raised-button color="primary" type="submit" class="me-8 mb-8" (click)="handleCreateSubmit()">
                          <ng-container *ngIf="loaderSubmit">
@@ -29,6 +30,14 @@
                          </ng-container>
                          <ng-container *ngIf="!loaderSubmit">
                               Enregistrer les modifications
+                         </ng-container>
+                    </button>
+                    <button mat-raised-button color="warn" class="me-8 mb-8" (click)="handleDeleteSubmit()">
+                         <ng-container *ngIf="loaderSubmit">
+                              <mat-spinner [diameter]="40" color="#fff" class="me-8 mb-8" id="spinner-btn"></mat-spinner>
+                         </ng-container>
+                         <ng-container *ngIf="!loaderSubmit">
+                              Supprimer le rendez vous
                          </ng-container>
                     </button>
                </div>

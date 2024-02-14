@@ -15,10 +15,11 @@ export class AppointmentUpdateComponent implements OnInit {
   serviceData!: any[];
   employeeData!: any[];
   appointmentData!: any;
+  close!: () => void;
 
   //form: date, liste des services et préférence
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any, /* de la forme {employeeData, serviceData} */
+    @Inject(MAT_DIALOG_DATA) public data: any, /* de la forme {employeeData, serviceData, appointmentData, close} */
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private appointmentService: AppointmentService
@@ -26,6 +27,7 @@ export class AppointmentUpdateComponent implements OnInit {
     this.serviceData = data.serviceData;
     this.employeeData = data.employeeData;
     this.appointmentData = data.appointmentData;
+    this.close=data.close;
   }
 
   ngOnInit(): void {
@@ -92,7 +94,6 @@ export class AppointmentUpdateComponent implements OnInit {
 
 
   loaderSubmit: boolean = false;
-
   /*pour la création de nouveau rendez-vous */
   handleCreateSubmit() {
     this.form.markAllAsTouched();
@@ -110,6 +111,20 @@ export class AppointmentUpdateComponent implements OnInit {
     }
   }
 
+  loaderDelete: boolean = false;
+  handleDeleteSubmit(){
+    this.loaderDelete = true;
+    this.appointmentService.cancel(this.appointmentData._id).then((res: any) => {
+      this.update.emit("delete");
+      this.alertService.alertSuccess(res?.data?.message || "Le traitement a été effectué avec succès");
+      this.loaderDelete = false;
+      this.close();
+    }).catch((error: any) => {
+      this.alertService.alertError(error?.data?.message || "Une erreur s'est produite lors du traitement");
+      this.loaderDelete = false;
+      console.error(error);
+    });
+  }
   @Output() update = new EventEmitter<string>();
 
 }

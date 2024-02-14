@@ -34,8 +34,9 @@ export class CrudService {
     return this.baseApi.get(`${this.crudUrl}/${id}`);
   }
 
-  findAll(params: SearchParams) { //de la forme {search:{key: value,...}, page:{size:10, number:1}}
-    return this.baseApi.get(this.crudUrl, { body: params });
+  findAll(params?: SearchParams) { //de la forme {search:{key: value,...}, page:{size:10, number:1}}
+    const body = params ?{body: params }: {};
+    return this.baseApi.get(this.crudUrl, body);
   }
 
   update(id: string, body: any) {

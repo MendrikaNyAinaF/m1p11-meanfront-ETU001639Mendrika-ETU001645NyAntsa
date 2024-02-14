@@ -13,6 +13,7 @@ import { AppointmentCalendarComponent } from './client/appointment-calendar/appo
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppointmentCreateComponent } from './client/appointment-create/appointment-create.component';
 import { AppointmentUpdateComponent } from './client/appointment-update/appointment-update.component';
+import { PageTypeExpenseComponent } from './manager/page-type-expense/page-type-expense.component';
 
 
 
@@ -22,7 +23,8 @@ import { AppointmentUpdateComponent } from './client/appointment-update/appointm
     LoginComponent,
     AppointmentCalendarComponent,
     AppointmentCreateComponent,
-    AppointmentUpdateComponent
+    AppointmentUpdateComponent,
+    PageTypeExpenseComponent
   ],
   imports: [
     CommonModule,

@@ -58,6 +58,10 @@ export interface SelectProps extends InputProps {
      autoComplete?: boolean;
 }
 
+export interface CheckBoxProps extends InputProps {
+     checked: boolean;
+}
+
 /*propriété du bouton submit dans un formulaire*/
 export interface SubmitProps {
      // 'label' is a required property of type string

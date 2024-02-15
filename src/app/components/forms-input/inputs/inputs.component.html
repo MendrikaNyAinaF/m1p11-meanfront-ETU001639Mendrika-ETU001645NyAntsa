@@ -2,6 +2,8 @@
 
 <app-select [key]="key" [form]="form" [props]="props" *ngIf="isSelect()"></app-select>
 
+<app-checkbox [key]="key" [form]="form" [props]="props" *ngIf="isCheckBox()"></app-checkbox>
+
 <app-image-input *ngIf="isImgInput()" [key]="key" [form]="form" [props]="props"></app-image-input>
 
 <app-input [key]="key" [form]="form" [props]="props" *ngIf="isOtherInput()"></app-input>

@@ -32,6 +32,7 @@ import { FormComponent } from './form/form.component';
 import { TablePaginateComponent } from './table-paginate/table-paginate.component';
 import { CreateFormComponent, OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
 import { PageCrudComponent } from './page-crud/page-crud.component';
+import { CheckboxComponent } from './forms-input/checkbox/checkbox.component';
 
 
 
@@ -65,7 +66,8 @@ import { PageCrudComponent } from './page-crud/page-crud.component';
     TablePaginateComponent,
     OnePageCrudComponent,
     CreateFormComponent,
-    PageCrudComponent
+    PageCrudComponent,
+    CheckboxComponent
   ],
   imports: [
     CommonModule,

@@ -38,4 +38,9 @@ export class AppointmentService {
     //TODO traitement
     return this.baseApi.get(`${this.baseUrl}/appointement`, { body: params });
   }
+
+  findById(id: string) {
+    //TODO traitement
+    return this.baseApi.get(`${this.baseUrl}/appointement-crud/${id}`);
+  }
 }

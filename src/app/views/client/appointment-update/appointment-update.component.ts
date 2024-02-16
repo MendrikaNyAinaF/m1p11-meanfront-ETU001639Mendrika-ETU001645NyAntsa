@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AlertService } from 'src/app/components/alert.service';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
 
@@ -22,7 +23,8 @@ export class AppointmentUpdateComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, /* de la forme {employeeData, serviceData, appointmentData, close} */
     private formBuilder: FormBuilder,
     private alertService: AlertService,
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,
+    private router: Router
   ) {
     this.serviceData = data.serviceData;
     this.employeeData = data.employeeData;
@@ -126,5 +128,9 @@ export class AppointmentUpdateComponent implements OnInit {
     });
   }
   @Output() update = new EventEmitter<string>();
+
+  goToPayment(){
+    this.router.navigate([`/client/appointment/${this.appointmentData._id}/payment`]);
+  }
 
 }

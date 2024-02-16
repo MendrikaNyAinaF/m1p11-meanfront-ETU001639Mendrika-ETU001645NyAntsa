@@ -23,6 +23,7 @@ import { PageServiceCrudComponent } from './views/manager/page-service-crud/page
 import { LoginComponent } from './views/login/login.component';
 import { AppointmentCalendarComponent } from './views/client/appointment-calendar/appointment-calendar.component';
 import { PageTypeExpenseComponent } from './views/manager/page-type-expense/page-type-expense.component';
+import { AppointmentPaymentComponent } from './views/client/appointment-payment/appointment-payment.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,7 @@ const routes: Routes = [
       {path:"singlepage", component:SinglePageComponent},
       {path:"service", component:PageServiceCrudComponent},
       {path:"client/appointement", component:AppointmentCalendarComponent},
+      {path:"client/appointment/:id/payment", component:AppointmentPaymentComponent},
       {path:"manager/type-expense", component:PageTypeExpenseComponent},
     ]
   },

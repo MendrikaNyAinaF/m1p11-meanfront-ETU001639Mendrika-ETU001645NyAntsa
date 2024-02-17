@@ -15,6 +15,9 @@ import { AppointmentCreateComponent } from './client/appointment-create/appointm
 import { AppointmentUpdateComponent } from './client/appointment-update/appointment-update.component';
 import { PageTypeExpenseComponent } from './manager/page-type-expense/page-type-expense.component';
 import { AppointmentPaymentComponent } from './client/appointment-payment/appointment-payment.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import {NgApexchartsModule} from "ng-apexcharts";
+import { TestingComponent } from './testing/testing.component';
 
 
 
@@ -26,7 +29,9 @@ import { AppointmentPaymentComponent } from './client/appointment-payment/appoin
     AppointmentCreateComponent,
     AppointmentUpdateComponent,
     PageTypeExpenseComponent,
-    AppointmentPaymentComponent
+    AppointmentPaymentComponent,
+    BarChartComponent,
+    TestingComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +43,8 @@ import { AppointmentPaymentComponent } from './client/appointment-payment/appoin
     MatInputModule,
     ReactiveFormsModule,
     FullCalendarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgApexchartsModule
   ]
 })
 export class ViewsModule { }

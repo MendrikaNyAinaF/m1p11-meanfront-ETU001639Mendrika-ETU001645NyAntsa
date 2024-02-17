@@ -24,6 +24,8 @@ import { LoginComponent } from './views/login/login.component';
 import { AppointmentCalendarComponent } from './views/client/appointment-calendar/appointment-calendar.component';
 import { PageTypeExpenseComponent } from './views/manager/page-type-expense/page-type-expense.component';
 import { AppointmentPaymentComponent } from './views/client/appointment-payment/appointment-payment.component';
+import { BarChartComponent } from './views/bar-chart/bar-chart.component';
+import {TestingComponent} from "./views/testing/testing.component";
 
 const routes: Routes = [
   {
@@ -57,6 +59,11 @@ const routes: Routes = [
       {path:"client/appointement", component:AppointmentCalendarComponent},
       {path:"client/appointment/:id/payment", component:AppointmentPaymentComponent},
       {path:"manager/type-expense", component:PageTypeExpenseComponent},
+
+    //     Ny Antsa
+    //     path for bar chart
+      {path:"bar-chart", component:BarChartComponent},
+      {path:"testing", component:TestingComponent}
     ]
   },
   

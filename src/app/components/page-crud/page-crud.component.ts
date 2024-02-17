@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/services/crud/crud.service';
 import { Column, FormProps } from '../interfaces';
 import { ValidatorFn } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { CreateFormComponent } from '../one-page-crud/one-page-crud.component';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 export interface PageCrudProps {
   create: boolean;
@@ -170,18 +169,7 @@ export class PageCrudComponent implements OnInit {
       inputs: inputs,
       action: {
         label: "Modifier",
-        submit: (obj: any) => {
-          return new Promise((resolve, reject) => {
-            this.crudService.update(obj.id, obj)
-              .then((data: any) => {
-                this.getDataList();
-                resolve(data);
-              }).catch((err: any) => {
-                console.error(err);
-                reject(err);
-              });
-          });
-        },
+        submit: this.submitUpdate,
         color: "accent"
       },
       title: "Modifier " + this.crudService.crudName
@@ -190,24 +178,37 @@ export class PageCrudComponent implements OnInit {
       inputs: inputs,
       action: {
         label: "Ajouter",
-        submit: (obj: any) => {
-          return new Promise((resolve, reject) => {
-            this.crudService.create(obj)
-              .then((data: any) => {
-                this.getDataList();
-                resolve(data);
-              }).catch((err: any) => {
-                console.error(err);
-                reject(err);
-              });
-          });
-        },
+        submit: this.submitCreate,
         color: "primary"
       },
       title: "Ajouter " + this.crudService.crudName
     }
   }
 
+  submitUpdate= (obj: any) => {
+    return new Promise((resolve, reject) => {
+      this.crudService.update(obj._id, obj)
+        .then((data: any) => {
+          this.getDataList();
+          resolve(data);
+        }).catch((err: any) => {
+          console.error(err);
+          reject(err);
+        });
+    });
+  }
+  submitCreate=(obj: any) => {
+    return new Promise((resolve, reject) => {
+      this.crudService.create(obj)
+        .then((data: any) => {
+          this.getDataList();
+          resolve(data);
+        }).catch((err: any) => {
+          console.error(err);
+          reject(err);
+        });
+    });
+  }
   /* construire le formulaire  */
   buildFilterFormProps() {
     /* la liste des champs du formulaire update/create */
@@ -247,7 +248,7 @@ export class PageCrudComponent implements OnInit {
     }
   }
 
-  deleteAction(id: any) {
+  deleteAction=(id: any) =>{
     return new Promise((resolve, reject) => {
       this.crudService.delete(id)
         .then((data: any) => {
@@ -263,11 +264,32 @@ export class PageCrudComponent implements OnInit {
   openCreateForm() {
     this.dialog.open(CreateFormComponent, {
       data: {
-        handleSubmitChange: this.handleSubmitChange,
+        handleSubmitChange: this.handleSubmitChange.bind(this),
         formProps: this.createFormProps
       }
     })
   }
 }
 
+@Component({
+  selector: 'app-create-from',
+  templateUrl: './create-form.component.html',
+  styleUrls: ['./page-crud.component.scss']
+})
+export class CreateFormComponent {
 
+  formProps: FormProps = { inputs: {}, action: { label: "", submit: () => { }, color: "" } };
+  handleSubmitChange: (status: string) => void = () => { };
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
+  private dialogRef: MatDialogRef<CreateFormComponent>) { }
+  ngOnInit(): void {
+    this.formProps = this.data.formProps;
+    this.handleSubmitChange = (status:string)=>{
+      this.data.handleSubmitChange(status);
+      if(status === "success"){
+        this.dialogRef.close();
+      }
+    }
+  }
+}

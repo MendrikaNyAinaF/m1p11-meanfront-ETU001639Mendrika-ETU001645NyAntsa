@@ -26,7 +26,7 @@ export class PageTypeExpenseComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = {
-      id: {
+      _id: {
         label: "_id",
         inputType: "hidden",
         hidden: true,

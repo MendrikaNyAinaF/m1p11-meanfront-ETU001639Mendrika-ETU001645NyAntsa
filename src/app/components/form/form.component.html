@@ -13,12 +13,12 @@
 
      <div class="col-md-12">
           <button mat-raised-button [class]="action.class" [color]="action.color" type="submit" (click)="validate()" >
-               <ng-container *ngIf="loaderSubmit">
+               <ng-container *ngIf="loaderSubmit; else labelSubmit">
                     <mat-spinner [diameter]="40" color="#fff" id="spinner-btn"></mat-spinner>
                </ng-container>
-               <ng-container *ngIf="!loaderSubmit">
+               <ng-template #labelSubmit>
                     {{action.label}}
-               </ng-container>
+               </ng-template>
           </button>
      </div>
 </form>

@@ -27,7 +27,7 @@ export class CrudService {
 
 
   create(body: any) {
-    return this.baseApi.post(this.crudUrl, { body: body });
+    return this.baseApi.post(this.crudUrl, body );
   }
 
   findOne(id: string) {
@@ -36,12 +36,12 @@ export class CrudService {
 
   findAll(params?: SearchParams) { //de la forme {search:{key: value,...}, page:{size:10, number:1}}
     const body = params ?{body: params }: {};
-    return this.baseApi.get(this.crudUrl, body);
+    return this.baseApi.get(this.crudUrl, {body:body});
   }
 
   update(id: string, body: any) {
     delete body.id;
-    return this.baseApi.put(`${this.crudUrl}/${id}`, { body: body });
+    return this.baseApi.put(`${this.crudUrl}/${id}`, body );
   }
 
   delete(id: string) {

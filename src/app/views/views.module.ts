@@ -18,33 +18,38 @@ import { AppointmentPaymentComponent } from './client/appointment-payment/appoin
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import {NgApexchartsModule} from "ng-apexcharts";
 import { TestingComponent } from './testing/testing.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
 @NgModule({
-  declarations: [
-    PageServiceCrudComponent,
-    LoginComponent,
-    AppointmentCalendarComponent,
-    AppointmentCreateComponent,
-    AppointmentUpdateComponent,
-    PageTypeExpenseComponent,
-    AppointmentPaymentComponent,
-    BarChartComponent,
-    TestingComponent
-  ],
-  imports: [
-    CommonModule,
-    ComponentsModule,
-    FeatherModule.pick(allIcons),
-    DemoFlexyModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    FullCalendarModule,
-    ReactiveFormsModule,
-    NgApexchartsModule
-  ]
+    declarations: [
+        PageServiceCrudComponent,
+        LoginComponent,
+        AppointmentCalendarComponent,
+        AppointmentCreateComponent,
+        AppointmentUpdateComponent,
+        PageTypeExpenseComponent,
+        AppointmentPaymentComponent,
+        BarChartComponent,
+        TestingComponent,
+        SpinnerComponent
+    ],
+    exports: [
+        SpinnerComponent
+    ],
+    imports: [
+        CommonModule,
+        ComponentsModule,
+        FeatherModule.pick(allIcons),
+        DemoFlexyModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FullCalendarModule,
+        ReactiveFormsModule,
+        NgApexchartsModule
+    ]
 })
 export class ViewsModule { }

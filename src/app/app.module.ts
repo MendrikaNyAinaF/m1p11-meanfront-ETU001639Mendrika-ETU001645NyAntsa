@@ -36,8 +36,8 @@ import {LoadingInterceptor} from "./interceptor/loading.interceptor";
         DashboardModule,
         ComponentsModule,
         FormsModule,
-        ViewsModule,
-        FullCalendarModule
+        FullCalendarModule,
+        ViewsModule
     ],
     providers: [
         {

@@ -93,27 +93,27 @@ export class PageCrudComponent implements OnInit {
     }
   }
 
+
+
+  /* prendre les données depuis un appel API */
+  getDataList() {
+    this.loaderList = true;
+    this.crudService.findAll(this.getFilterData())
+      .then((data: any) => {
+        this.dataList = data;
+        console.log(data);
+        this.loaderList = false;
+      })
+      .catch((err: any) => {
+        console.error(err);
+        this.loaderList = false;
+      });
+  }
   handleSubmitChange(status: string) {
     if (status == "success") {
       this.getDataList();
     }
   }
-
-  /* prendre les données depuis un appel API */
-  getDataList() {
-      this.loaderList = true;
-      this.crudService.findAll(this.getFilterData())
-        .then((data: any) => {
-          this.dataList = data;
-          console.log(data);
-          this.loaderList = false;
-        })
-        .catch((err: any) => {
-          console.error(err);
-          this.loaderList = false;
-        });
-  }
-
   buildColumns() {
     let cols: Column[] = [];
     Object.keys(this.fields).forEach((key: string) => {
@@ -155,7 +155,7 @@ export class PageCrudComponent implements OnInit {
         label: this.fields[key].label || key,
         type: this.fields[key].inputType,
         validators: [],
-        class:"w-100 fs-16"
+        class: "w-100 fs-16"
       };
       //pour prendre les données du select
       if (this.fields[key].inputType == "select") {
@@ -240,8 +240,8 @@ export class PageCrudComponent implements OnInit {
           return new Promise((resolve, reject) => {
             this.handleChangeFilter(obj);
             resolve("ok");
-          } );
-          
+          });
+
         }
       }
     }
@@ -263,7 +263,7 @@ export class PageCrudComponent implements OnInit {
   openCreateForm() {
     this.dialog.open(CreateFormComponent, {
       data: {
-        handleSubmitChange: this.handleSubmitChange,
+        handleSubmitChange: this.handleSubmitChange.bind(this),
         formProps: this.createFormProps
       }
     })

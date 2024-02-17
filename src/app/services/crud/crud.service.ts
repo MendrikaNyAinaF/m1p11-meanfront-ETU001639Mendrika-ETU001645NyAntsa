@@ -27,7 +27,7 @@ export class CrudService {
 
 
   create(body: any) {
-    return this.baseApi.post(this.crudUrl, { body: body });
+    return this.baseApi.post(this.crudUrl, body );
   }
 
   findOne(id: string) {
@@ -41,7 +41,7 @@ export class CrudService {
 
   update(id: string, body: any) {
     delete body.id;
-    return this.baseApi.put(`${this.crudUrl}/${id}`, { body: body });
+    return this.baseApi.put(`${this.crudUrl}/${id}`,body );
   }
 
   delete(id: string) {

@@ -178,7 +178,7 @@ export class OnePageCrudComponent implements OnInit {
   openCreateForm() {
     this.dialog.open(CreateFormComponent, {
       data: {
-        handleSubmitChange: this.handleSubmitChange,
+        handleSubmitChange: this.handleSubmitChange.bind(this),
         formProps: {
           ...this.createFormProps
         }
@@ -200,6 +200,8 @@ export class CreateFormComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
   ngOnInit(): void {
     this.formProps = this.data.formProps;
+    console.log(this.data.handleSubmitChange);
+    this.data.handleSubmitChange("success");
     this.handleSubmitChange = this.data.handleSubmitChange;
   }
 }

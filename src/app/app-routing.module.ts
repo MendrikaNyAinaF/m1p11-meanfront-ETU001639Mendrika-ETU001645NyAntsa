@@ -23,6 +23,8 @@ import { PageServiceCrudComponent } from './views/manager/page-service-crud/page
 import { LoginComponent } from './views/login/login.component';
 import { AppointmentCalendarComponent } from './views/client/appointment-calendar/appointment-calendar.component';
 import { PageTypeExpenseComponent } from './views/manager/page-type-expense/page-type-expense.component';
+import { BarChartComponent } from './views/bar-chart/bar-chart.component';
+import {TestingComponent} from "./views/testing/testing.component";
 
 const routes: Routes = [
   {
@@ -55,6 +57,11 @@ const routes: Routes = [
       {path:"service", component:PageServiceCrudComponent},
       {path:"client/appointement", component:AppointmentCalendarComponent},
       {path:"manager/type-expense", component:PageTypeExpenseComponent},
+
+    //     Ny Antsa
+    //     path for bar chart
+      {path:"bar-chart", component:BarChartComponent},
+      {path:"testing", component:TestingComponent}
     ]
   },
   

@@ -14,6 +14,9 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppointmentCreateComponent } from './client/appointment-create/appointment-create.component';
 import { AppointmentUpdateComponent } from './client/appointment-update/appointment-update.component';
 import { PageTypeExpenseComponent } from './manager/page-type-expense/page-type-expense.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import {NgApexchartsModule} from "ng-apexcharts";
+import { TestingComponent } from './testing/testing.component';
 
 
 
@@ -24,18 +27,21 @@ import { PageTypeExpenseComponent } from './manager/page-type-expense/page-type-
     AppointmentCalendarComponent,
     AppointmentCreateComponent,
     AppointmentUpdateComponent,
-    PageTypeExpenseComponent
+    PageTypeExpenseComponent,
+    BarChartComponent,
+    TestingComponent
   ],
-  imports: [
-    CommonModule,
-    ComponentsModule,
-    FeatherModule.pick(allIcons),
-    DemoFlexyModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    FullCalendarModule
-  ]
+    imports: [
+        CommonModule,
+        ComponentsModule,
+        FeatherModule.pick(allIcons),
+        DemoFlexyModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FullCalendarModule,
+        NgApexchartsModule
+    ]
 })
 export class ViewsModule { }

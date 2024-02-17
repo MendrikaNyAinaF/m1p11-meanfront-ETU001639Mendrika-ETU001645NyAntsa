@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Column, CrudField, CrudFilterProps, CrudListProps, CrudProps, FormProps, InputProps, SelectProps } from '../interfaces';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CreateFormComponent } from '../page-crud/page-crud.component';
 
 @Component({
   selector: 'app-one-page-crud',
@@ -187,21 +188,4 @@ export class OnePageCrudComponent implements OnInit {
   }
 }
 
-@Component({
-  selector: 'app-create-from',
-  templateUrl: './create-form.component.html',
-  styleUrls: ['./one-page-crud.component.scss']
-})
-export class CreateFormComponent {
 
-  formProps: FormProps = { inputs: {}, action: { label: "", submit: () => { }, color: "" } };
-  handleSubmitChange: (status: string) => void = () => { };
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
-  ngOnInit(): void {
-    this.formProps = this.data.formProps;
-    console.log(this.data.handleSubmitChange);
-    this.data.handleSubmitChange("success");
-    this.handleSubmitChange = this.data.handleSubmitChange;
-  }
-}

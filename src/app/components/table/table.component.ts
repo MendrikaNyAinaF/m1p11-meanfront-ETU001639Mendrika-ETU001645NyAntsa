@@ -30,10 +30,11 @@ export class TableComponent extends TableCommon implements OnInit {
 
   /* ouvrir le dialog du formulaire de suppression */
   openDeleteDialog(id: any) {
+    
     this.dialog.open(RowDeleteDialogComponent, {
       data: {
         uid: id,
-        deleteAction: this.deleteAction,
+        deleteAction: this.deleteAction?.bind(this),
         handleSubmitChange: this.handleSubmitChange
       }
     });
@@ -57,7 +58,12 @@ export class RowEditDialogComponent implements OnInit {
   ngOnInit(): void {
     this.row = this.data.row;
     this.formProps = this.data.formProps;
-    this.handleSubmitChange = this.data.handleSubmitChange;
+    this.handleSubmitChange = (status:string)=>{
+      this.data.handleSubmitChange(status);
+      if(status === "success"){
+        this.dialogRef.close();
+      }
+    }
 
     /* définir les valeurs par défaut */
     for (let key in this.formProps.inputs) {
@@ -73,18 +79,19 @@ export class RowEditDialogComponent implements OnInit {
   templateUrl: './row-delete-dialog.html',
   styleUrls: ['./table.component.scss']
 })
-export class RowDeleteDialogComponent implements OnInit {
+export class RowDeleteDialogComponent {
   deleteAction!: DeleteAction; //la fonction à exécuter pour la suppression
   uid!: string; //l'identifiant de l'élément à supprimer
   handleSubmitChange!: (status: string) => void; //la fonction à exécuter après la suppression pour signifier le changement
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private dialogRef: MatDialogRef<RowDeleteDialogComponent>) {
 
-  ngOnInit(): void {
     this.deleteAction = this.data.deleteAction;
     this.uid = this.data.uid;
     this.handleSubmitChange = this.data.handleSubmitChange;
+    console.log(this.data);
   }
 
   delete() {
@@ -92,8 +99,10 @@ export class RowDeleteDialogComponent implements OnInit {
       .then((res: any) => {
         this.handleSubmitChange("success");
         this.alertService.alertSuccess(res?.message || "Le traitement a été effectué avec succès");
+        this.dialogRef.close();
       })
       .catch((err: any) => {
+        console.log(err);
         this.alertService.alertError(err?.message || "Une erreur s'est produite lors du traitement");
       })
       ;

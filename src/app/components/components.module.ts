@@ -30,12 +30,9 @@ import { ImageInputComponent } from './forms-input/image-input/image-input.compo
 import { InputsComponent } from './forms-input/inputs/inputs.component';
 import { FormComponent } from './form/form.component';
 import { TablePaginateComponent } from './table-paginate/table-paginate.component';
-import { CreateFormComponent, OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
-import { PageCrudComponent } from './page-crud/page-crud.component';
+import { CreateFormComponent, PageCrudComponent } from './page-crud/page-crud.component';
 import { CheckboxComponent } from './forms-input/checkbox/checkbox.component';
-
-
-
+import { OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
 @NgModule({
   declarations: [
     AlertsComponent,
@@ -64,10 +61,10 @@ import { CheckboxComponent } from './forms-input/checkbox/checkbox.component';
     InputsComponent,
     FormComponent,
     TablePaginateComponent,
-    OnePageCrudComponent,
-    CreateFormComponent,
     PageCrudComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    CreateFormComponent,
+    OnePageCrudComponent
   ],
   imports: [
     CommonModule,
@@ -104,9 +101,9 @@ import { CheckboxComponent } from './forms-input/checkbox/checkbox.component';
     InputsComponent,
     FormComponent,
     TablePaginateComponent,
-    OnePageCrudComponent,
     CreateFormComponent,
     PageCrudComponent,
+    OnePageCrudComponent
   ]
 })
 export class ComponentsModule { }

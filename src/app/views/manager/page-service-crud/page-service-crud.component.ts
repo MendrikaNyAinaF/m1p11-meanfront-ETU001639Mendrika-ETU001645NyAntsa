@@ -24,7 +24,7 @@ export class PageServiceCrudComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = {
-      id: {
+      _id: {
         label: "id",
         inputType: "hidden",
         hidden: true,

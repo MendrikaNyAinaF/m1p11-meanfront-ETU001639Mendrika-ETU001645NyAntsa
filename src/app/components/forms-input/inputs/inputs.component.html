@@ -1,5 +1,6 @@
-<input *ngIf="isHidden()" type="hidden" [formControlName]="key" [id]="key" [name]="key" [value]="props.value" />
-
+<ng-container *ngIf="isHidden()" [formGroup]="form">
+     <input type="hidden" [formControlName]="key" [id]="key" [name]="key" [value]="props.value" />
+</ng-container>
 <app-select [key]="key" [form]="form" [props]="props" *ngIf="isSelect()"></app-select>
 
 <app-checkbox [key]="key" [form]="form" [props]="props" *ngIf="isCheckBox()"></app-checkbox>

@@ -37,7 +37,8 @@ import { AppointmentPaymentComponent } from './client/appointment-payment/appoin
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ReactiveFormsModule
   ]
 })
 export class ViewsModule { }

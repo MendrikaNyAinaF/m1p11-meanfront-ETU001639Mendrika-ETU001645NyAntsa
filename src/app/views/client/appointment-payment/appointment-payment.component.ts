@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AlertService } from 'src/app/components/alert.service';
 import { Column } from 'src/app/components/interfaces';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
 
@@ -12,6 +14,7 @@ export class AppointmentPaymentComponent implements OnInit {
   id: any;
   appointment: any;
   messageError: string = "";
+  form!: FormGroup;
 
   /* columns for detail appointment */
   columns: Column[] = [
@@ -20,16 +23,22 @@ export class AppointmentPaymentComponent implements OnInit {
       selector: (row: any) => row.service.nom,
     },
     {
-      name:"Prix",
-      selector: (row: any) => row.prix+" Ar",
+      name: "Prix",
+      selector: (row: any) => row.prix + " Ar",
     }
   ];
-  constructor(private route: ActivatedRoute, private appointmentService: AppointmentService) {
+  constructor(private route: ActivatedRoute,
+     private appointmentService: AppointmentService, 
+     private alertService: AlertService,
+     private formBuilder: FormBuilder) {
     this.id = this.route.snapshot.params["id"];
   }
 
   ngOnInit(): void {
     this.findAppointmentById(this.id);
+    this.form=this.formBuilder.group({
+      mode_paiement: ['', Validators.required],
+    });
   }
 
   /* call the method to get the appointment by id */
@@ -76,13 +85,15 @@ export class AppointmentPaymentComponent implements OnInit {
     return this.appointment.detail_rendez_vous || [];
   }
 
-  handlePayment(){
+  handlePayment() {
     this.appointmentService.pay(this.id).then((data: any) => {
       this.messageError = "";
       this.findAppointmentById(this.id);
+      this.alertService.alertSuccess(data?.message || "Le traitement a été effectué avec succès");
     }).catch((error: any) => {
       console.error(error);
       this.messageError = "Error while paying appointment";
+      this.alertService.alertSuccess(error?.message || "Le traitement a été effectué avec succès");
     });
   }
 }

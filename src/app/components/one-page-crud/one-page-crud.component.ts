@@ -193,6 +193,7 @@ export class OnePageCrudComponent implements OnInit {
   styleUrls: ['./one-page-crud.component.scss']
 })
 export class CreateFormComponent {
+
   formProps: FormProps = { inputs: {}, action: { label: "", submit: () => { }, color: "" } };
   handleSubmitChange: (status: string) => void = () => { };
 

@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { TableComponent } from '../table/table.component';
-import { Column, CrudListProps, CrudProps } from '../interfaces';
+import { Column, CrudListProps, CrudProps, SubmitProps } from '../interfaces';
 import { ButtonsComponent } from '../buttons/buttons.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -11,13 +11,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SinglePageComponent implements OnInit {
   datas: any[] = [
     {
-      id:"1",
+      id: "1",
       name: "John",
       age: 23,
       email: "test"
     },
     {
-      id:"2",
+      id: "2",
       name: "Doe",
       age: 25,
       email: "test"
@@ -25,12 +25,23 @@ export class SinglePageComponent implements OnInit {
   ]
   data: any[] = this.datas;
 
+ 
+
+
+
   constructor(
     private formBuilder: FormBuilder
-  ) { }
+  ) {
+    /* Test pour le formulaire */
+    // this.testForm = this.formBuilder.group({
+    //   id: ['', Validators.required],
+    //   code: ['', Validators.required],
+    //   nom: ['', Validators.required]
+    // });
+  }
 
   ngOnInit(): void {
-    
+
   }
   oColumns: Column[] = [
     {
@@ -64,20 +75,20 @@ export class SinglePageComponent implements OnInit {
         }, 1000);
       });
     },
-    columns:this.oColumns,
-    withPagination:true
+    columns: this.oColumns,
+    withPagination: true
   };
 
-  oCrudFields=[
+  oCrudFields = [
     {
-      name:"name",
-      inputProps:{label:"Nom",type:"text",validators:Validators.required},
-      inCreate:true,inUpdate:true
+      name: "name",
+      inputProps: { label: "Nom", type: "text", validators: Validators.required },
+      inCreate: true, inUpdate: true
     },
     {
-      name:"age",
-      inputProps:{label:"Age",type:"select",validators:Validators.required, getValue:(item:any)=>item,getText:(item:any)=>item},
-      inCreate:true,inUpdate:true,
+      name: "age",
+      inputProps: { label: "Age", type: "select", validators: Validators.required, getValue: (item: any) => item, getText: (item: any) => item },
+      inCreate: true, inUpdate: true,
       actionSelect: (obj?: any) => {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -89,10 +100,10 @@ export class SinglePageComponent implements OnInit {
 
   ]
 
-  oUpdate={
+  oUpdate = {
     present: true,
     title: "Modifier les informations de la personne ",
-    action: (params: any, id:any) => {
+    action: (params: any, id: any) => {
       console.log(params);
       return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -102,10 +113,10 @@ export class SinglePageComponent implements OnInit {
     },
   }
 
-  oDelete={
-    present:true,
-    title:"Supprimer la personne",
-    action: (id:any) => {
+  oDelete = {
+    present: true,
+    title: "Supprimer la personne",
+    action: (id: any) => {
       console.log(id);
       return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -114,14 +125,14 @@ export class SinglePageComponent implements OnInit {
       });
     }
   }
-  oFilter={
-    present:true,
-    title:"Filtrer les personnes",
-    inputs:{"name":{label:"Nom",type:"text"}}
+  oFilter = {
+    present: true,
+    title: "Filtrer les personnes",
+    inputs: { "name": { label: "Nom", type: "text" } }
   }
-  oCreate={
-    present:true,
-    title:"Ajouter une personne",
+  oCreate = {
+    present: true,
+    title: "Ajouter une personne",
     action: (params: any) => {
       console.log(params);
       return new Promise((resolve, reject) => {
@@ -131,4 +142,36 @@ export class SinglePageComponent implements OnInit {
       });
     }
   }
+
+  /* test pour le formulaire */
+//   testForm!: FormGroup;
+//   testInputs: any = {
+//     "id": {
+//         "label": "_id",
+//         "type": "hidden",
+//         "validators": null,
+//         "class": "w-100 fs-16"
+//     },
+//     "code": {
+//         "label": "Code",
+//         "type": "text",
+//         "validators": null,
+//         "class": "w-100 fs-16"
+//     },
+//     "nom": {
+//         "label": "Nom",
+//         "type": "text",
+//         "validators": null,
+//         "class": "w-100 fs-16"
+//     }
+// }
+//   testAction: SubmitProps = {
+//     submit: (data: any) => {
+//       return new Promise((resolve, reject) => {
+
+//         resolve({ message: "Data added successfully" });
+//       });
+//     },
+//     label: "Add"
+//   }
 }

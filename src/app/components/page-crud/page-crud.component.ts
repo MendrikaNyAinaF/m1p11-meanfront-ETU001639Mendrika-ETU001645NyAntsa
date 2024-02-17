@@ -264,9 +264,7 @@ export class PageCrudComponent implements OnInit {
     this.dialog.open(CreateFormComponent, {
       data: {
         handleSubmitChange: this.handleSubmitChange,
-        formProps: {
-          ...this.createFormProps
-        }
+        formProps: this.createFormProps
       }
     })
   }

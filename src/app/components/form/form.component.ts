@@ -68,7 +68,7 @@ export class FormComponent implements OnInit {
       this.action.class="me-8 mb-8";
     }
     /* construit le formulaire */
-    this.form = this.formBuilder.group({});
+    this.form = new FormGroup({});
 
     Object.keys(this.inputs).forEach(key => {
       let value = this.inputs[key];

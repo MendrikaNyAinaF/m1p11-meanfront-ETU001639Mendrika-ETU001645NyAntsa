@@ -1,4 +1,4 @@
-<mat-card class="overflow-hidden">
+<mat-card class="overflow-hidden payment-card">
      <mat-card-content>
           <div>
                <p class="fs-18 lh-lg fw-medium">
@@ -8,14 +8,18 @@
                     <app-table [data]="getAppointmentServices()" [columns]="columns">
                     </app-table>
                </div>
-               <br/>
+               <br />
                <div class="text-right">
                     <span class="badge badge-danger rounded-pill">Total:
                          {{appointment.prix}} Ar</span>
                </div>
                <br />
 
-               <button mat-raised-button class="me-8 mb-8" color="primary">Payer</button>
+               <form [formGroup]="form">
+                    <!-- <app-inputs [form]="form" [props]="inputs[key]" [key]="key">
+                    </app-inputs> -->
+                    <button mat-raised-button class="me-8 mb-8" color="primary">Payer</button>
+               </form>
           </div>
      </mat-card-content>
 </mat-card>

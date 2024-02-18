@@ -12,4 +12,8 @@ export class ClientService extends PersonneService {
     public override storage: StorageService) { 
       super(baseApi, storage,{role:"client"});
     }
+
+  update(id:string, data:any){
+    return this.baseApi.put(`client-crud/${id}`,data);
+  }
 }

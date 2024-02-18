@@ -23,6 +23,7 @@ import { EmployeeProfilComponent } from './employee/employee-profil/employee-pro
 import { PageExpenseComponent } from './manager/page-expense/page-expense.component';
 import { PageSpecialOfferComponent } from './manager/page-special-offer/page-special-offer.component';
 import { BannerSpecialOfferComponent } from './client/banner-special-offer/banner-special-offer.component';
+import { ClientProfilComponent } from './client/client-profil/client-profil.component';
 
 
 
@@ -41,7 +42,8 @@ import { BannerSpecialOfferComponent } from './client/banner-special-offer/banne
         EmployeeProfilComponent,
         PageExpenseComponent,
         PageSpecialOfferComponent,
-        BannerSpecialOfferComponent
+        BannerSpecialOfferComponent,
+        ClientProfilComponent
     ],
     exports: [
         SpinnerComponent

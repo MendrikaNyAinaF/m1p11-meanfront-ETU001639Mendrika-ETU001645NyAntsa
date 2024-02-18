@@ -9,7 +9,6 @@ import { EmployeeService } from 'src/app/services/personne/employee.service';
   styleUrls: ['./employee-profil.component.scss']
 })
 export class EmployeeProfilComponent implements OnInit {
-  id!:string;
   employee:any;
   foundEmp=true;
   loader=false;
@@ -29,9 +28,8 @@ export class EmployeeProfilComponent implements OnInit {
     }
   ]
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(
     private employeeService: EmployeeService) { 
-    this.id = this.activatedRoute.snapshot.params['id'];
   }
 
   ngOnInit(): void {

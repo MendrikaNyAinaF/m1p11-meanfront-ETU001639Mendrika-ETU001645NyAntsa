@@ -27,6 +27,8 @@ import { AppointmentPaymentComponent } from './views/client/appointment-payment/
 import { BarChartComponent } from './views/bar-chart/bar-chart.component';
 import {TestingComponent} from "./views/testing/testing.component";
 import { EmployeeProfilComponent } from './views/employee/employee-profil/employee-profil.component';
+import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
+import { ClientProfilComponent } from './views/client/client-profil/client-profil.component';
 
 const routes: Routes = [
   {
@@ -35,11 +37,21 @@ const routes: Routes = [
   },
   {
     path:"",
-    component:FullComponent,
+    component:ClientLayoutComponent,
+    children: [
+      {path:"client/appointement", component:AppointmentCalendarComponent},
+      {path:"client/appointment/:id/payment", component:AppointmentPaymentComponent},
+      {path:"client/profil", component:ClientProfilComponent},
+      {path:"alerts", component:AlertsComponent},
+    ]
+  },
+  {
+    path:"",
+    component: FullComponent,
     children: [
       {path:"", redirectTo:"/home", pathMatch:"full"},
       {path:"home", component:DashboardComponent},
-      {path:"alerts", component:AlertsComponent},
+      
       {path:"forms", component:FormsComponent},
       {path:"table", component:ProductComponent},
       {path:"grid-list", component:GridListComponent},
@@ -56,9 +68,6 @@ const routes: Routes = [
       {path:"tooltip", component:TooltipsComponent},
       {path:"button", component:ButtonsComponent},
       {path:"singlepage", component:SinglePageComponent},
-      //client page
-      {path:"client/appointement", component:AppointmentCalendarComponent},
-      {path:"client/appointment/:id/payment", component:AppointmentPaymentComponent},
 
       //manager page
       {path:"manager/service", component:PageServiceCrudComponent},

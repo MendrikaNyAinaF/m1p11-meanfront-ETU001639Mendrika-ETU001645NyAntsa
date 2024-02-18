@@ -36,4 +36,9 @@ export class StorageService implements Storage{
   getCurrentUserInfo=()=>{
     return JSON.parse(this.getItem("user") || '{}');
   }
+
+  logout=()=>{
+    this.removeItem("user");
+    this.removeItem("jwtToken")
+  }
 }

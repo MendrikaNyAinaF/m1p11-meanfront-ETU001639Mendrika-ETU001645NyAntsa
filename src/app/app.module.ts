@@ -19,11 +19,19 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BaseApiService} from './services/base-api.service';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {LoadingInterceptor} from "./interceptor/loading.interceptor";
+import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
+import { ManagerLayoutComponent } from './layouts/manager-layout/manager-layout.component';
+import { EmployeeLayoutComponent } from './layouts/employee-layout/employee-layout.component';
+import { FooterComponent } from './layouts/footer/footer.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FullComponent,
+        ClientLayoutComponent,
+        ManagerLayoutComponent,
+        EmployeeLayoutComponent,
+        FooterComponent,
     ],
     imports: [
         HttpClientModule,

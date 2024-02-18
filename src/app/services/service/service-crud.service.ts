@@ -35,6 +35,6 @@ export class ServiceCrudService extends CrudService {
       params.search = search;
     }
     console.log(JSON.stringify(params));
-    return super.findAll({});
+    return super.findAll(params);
   }
 }

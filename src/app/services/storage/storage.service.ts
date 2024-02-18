@@ -33,4 +33,7 @@ export class StorageService implements Storage{
     this.storageBase.setItem(key, value);
   }
 
+  getCurrentUserInfo=()=>{
+    return JSON.parse(this.getItem("user") || '{}');
+  }
 }

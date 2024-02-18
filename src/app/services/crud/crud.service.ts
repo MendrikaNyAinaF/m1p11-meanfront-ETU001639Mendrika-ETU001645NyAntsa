@@ -9,7 +9,8 @@ export interface SearchParams {
   page?: {
     size: number,
     number: number
-  }
+  },
+  sort?:any
 }
 @Injectable({
   providedIn: 'root'

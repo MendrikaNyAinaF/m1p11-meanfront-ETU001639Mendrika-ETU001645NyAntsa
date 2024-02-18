@@ -24,12 +24,23 @@ export class PersonneService {
     return new Promise((resolve, reject) => {
       this.baseApi.post(`${this.baseUrl}/${this.personRole}/login`, data).then((res: any) => {
         this.storage.setItem('jwtToken', res.token);
+        this.storage.setItem('user', JSON.stringify(res.user));
         resolve(res);
       }).catch((error: any) => {
         reject(error.error);
       });
     });
+  }
 
+  getConnectedUser(){
+    const currentUser= this.storage.getCurrentUserInfo();
+    return new Promise((resolve, reject) => {
+      this.baseApi.get(`${this.baseUrl}/${this.personRole}-crud/${currentUser.id}`).then((res: any) => {
+        resolve(res.data);
+      }).catch((error: any) => {
+        reject(error.error);
+      });
+    });
   }
 
 }

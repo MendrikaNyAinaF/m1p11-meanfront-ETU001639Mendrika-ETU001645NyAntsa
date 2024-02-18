@@ -19,6 +19,10 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import {NgApexchartsModule} from "ng-apexcharts";
 import { TestingComponent } from './testing/testing.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { EmployeeProfilComponent } from './employee/employee-profil/employee-profil.component';
+import { PageExpenseComponent } from './manager/page-expense/page-expense.component';
+import { PageSpecialOfferComponent } from './manager/page-special-offer/page-special-offer.component';
+import { BannerSpecialOfferComponent } from './client/banner-special-offer/banner-special-offer.component';
 
 
 
@@ -33,7 +37,11 @@ import { SpinnerComponent } from './spinner/spinner.component';
         AppointmentPaymentComponent,
         BarChartComponent,
         TestingComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        EmployeeProfilComponent,
+        PageExpenseComponent,
+        PageSpecialOfferComponent,
+        BannerSpecialOfferComponent
     ],
     exports: [
         SpinnerComponent

@@ -81,8 +81,6 @@ export class PageServiceCrudComponent implements OnInit {
         validator: Validators.min(0)
       }
     }
-
-
   }
 }
 

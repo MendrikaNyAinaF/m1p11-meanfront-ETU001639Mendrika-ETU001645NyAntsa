@@ -1,0 +1,67 @@
+<mat-card>
+     <mat-card-content>
+          <h1>Profil de l'employee </h1>
+          <!-- <ng-container *ngIf="foundEmp && !loader; else notFound"> -->
+          <ng-container>
+               <mat-grid-list cols="2">
+                    <mat-grid-tile>
+                         <div class="info-employe-container">
+                              <mat-form-field class="w-100 fs-16" appearance="outline">
+                                   <mat-label>Nom</mat-label>
+                                   <input matInput type="text" [value]="employee.nom" placeholder="Enter your Name"
+                                        readonly="true">
+                              </mat-form-field>
+                              <mat-form-field class="w-100 fs-16" appearance="outline">
+                                   <mat-label>Prénom</mat-label>
+                                   <input matInput type="text" [value]="employee.prenom" placeholder="Enter your Name"
+                                        readonly="true">
+                              </mat-form-field>
+                              <mat-form-field class="w-100 fs-16" appearance="outline">
+                                   <mat-label>Date de naissance</mat-label>
+                                   <input matInput type="text" [value]="employee.date_naissance"
+                                        placeholder="Enter your Name" readonly="true">
+                              </mat-form-field>
+                         </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                         <div class="info-employe-container">
+                              <mat-form-field class="w-100 fs-16" appearance="outline">
+                                   <mat-label>Email</mat-label>
+                                   <input matInput type="text" [value]="employee.email" placeholder="Enter your Name"
+                                        readonly="true">
+                              </mat-form-field>
+                              <mat-form-field class="w-100 fs-16" appearance="outline">
+                                   <mat-label>Téléphone</mat-label>
+                                   <input matInput type="text" [value]="employee.telephone"
+                                        placeholder="Enter your Name" readonly="true">
+                              </mat-form-field>
+                              <mat-form-field class="w-100 fs-16" appearance="outline">
+                                   <mat-label>Genre</mat-label>
+                                   <input matInput type="text" [value]="employee.genre" placeholder="Enter your Name"
+                                        readonly="true">
+                              </mat-form-field>
+                         </div>
+                    </mat-grid-tile>
+               </mat-grid-list>
+               <h2>Horaire</h2>
+               <app-table [data]="employee.horaires" [columns]="scheduleColumns">
+               </app-table>
+
+          </ng-container>
+
+          <ng-template #notFound>
+               <ng-container *ngIf="!foundEmp; else loader">
+                    <div class="alert alert-danger alert-text-danger d-flex fs-14 align-items-center rounded mb-16"
+                         role="alert">
+                         <i-feather name="alert-circle" class="text-danger feather-base me-12"></i-feather>
+                         Employé introuvable
+                    </div>
+               </ng-container>
+
+               <ng-template #loader>
+                    <mat-spinner></mat-spinner>
+               </ng-template>
+          </ng-template>
+
+     </mat-card-content>
+</mat-card>

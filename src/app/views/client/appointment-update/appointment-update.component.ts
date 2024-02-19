@@ -31,6 +31,15 @@ export class AppointmentUpdateComponent implements OnInit {
     this.appointmentData = data.appointmentData;
     this.close=data.close;
   }
+  findAppointment(){
+    this.appointmentService.findById(this.appointmentData._id).then((res: any) => {
+      this.appointmentData = res.data;
+      this.createForm();
+    }).catch((error: any) => {
+      console.error(error);
+    });
+  
+  }
 
   ngOnInit(): void {
     this.formProps = {
@@ -45,18 +54,19 @@ export class AppointmentUpdateComponent implements OnInit {
         label: 'Service demander',
         validators: Validators.required,
         options: this.serviceData,
-        getText: (item: any) => item.name,
+        getText: (item: any) => item.nom + " - " + item.prix + " Ar",
         getValue: (item: any) => item._id
       },
       employee: {
         type: 'select',
         label: 'Employé',
         options: this.employeeData,
-        getText: (item: any) => item.name,
+        getText: (item: any) => item.nom+" "+item.prenom,
         getValue: (item: any) => item._id
       }
     }
-    this.createForm();
+    this.findAppointment();
+
   }
 
   /*pour la gestion du formulaire , pour prendre le formulaire dynamique */

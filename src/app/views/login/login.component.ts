@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       },
       client: {
         service: this.clientService,
-        redirect: '/client',
+        redirect: '/client/appointment',
         title: 'Client Login'
       },
       employee: {
@@ -55,19 +55,19 @@ export class LoginComponent implements OnInit {
         title: 'Employee Login'
       }
     };
-
+    const defaultLogin= this.personneService[this.loginRole].service.getDefaultLogin();
     /* mettre en place les inputs du login */
     this.loginInputs = {
       email: {
         type: 'email',
         label: 'Email',
-        default:'ranjalahynyantsa@gmail.com',
+        default:defaultLogin.email,
         validators: [Validators.required, Validators.email],
       },
       password: {
         type: 'password',
         label: 'Mot de passe',
-        default:'passwordNotCryptedYet123!',
+        default:defaultLogin.password,
         validators: [Validators.required],
       }
     }

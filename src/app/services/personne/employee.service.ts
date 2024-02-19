@@ -16,4 +16,10 @@ export class EmployeeService extends PersonneService{
   findAll(params?:any){
     return this.baseApi.get(`${this.baseUrl}/employee`, params);
   }
+  getDefaultLogin(){
+    return {
+      email: "rajaonarivonynyantsa@gmail.com",
+      password: "passwordNotCryptedYet123!"
+    }
+  }
 }

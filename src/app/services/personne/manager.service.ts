@@ -12,4 +12,11 @@ export class ManagerService extends PersonneService {
     public override storage: StorageService) { 
       super(baseApi, storage,{role:"manager"});
     }
+
+    getDefaultLogin(){
+      return {
+        email: "ranjalahynyantsa@gmail.com",
+        password: "passwordNotCryptedYet123!"
+      }
+    }
 }

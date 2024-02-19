@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FeatherModule} from 'angular-feather';
 import {allIcons} from 'angular-feather/icons';
-import {FormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -19,6 +19,11 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BaseApiService} from './services/base-api.service';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {LoadingInterceptor} from "./interceptor/loading.interceptor";
+import {MatCardModule} from "@angular/material/card";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatInputModule} from "@angular/material/input";
+import {MatButton, MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
     declarations: [
@@ -37,7 +42,13 @@ import {LoadingInterceptor} from "./interceptor/loading.interceptor";
         ComponentsModule,
         FormsModule,
         FullCalendarModule,
-        ViewsModule
+        ViewsModule,
+        MatCardModule,
+        MatGridListModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatFormFieldModule
     ],
     providers: [
         {

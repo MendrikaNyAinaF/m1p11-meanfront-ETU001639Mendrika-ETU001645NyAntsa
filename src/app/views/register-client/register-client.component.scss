@@ -1,0 +1,38 @@
+.container {
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registration-image {
+  max-width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.form-container {
+  padding: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+// make the image not appear on mobile
+@media (max-width: 600px) {
+  .registration-image {
+    display: none;
+  }
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}

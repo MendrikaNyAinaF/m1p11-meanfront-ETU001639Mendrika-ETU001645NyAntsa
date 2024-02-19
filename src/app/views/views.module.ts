@@ -19,6 +19,8 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import {NgApexchartsModule} from "ng-apexcharts";
 import { TestingComponent } from './testing/testing.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { RegisterClientComponent } from './register-client/register-client.component';
+import {RouterLinkWithHref} from "@angular/router";
 
 
 
@@ -33,7 +35,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
         AppointmentPaymentComponent,
         BarChartComponent,
         TestingComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        RegisterClientComponent
     ],
     exports: [
         SpinnerComponent
@@ -49,7 +52,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
         ReactiveFormsModule,
         FullCalendarModule,
         ReactiveFormsModule,
-        NgApexchartsModule
+        NgApexchartsModule,
+        RouterLinkWithHref
     ]
 })
 export class ViewsModule { }

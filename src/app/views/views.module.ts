@@ -24,6 +24,8 @@ import { PageExpenseComponent } from './manager/page-expense/page-expense.compon
 import { PageSpecialOfferComponent } from './manager/page-special-offer/page-special-offer.component';
 import { BannerSpecialOfferComponent } from './client/banner-special-offer/banner-special-offer.component';
 import { ClientProfilComponent } from './client/client-profil/client-profil.component';
+import { RegisterClientComponent } from './register-client/register-client.component';
+import {RouterLinkWithHref} from "@angular/router";
 
 
 
@@ -43,7 +45,8 @@ import { ClientProfilComponent } from './client/client-profil/client-profil.comp
         PageExpenseComponent,
         PageSpecialOfferComponent,
         BannerSpecialOfferComponent,
-        ClientProfilComponent
+        ClientProfilComponent,
+        RegisterClientComponent
     ],
     exports: [
         SpinnerComponent
@@ -59,7 +62,8 @@ import { ClientProfilComponent } from './client/client-profil/client-profil.comp
         ReactiveFormsModule,
         FullCalendarModule,
         ReactiveFormsModule,
-        NgApexchartsModule
+        NgApexchartsModule,
+        RouterLinkWithHref
     ]
 })
 export class ViewsModule { }

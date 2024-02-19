@@ -31,11 +31,15 @@ import { ClientLayoutComponent } from './layouts/client-layout/client-layout.com
 import { ClientProfilComponent } from './views/client/client-profil/client-profil.component';
 import { ManagerLayoutComponent } from './layouts/manager-layout/manager-layout.component';
 import { EmployeeLayoutComponent } from './layouts/employee-layout/employee-layout.component';
+import {RegisterClientComponent} from "./views/register-client/register-client.component";
 
 const routes: Routes = [
   {
     path: ":person/login", // allowed values for person: manager, client, employee
     component: LoginComponent,
+  }, {
+    path: "client/register",
+    component: RegisterClientComponent
   },
   /**client */
   {
@@ -87,6 +91,10 @@ const routes: Routes = [
       { path: "tooltip", component: TooltipsComponent },
       { path: "button", component: ButtonsComponent },
       { path: "singlepage", component: SinglePageComponent },
+      {path: "service", component: PageServiceCrudComponent},
+      {path: "client/appointement", component: AppointmentCalendarComponent},
+      {path: "client/appointment/:id/payment", component: AppointmentPaymentComponent},
+      {path: "manager/type-expense", component: PageTypeExpenseComponent},
       //     Ny Antsa
       //     path for bar chart
       { path: "bar-chart", component: BarChartComponent },
@@ -100,7 +108,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

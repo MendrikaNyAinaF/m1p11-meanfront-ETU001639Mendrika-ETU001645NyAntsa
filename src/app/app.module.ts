@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FeatherModule} from 'angular-feather';
 import {allIcons} from 'angular-feather/icons';
-import {FormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -23,6 +23,11 @@ import { ClientLayoutComponent } from './layouts/client-layout/client-layout.com
 import { ManagerLayoutComponent } from './layouts/manager-layout/manager-layout.component';
 import { EmployeeLayoutComponent } from './layouts/employee-layout/employee-layout.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatInputModule} from "@angular/material/input";
+import {MatButton, MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
     declarations: [
@@ -45,7 +50,13 @@ import { FooterComponent } from './layouts/footer/footer.component';
         ComponentsModule,
         FormsModule,
         FullCalendarModule,
-        ViewsModule
+        ViewsModule,
+        MatCardModule,
+        MatGridListModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatFormFieldModule
     ],
     providers: [
         {

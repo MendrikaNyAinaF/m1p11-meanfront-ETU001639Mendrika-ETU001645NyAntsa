@@ -1,0 +1,102 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" class="container">
+    <div fxFlex="50" fxLayoutAlign="center center" fxLayout.xs="100%" >
+        <img src="assets/images/login-img.jpg" alt="Registration Image" class="registration-image">
+    </div>
+
+    <div fxFlex="50" fxFlex.xs="100%" class="form-container">
+        <h2>Register</h2>
+        <p>Create a client account</p>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <input matInput formControlName="lastName" placeholder="Nom">
+                <mat-error *ngIf="registrationForm.get('lastName')?.hasError('required')">
+                    Nom obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput formControlName="firstName" placeholder="Prénom">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput formControlName="email" placeholder="Email" type="email">
+                <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">
+                    Email obligatoire
+                </mat-error>
+                <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">
+                    Email invalide
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput formControlName="phone" placeholder="Téléphone" type="phone">
+                <mat-error *ngIf="registrationForm.get('phone')?.hasError('required')">
+                    Téléphone obligatoire
+                </mat-error>
+                <mat-error *ngIf="registrationForm.get('phone')?.hasError('pattern')">
+                    Téléphone doit contenir 10 chiffres
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput formControlName="birthdate" placeholder="Date de naissance" type="date">
+                <mat-error *ngIf="registrationForm.get('birthdate')?.hasError('required')">
+                    Date de naissance obligatoire
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Genre</mat-label>
+                <mat-select formControlName="gender">
+                    <!--                    loop through genders array -->
+                    <mat-option *ngFor="let gender of genders" [value]="gender._id">{{gender.nom}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="registrationForm.get('gender')?.hasError('required')">
+                    Gender is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput formControlName="password" placeholder="Mot de passe" type="password"
+                       [type]="hide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                    {{ hide ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+                <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">
+                    Mot de passe obligatoire
+                </mat-error>
+                <mat-error *ngIf="registrationForm.get('password')?.hasError('minlength')">
+                    Mot de passe doit contenir au moins 6 caractères
+                </mat-error>
+                <mat-error *ngIf="registrationForm.get('password')?.hasError('pattern')">
+                    Mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre
+                </mat-error>
+
+            </mat-form-field>
+
+            <input
+                    type="file"
+                    id="uploadPicture"
+                    class="hidden-input"
+                    accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
+                    (change)="selectFile($event)">
+            <br>
+            <br>
+            <button mat-raised-button color="primary" type="submit">Register</button>
+            <br>
+            <br>
+            <br>
+            <div *ngIf="success" class="success-message">
+                {{ message }}
+            </div>
+
+            <div *ngIf="!success" class="error-message">
+                {{ message }}
+            </div>
+
+            <div class="login-link">
+                <a [routerLink]="['/client/login']">Already have an account? Login</a>
+            </div>
+        </form>
+    </div>
+</div>

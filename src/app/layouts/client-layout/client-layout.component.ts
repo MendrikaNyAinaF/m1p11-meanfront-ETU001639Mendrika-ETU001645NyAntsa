@@ -40,7 +40,7 @@ export class ClientLayoutComponent extends FullComponent implements OnInit {
 
   ngOnInit(): void {
     this.client = this.storageService.getCurrentUserInfo();
-    // if (this.client.role !== "client") {
+    // if (this.client.role !== "CUSTOMER") {
     //   this.router.navigate(["/client/login"]);
     // }
   }

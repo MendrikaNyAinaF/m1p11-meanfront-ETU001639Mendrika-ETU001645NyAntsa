@@ -9,23 +9,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { allIcons } from 'angular-feather/icons';
-import { AppointmentCalendarComponent } from './client/appointment-calendar/appointment-calendar.component';
+import { ClientProfilComponent } from './client/client-profil/client-profil.component';
+import { BannerSpecialOfferComponent } from './client/banner-special-offer/banner-special-offer.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { AppointmentCreateComponent } from './client/appointment-create/appointment-create.component';
-import { AppointmentUpdateComponent } from './client/appointment-update/appointment-update.component';
-import { PageTypeExpenseComponent } from './manager/page-type-expense/page-type-expense.component';
-import { AppointmentPaymentComponent } from './client/appointment-payment/appointment-payment.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
-import {NgApexchartsModule} from "ng-apexcharts";
-import { TestingComponent } from './testing/testing.component';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { AppointmentCalendarComponent } from './client/appointment-calendar/appointment-calendar.component';
+import { AppointmentCreateComponent } from './client/appointment-create/appointment-create.component';
+import { AppointmentPaymentComponent } from './client/appointment-payment/appointment-payment.component';
+import { AppointmentUpdateComponent } from './client/appointment-update/appointment-update.component';
 import { EmployeeProfilComponent } from './employee/employee-profil/employee-profil.component';
 import { PageExpenseComponent } from './manager/page-expense/page-expense.component';
 import { PageSpecialOfferComponent } from './manager/page-special-offer/page-special-offer.component';
-import { BannerSpecialOfferComponent } from './client/banner-special-offer/banner-special-offer.component';
-import { ClientProfilComponent } from './client/client-profil/client-profil.component';
-
-
+import { PageTypeExpenseComponent } from './manager/page-type-expense/page-type-expense.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { TestingComponent } from './testing/testing.component';
 
 @NgModule({
     declarations: [

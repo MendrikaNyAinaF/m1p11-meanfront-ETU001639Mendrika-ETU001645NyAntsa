@@ -3,8 +3,6 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AlertService } from 'src/app/components/alert.service';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
-import { EmployeeService } from 'src/app/services/personne/employee.service';
-import { ServiceCrudService } from 'src/app/services/service/service-crud.service';
 
 @Component({
   selector: 'app-appointment-create',
@@ -40,14 +38,15 @@ export class AppointmentCreateComponent implements OnInit {
         label: 'Service demander',
         validators: Validators.required,
         options: this.serviceData,
-        getText: (item:any) => item.name,
+        getText: (item:any) => `${item.nom} - ${item.prix} Ar`,
         getValue: (item:any) => item._id
       },
       employee: {
         type:'select',
         label:'Employé',
         options:this.employeeData,
-        getText: (item:any) => item.name,
+        validators: Validators.required,
+        getText: (item:any) => item.nom,
         getValue: (item:any) => item._id
 
       }

@@ -42,7 +42,7 @@ const routes: Routes = [
     path: "",
     component: ClientLayoutComponent,
     children: [
-      { path: "client/appointement", component: AppointmentCalendarComponent },
+      { path: "client/appointment", component: AppointmentCalendarComponent },
       { path: "client/appointment/:id/payment", component: AppointmentPaymentComponent },
       { path: "client/profil", component: ClientProfilComponent },
       { path: "alerts", component: AlertsComponent },

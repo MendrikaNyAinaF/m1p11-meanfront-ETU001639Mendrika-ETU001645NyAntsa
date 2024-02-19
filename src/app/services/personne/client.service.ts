@@ -16,4 +16,11 @@ export class ClientService extends PersonneService {
   update(id:string, data:any){
     return this.baseApi.put(`client-crud/${id}`,data);
   }
+
+  getDefaultLogin(){
+    return {
+      email: "erica@gmail.com",
+      password: "passwordNotCryptedYet123!"
+    }
+  }
 }

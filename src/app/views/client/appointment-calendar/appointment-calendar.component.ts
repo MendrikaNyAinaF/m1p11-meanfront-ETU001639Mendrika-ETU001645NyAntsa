@@ -4,10 +4,10 @@ import { CalendarOptions, EventDropArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { AppointmentService } from 'src/app/services/appointment/appointment.service';
-import { AppointmentCreateComponent } from '../appointment-create/appointment-create.component';
 import { ServiceCrudService } from 'src/app/services/service/service-crud.service';
 import { EmployeeService } from 'src/app/services/personne/employee.service';
+import { AppointmentService } from 'src/app/services/appointment/appointment.service';
+import { AppointmentCreateComponent } from '../appointment-create/appointment-create.component';
 import { AppointmentUpdateComponent } from '../appointment-update/appointment-update.component';
 
 @Component({
@@ -18,7 +18,8 @@ import { AppointmentUpdateComponent } from '../appointment-update/appointment-up
 export class AppointmentCalendarComponent implements OnInit {
   serviceData: any[] = [];
   employeeData: any[] = [];
-  initialDate: string = '2024-W34'
+  startDate!: string;
+  endDate!: string ;
   calendarOptions: CalendarOptions = {
     initialView: 'timeGridWeek',
     plugins: [timeGridPlugin, interactionPlugin, dayGridPlugin],
@@ -40,6 +41,12 @@ export class AppointmentCalendarComponent implements OnInit {
     private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
+    const date = new Date(); // Date actuelle
+    this.startDate=new Date(date.getFullYear(), date.getMonth(), 1).toUTCString(); // Premier jour du mois
+    this.endDate=new Date(date.getFullYear(), date.getMonth() + 1, 0).toUTCString(); // Dernier jour du mois
+    this.findAllEmployee();
+    this.findAllServices();
+    this.findAllAppointment(this.startDate, this.endDate);
   }
   handleDateClick(arg: any) {
     const temp = { title: arg.event._def.title, date: arg.event._instance.range.start, services: arg.event._def.extendedProps.services, _id: arg.event._def.publicId };
@@ -48,20 +55,33 @@ export class AppointmentCalendarComponent implements OnInit {
   handleEventDrop(eventDropInfo: EventDropArg) {
     const { event, oldEvent } = eventDropInfo;
     console.log(eventDropInfo);
+    console.log(oldEvent);
     this.openUpdateForm(event, event.startStr);
   }
 
   /* pour prendre les données */
-  findAllAppointment(startDate?: string, endDate?: string) {
-    // this.appointmentService.findAllByClient({}).then((result: any) => {
-    //   console.log(result);
-    //   this.calendarOptions.events = result;
-    // }).catch((error: any) => {
-    //   console.error(error);
-    // });
+  findAllAppointment=(startDate: string, endDate: string)=> {
+    this.appointmentService.findAllByClient({date_debut:startDate, date_fin:endDate}).then((result: any) => {
+      result = result.map((elt:any)=>  this.formatAppointment(elt));
+      this.calendarOptions.events = result;
+      console.log(this.calendarOptions.events)
+    }).catch((error: any) => {
+      console.error(error);
+    });
+  }
+
+  formatAppointment=(appointment: any)=> {
+    return {
+      title: 'Rendez-vous',
+      date: appointment.date_heure_debut,
+      end: appointment.date_heure_fin,
+      _id: appointment._id,
+      prix: appointment.prix,
+    }
   }
   findAllServices() {
     this.serviceCrud.findAll().then((data: any) => {
+      console.log(data)
       this.serviceData = data;
     }).catch((error: any) => {
       console.error(error);
@@ -69,7 +89,10 @@ export class AppointmentCalendarComponent implements OnInit {
   }
   findAllEmployee() {
     this.employeeService.findAll().then((data: any) => {
+      console.log(data);
       this.employeeData = data;
+    }).catch((error: any) => {
+      console.error(error);
     });
   }
 
@@ -84,7 +107,7 @@ export class AppointmentCalendarComponent implements OnInit {
     dialogRefCreate.afterClosed().subscribe((result: any) => {
       console.log(result);
       if (result === 'new') {
-        this.findAllAppointment();
+        this.findAllAppointment(this.startDate, this.endDate);
       }
     })
   }
@@ -105,7 +128,7 @@ export class AppointmentCalendarComponent implements OnInit {
     dialogRefUpdate.afterClosed().subscribe((result: any) => {
       console.log(result);
       if (result === 'update') {
-        this.findAllAppointment();
+        this.findAllAppointment(this.startDate, this.endDate);
       }
     }
     )

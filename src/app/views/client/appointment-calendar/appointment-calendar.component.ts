@@ -62,9 +62,10 @@ export class AppointmentCalendarComponent implements OnInit {
   /* pour prendre les données */
   findAllAppointment=(startDate: string, endDate: string)=> {
     this.appointmentService.findAllByClient({date_debut:startDate, date_fin:endDate}).then((result: any) => {
+      console.log(result)
       result = result.map((elt:any)=>  this.formatAppointment(elt));
       this.calendarOptions.events = result;
-      console.log(this.calendarOptions.events)
+      
     }).catch((error: any) => {
       console.error(error);
     });
@@ -77,6 +78,7 @@ export class AppointmentCalendarComponent implements OnInit {
       end: appointment.date_heure_fin,
       _id: appointment._id,
       prix: appointment.prix,
+      status: appointment.status
     }
   }
   findAllServices() {
@@ -88,7 +90,7 @@ export class AppointmentCalendarComponent implements OnInit {
     });
   }
   findAllEmployee() {
-    this.employeeService.findAll().then((data: any) => {
+    this.employeeService.findAllByPreference().then((data: any) => {
       console.log(data);
       this.employeeData = data;
     }).catch((error: any) => {

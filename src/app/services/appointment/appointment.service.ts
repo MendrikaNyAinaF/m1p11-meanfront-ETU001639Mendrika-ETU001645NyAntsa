@@ -9,6 +9,10 @@ import { StorageService } from '../storage/storage.service';
 export class AppointmentService {
   baseUrl: string = environment.apiUrl;
 
+  public status:any[]=[
+    {}
+  ];
+
   constructor(private baseApi: BaseApiService, private storageService: StorageService) { }
 
   // c'est un client qui peut créer un rendez vous

@@ -53,4 +53,11 @@ export class ClientLayoutComponent extends FullComponent implements OnInit {
   toProfil() {
     this.router.navigate(["/client/profil"]);
   }
+
+  getClientPhoto(){
+    if(this.client.photo){
+      return this.client.photo;
+    }
+    return "assets/images/favicon.png";
+  }
 }

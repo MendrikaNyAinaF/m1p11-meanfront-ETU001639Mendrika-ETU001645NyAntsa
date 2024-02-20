@@ -22,4 +22,10 @@ export class EmployeeService extends PersonneService{
       password: "passwordNotCryptedYet123!"
     }
   }
+  findAllByPreference(){
+    const client=this.storage.getCurrentUserInfo(); 
+    //TODO 
+    return this.baseApi.get(`${this.baseUrl}/employee`);
+
+  }
 }

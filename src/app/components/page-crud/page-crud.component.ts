@@ -275,7 +275,9 @@ export class PageCrudComponent implements OnInit {
       data: {
         handleSubmitChange: this.handleSubmitChange.bind(this),
         formProps: this.createFormProps
-      }
+      },
+      autoFocus: false,
+      maxHeight: '90vh'
     })
   }
 }

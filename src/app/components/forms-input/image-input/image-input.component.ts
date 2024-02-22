@@ -28,17 +28,22 @@ export class ImageInputComponent extends InputCommon implements OnInit {
     this.selectedImg = event.target.files[0];
 
     this.preview = "";
-    if (this.selectedImg ) {
-        const reader = new FileReader();
+    if (this.selectedImg) {
+      const reader = new FileReader();
 
-        reader.onload = (e: any) => {
-          console.log("base64: ",e.target.result);
-          this.preview=(e.target.result);
-        };
+      reader.onload = (e: any) => {
+        // console.log("base64: ",e.target.result);
+        this.preview = (e.target.result);
+        console.log("selectedImgName: ", this.preview);
+        this.form.patchValue({
+          [this.key]: this.preview
+        });
+      };
 
-        reader.readAsDataURL(this.selectedImg);
+      reader.readAsDataURL(this.selectedImg);
 
-        this.selectedImgName=this.selectedImg.name ;
+      this.selectedImgName = this.selectedImg.name;
+      console.log("selectedImgName: ", this.preview);
     }
   }
 }

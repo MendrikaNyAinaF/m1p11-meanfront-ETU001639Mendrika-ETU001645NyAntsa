@@ -2,11 +2,13 @@
      <mat-form-field appearance="outline" [class]="props.class || ''">
           <mat-label>{{props.label}}</mat-label>
           <input matInput [value]="selectedImgName.length>0 ? selectedImgName : 'Choisir une image'" />
-          <input type="file" id="fileInput" [formControlName]="key" accept="image/*" (change)="selectImage($event)" />
+          <input type="file" id="fileInput" accept="image/*" (change)="selectImage($event)" />
           <mat-error>{{readError()}}</mat-error>
-     </mat-form-field>
 
-     <div>
-          <img [src]="preview" class="preview">
-     </div>
+          <input type="hidden" [formControlName]="key" [value]="preview" />
+
+     </mat-form-field>
 </ng-container>
+<div>
+     <img [src]="preview" class="preview">
+</div>

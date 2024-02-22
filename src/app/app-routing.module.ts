@@ -32,6 +32,7 @@ import { ClientProfilComponent } from './views/client/client-profil/client-profi
 import { ManagerLayoutComponent } from './layouts/manager-layout/manager-layout.component';
 import { EmployeeLayoutComponent } from './layouts/employee-layout/employee-layout.component';
 import {RegisterClientComponent} from "./views/register-client/register-client.component";
+import {PageEmployeeCrudComponent} from "./views/manager/page-employee-crud/page-employee-crud.component";
 
 const routes: Routes = [
   {
@@ -60,6 +61,7 @@ const routes: Routes = [
       { path: "manager/services", component: PageServiceCrudComponent },
       { path: "manager/type-expenses", component: PageTypeExpenseComponent },
       { path: "progress", component: ProgressComponent },
+      { path: "employee", component: PageEmployeeCrudComponent}
     ]
   },
   /**Employee */

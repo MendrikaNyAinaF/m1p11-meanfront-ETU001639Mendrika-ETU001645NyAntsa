@@ -32,7 +32,7 @@ export class ImageInputComponent extends InputCommon implements OnInit {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
-          console.log(e.target.result);
+          console.log("base64: ",e.target.result);
           this.preview=(e.target.result);
         };
 

@@ -28,6 +28,7 @@ import {RouterLinkWithHref} from "@angular/router";
 import { PageTypeExpenseComponent } from './manager/page-type-expense/page-type-expense.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TestingComponent } from './testing/testing.component';
+import { PageEmployeeCrudComponent } from './manager/page-employee-crud/page-employee-crud.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { TestingComponent } from './testing/testing.component';
         PageSpecialOfferComponent,
         BannerSpecialOfferComponent,
         ClientProfilComponent,
-        RegisterClientComponent
+        RegisterClientComponent,
+        PageEmployeeCrudComponent
     ],
     exports: [
         SpinnerComponent

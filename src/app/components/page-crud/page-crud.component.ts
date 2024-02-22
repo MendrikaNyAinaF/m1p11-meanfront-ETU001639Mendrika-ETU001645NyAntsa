@@ -119,7 +119,14 @@ export class PageCrudComponent implements OnInit {
       if (this.fields[key].inColumn) {
         cols.push({
           name: this.fields[key].label || key,
-          selector: (row: any) => row[key],
+          selector: (row: any) => {
+            // row[key]
+          //   check if row[key] is an object
+            if (typeof row[key] === 'object') {
+              return row[key].nom;
+            }
+            return row[key];
+          },
           type: this.fields[key].inputType == "img" ? "img" : "text"
         });
       }
@@ -134,8 +141,8 @@ export class PageCrudComponent implements OnInit {
           ...this.filterData,
         },
         page: {
-          size: this.currentPage,
-          number: this.lengthPage
+          size: this.lengthPage,
+          number: this.currentPage
         }
       }
     } else {
@@ -154,11 +161,13 @@ export class PageCrudComponent implements OnInit {
         label: this.fields[key].label || key,
         type: this.fields[key].inputType,
         validators: [],
+        // this.fields[key].validators ||
         class: "w-100 fs-16"
       };
       //pour prendre les données du select
       if (this.fields[key].inputType == "select") {
         inputs[key].options = await this.fields[key].selectProps.selectData();
+        console.log("Options ",inputs[key].options);
         inputs[key].getValue = this.fields[key].selectProps.getterValueSelect;
         inputs[key].getText = this.fields[key].selectProps.getterTextSelect;
       }

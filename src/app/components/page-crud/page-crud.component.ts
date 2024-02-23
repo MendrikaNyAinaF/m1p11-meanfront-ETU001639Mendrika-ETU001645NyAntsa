@@ -123,7 +123,7 @@ export class PageCrudComponent implements OnInit {
             // row[key]
           //   check if row[key] is an object
             if (typeof row[key] === 'object' && row[key] !== null) {
-              console.log("row key : ",row[key], key);
+              // console.log("row key : ",row[key], key);
               return row[key].nom;
             }
             return row[key];

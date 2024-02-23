@@ -9,8 +9,8 @@
                          <th mat-header-cell *matHeaderCellDef>{{col.name}}</th>
                          <!--si c'est une image-->
                          <ng-container *ngIf="col.type && col.type=='img'; else elseCell">
-                              <td mat-cell class="fw-medium {{col.class}}" *matCellDef="let element">
-                                   <img src="{{ col.selector(element) }}" class="w-20" alt="">
+                              <td mat-cell class="fw-medium {{col.class}} table-image-box" *matCellDef="let element">
+                                   <img src="{{ col.selector(element) }}" class="w-20 table-image" alt="Image" (click)="openFullSizeImage(col.selector(element))">
                               </td>
                          </ng-container>
                          <ng-template #elseCell>

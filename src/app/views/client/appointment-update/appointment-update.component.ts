@@ -16,6 +16,7 @@ export class AppointmentUpdateComponent implements OnInit {
   serviceData!: any[];
   employeeData!: any[];
   appointmentData!: any;
+  appointmentId!: string;
   close!: () => void;
 
   //form: date, liste des services et préférence
@@ -26,27 +27,27 @@ export class AppointmentUpdateComponent implements OnInit {
     private appointmentService: AppointmentService,
     private router: Router
   ) {
+    console.log(data);
     this.serviceData = data.serviceData;
     this.employeeData = data.employeeData;
     this.appointmentData = data.appointmentData;
-    this.close=data.close;
+    this.close = data.close;
   }
-  findAppointment(){
-    this.appointmentService.findById(this.appointmentData._id).then((res: any) => {
-      this.appointmentData = res.data;
-      this.createForm();
-    }).catch((error: any) => {
-      console.error(error);
-    });
-  
-  }
+  // findAppointment(){
+  //   this.appointmentService.findById(this.appointmentId).then((res: any) => {
+  //     console.log(res)
+  //     this.appointmentData = res.data;
+  //   }).catch((error: any) => {
+  //     console.error(error);
+  //   });
+  // }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.formProps = {
       date: {
         type: 'datetime-local',
         label: 'Date et heure du rendez-vous',
-        defaultValue: this.appointmentData.date,
+
         validators: Validators.required
       },
       service: {
@@ -61,21 +62,43 @@ export class AppointmentUpdateComponent implements OnInit {
         type: 'select',
         label: 'Employé',
         options: this.employeeData,
-        getText: (item: any) => item.nom+" "+item.prenom,
+        getText: (item: any) => item.nom + " " + item.prenom,
         getValue: (item: any) => item._id
       }
     }
-    this.findAppointment();
+    this.createForm();
+  }
 
+  buildServiceProps=(id?:string)=>{
+    return {
+      type: 'select',
+      label: 'Service demander',
+      validators: Validators.required,
+      options: this.serviceData,
+      default: id,
+      getText: (item: any) => item.nom + " - " + item.prix + " Ar",
+      getValue: (item: any) => item._id
+    }
+  }
+
+  buildEmployeeProps=(id?:string)=>{
+    return {
+      type: 'select',
+      label: 'Employé',
+      options: this.employeeData,
+      default: id,
+      getText: (item: any) => item.nom + " " + item.prenom,
+      getValue: (item: any) => item._id
+    }
   }
 
   /*pour la gestion du formulaire , pour prendre le formulaire dynamique */
   createForm() {
-    this.form = this.formBuilder.group({
-      date: new FormControl('', Validators.required),
+    this.form = new FormGroup({
+      date: new FormControl(this.appointmentData.date_heure_debut, Validators.required),
       services: new FormArray([])
     });
-    for(let service of this.appointmentData.services){
+    for (let service of this.appointmentData.services) {
       const serviceForm = new FormGroup({
         service: new FormControl(service.service, Validators.required),
         employee: new FormControl(service.employee || '')
@@ -124,7 +147,7 @@ export class AppointmentUpdateComponent implements OnInit {
   }
 
   loaderDelete: boolean = false;
-  handleDeleteSubmit(){
+  handleDeleteSubmit() {
     this.loaderDelete = true;
     this.appointmentService.cancel(this.appointmentData._id).then((res: any) => {
       this.update.emit("delete");
@@ -139,7 +162,7 @@ export class AppointmentUpdateComponent implements OnInit {
   }
   @Output() update = new EventEmitter<string>();
 
-  goToPayment(){
+  goToPayment() {
     this.router.navigate([`/client/appointment/${this.appointmentData._id}/payment`]);
   }
 

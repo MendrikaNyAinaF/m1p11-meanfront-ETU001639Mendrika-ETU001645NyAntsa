@@ -10,7 +10,7 @@
                          <!--si c'est une image-->
                          <ng-container *ngIf="col.type && col.type=='img'; else elseCell">
                               <td mat-cell class="fw-medium {{col.class}}" *matCellDef="let element">
-                                   <img src="{{ col.selector(element) }}" class="w-20" alt="">
+                                   <img src="{{ col.selector(element) }}" class="w-20" alt="" style="width:100px">
                               </td>
                          </ng-container>
                          <ng-template #elseCell>

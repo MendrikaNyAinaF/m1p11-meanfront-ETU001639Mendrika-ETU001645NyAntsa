@@ -100,7 +100,7 @@ export class PageCrudComponent implements OnInit {
     this.crudService.findAll(this.getFilterData())
       .then((data: any) => {
         this.dataList = data;
-        console.log(data);
+        // console.log(data);
         this.loaderList = false;
       })
       .catch((err: any) => {
@@ -122,7 +122,7 @@ export class PageCrudComponent implements OnInit {
           selector: (row: any) => {
             // row[key]
           //   check if row[key] is an object
-            if (typeof row[key] === 'object') {
+            if (row[key]!=null && row[key]!=undefined &&  typeof row[key] === 'object') {
               return row[key].nom;
             }
             return row[key];

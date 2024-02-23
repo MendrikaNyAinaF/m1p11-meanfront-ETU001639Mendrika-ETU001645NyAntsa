@@ -6,9 +6,9 @@
                <div formArrayName="services">
                     <ng-container *ngFor="let elt of getFormService(); let i=index" formGroupName="{{i}}">
                          <div>
-                              <app-inputs class="me-24 fs-16" [props]="formProps.service" key="service"
+                              <app-inputs class="me-24 fs-16" [props]="buildServiceProps(elt.value)" key="service"
                                    [form]="elt"></app-inputs>
-                              <app-inputs class="me-24 fs-16" [props]="formProps.employee" key="employee"
+                              <app-inputs class="me-24 fs-16" [props]="buildEmployeeProps(elt.value)" key="employee"
                                    [form]="elt"></app-inputs>
                               <button mat-raised-button type="contained" color="warn" class="me-24 fs-16 btn-remove-dynamic-form"
                                    (click)="removeService(i)" *ngIf="isGtThanOneService()" >

@@ -25,7 +25,7 @@ export class EmployeeService extends PersonneService{
   findAllByPreference(){
     const client=this.storage.getCurrentUserInfo(); 
     //TODO 
-    return this.baseApi.get(`${this.baseUrl}/employee`);
+    return this.baseApi.get(`${this.baseUrl}/employees/favourites/${client.id}`);
 
   }
 }

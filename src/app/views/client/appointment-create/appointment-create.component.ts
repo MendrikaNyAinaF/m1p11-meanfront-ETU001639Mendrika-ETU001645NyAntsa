@@ -46,9 +46,8 @@ export class AppointmentCreateComponent implements OnInit {
         label:'Employé',
         options:this.employeeData,
         validators: Validators.required,
-        getText: (item:any) => item.nom,
+        getText: (item:any) => `${item.nom} ${item.favourite? '(Préféré)': ''}`,
         getValue: (item:any) => item._id
-
       }
     }
     this.createForm(); 
@@ -83,9 +82,6 @@ export class AppointmentCreateComponent implements OnInit {
     (<FormArray>this.form.controls['services']).removeAt(i);
   }
   //fin gestion de formulaire
-
-  
-
   
 
   loaderSubmit: boolean = false;
@@ -97,10 +93,10 @@ export class AppointmentCreateComponent implements OnInit {
       this.loaderSubmit = true;
       this.appointmentService.create(this.form.value).then((res:any)=>{
         this.create.emit("new");
-        this.alertService.alertSuccess(res?.data?.message || "Le traitement a été effectué avec succès");
+        this.alertService.alertSuccess(res?.message || "Le traitement a été effectué avec succès");
         this.loaderSubmit = false;
       }).catch((error:any)=>{ 
-        this.alertService.alertError(error?.data?.message || "Une erreur s'est produite lors du traitement");
+        this.alertService.alertError(error?.error?.message || "Une erreur s'est produite lors du traitement");
         this.loaderSubmit = false;
         console.error(error);
       });

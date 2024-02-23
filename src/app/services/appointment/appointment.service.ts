@@ -9,7 +9,7 @@ import { StorageService } from '../storage/storage.service';
 export class AppointmentService {
   baseUrl: string = environment.apiUrl;
 
-  public status:any[]=[
+  public status: any[] = [
     {}
   ];
 
@@ -50,7 +50,8 @@ export class AppointmentService {
         }
       });
     });
-    return this.baseApi.post(`${this.baseUrl}/appointment`, body);
+    console.log(appointment);
+    return this.baseApi.post(`${this.baseUrl}/appointment`, appointment);
   }
 
   //c'est un client qui peut modifier un rendez vous, soit modifier l'heure ou la date ou les serviecs
@@ -71,41 +72,58 @@ export class AppointmentService {
     return this.baseApi.put(`${this.baseUrl}/appointement/${id}/pay`);
   }
 
-  /** params de la form: {date_debut, date_fin} */
-  findAllByClient(params: any) {
-    console.log(params);
-    const client = this.storageService.getCurrentUserInfo();
+  formatDate(date:any) {
+  // Vérifier si le paramètre est une date
+  if (Object.prototype.toString.call(date) === '[object Date]') {
+    // Extraire l'année, le mois et le jour de la date
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Ajouter un zéro initial si nécessaire
+    const day = String(date.getDate()).padStart(2, '0'); // Ajouter un zéro initial si nécessaire
 
-    const search = {
-      "search": {
-        "$and": [
-          {
-            "date_heure_debut": {
-              "$gte": {
-                "$date": params.date_debut
-              }
-            }
-          },
-          {
-            "date_heure_fin": {
-              "$lte": {
-                "$date": params.date_fin
-              }
-            }
-          },
-          {
-            "client": {
-              "$oid": client.id
+    // Retourner la date formatée en "YYYY-MM-dd"
+    return `${year}-${month}-${day}`;
+  } else {
+    // Si le paramètre n'est pas une date, retourner le paramètre tel quel
+    return date;
+  }
+}
+/** params de la form: {date_debut, date_fin} */
+findAllByClient(params: any) {
+  
+  const client = this.storageService.getCurrentUserInfo();
+
+  const search = {
+    "search": {
+      "$and": [
+        {
+          "date_heure_debut": {
+            "$gte": {
+              "$date": this.formatDate(params.date_debut)
             }
           }
-        ]
-      }
+        },
+        {
+          "date_heure_fin": {
+            "$lte": {
+              "$date": this.formatDate(params.date_fin)
+            }
+          }
+        },
+        {
+          "client": {
+            "$oid": client.id
+          }
+        }
+      ]
     }
-    return this.baseApi.get(`${this.baseUrl}/rendez_vous-crud`, { body: search });
   }
+  // console.log(search);
+  const base64 = btoa(JSON.stringify(search));
+  return this.baseApi.get(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`, { body: search });
+}
 
-  findById(id: string) {
-    //TODO traitement
-    return this.baseApi.get(`${this.baseUrl}/appointment/${id}`);
-  }
+findById(id: string) {
+  //TODO traitement
+  return this.baseApi.get(`${this.baseUrl}/appointment/${id}`);
+}
 }

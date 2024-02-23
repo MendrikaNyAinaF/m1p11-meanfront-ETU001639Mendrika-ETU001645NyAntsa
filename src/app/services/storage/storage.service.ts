@@ -18,6 +18,7 @@ export class StorageService implements Storage{
   }
 
   getItem(key: string): string | null {
+    // console.log(key, this.storageBase.getItem(key));
     return this.storageBase.getItem(key);
   }
 

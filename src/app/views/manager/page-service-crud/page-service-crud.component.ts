@@ -7,9 +7,8 @@ import { ServiceCrudService } from 'src/app/services/service/service-crud.servic
   templateUrl: './page-service-crud.component.html',
   styleUrls: ['./page-service-crud.component.scss']
 })
-export class PageServiceCrudComponent implements OnInit {
-  fields: any = {};
-  fieldsFilter: any = {};
+export class PageServiceCrudComponent {
+
   pageProps: PageCrudProps = {
     create: true,
     update: true,
@@ -18,70 +17,68 @@ export class PageServiceCrudComponent implements OnInit {
     filter: true,
     paginate: true,
   };
+  fields:any = {
+    _id: {
+      label: "id",
+      inputType: "hidden",
+      hidden: true,
+    },
+    nom: {
+      label: "Nom",
+      inputType: "text",
+      validators: Validators.required,
+      inColumn: true,
+    },
+    prix: {
+      label: "Prix",
+      inputType: "number",
+      validators: [Validators.required, Validators.min(0)],
+      inColumn: true,
+    },
+    duree: {
+      label: "Durée",
+      inputType: "number",
+      validators: [Validators.required, Validators.min(0)],
+      inColumn: true,
+    },
+    commission: {
+      label: "Commission",
+      inputType: "number",
+      validators: [Validators.required, Validators.min(0)],
+      inColumn: true,
+    },
+    description: {
+      label: "Description",
+      inputType: "text",
+    },
+    photo: {
+      label: "Image",
+      inputType: "img",
+      inColumn: true,
+    }
+  }
 
+  /* champs de recherche */
+  fieldsFilter:any = {
+    nom: {
+      label: "Nom et description",
+      inputType: "text"
+    },
+    prixMin: {
+      label: "Prix min",
+      inputType: "number",
+      validator:  [Validators.min(0) ]
+    },
+    prixMax: {
+      label: "Prix max",
+      inputType: "number",
+      validator: Validators.min(0)
+    }
+  }
   constructor(public servicecrud: ServiceCrudService) {
   }
 
-  ngOnInit(): void {
-    this.fields = {
-      _id: {
-        label: "id",
-        inputType: "hidden",
-        hidden: true,
-      },
-      nom: {
-        label: "Nom",
-        inputType: "text",
-        validators: Validators.required,
-        inColumn: true,
-      },
-      prix: {
-        label: "Prix",
-        inputType: "number",
-        validators: [Validators.required, Validators.min(0)],
-        inColumn: true,
-      },
-      duree: {
-        label: "Durée",
-        inputType: "number",
-        validators: [Validators.required, Validators.min(0)],
-        inColumn: true,
-      },
-      commission: {
-        label: "Commission",
-        inputType: "number",
-        validators: [Validators.required, Validators.min(0)],
-        inColumn: true,
-      },
-      description: {
-        label: "Description",
-        inputType: "text",
-      },
-      photo: {
-        label: "Image",
-        inputType: "img",
-        inColumn: true,
-      }
-    }
 
-    /* champs de recherche */
-    this.fieldsFilter = {
-      nom: {
-        label: "Nom et description",
-        inputType: "text"
-      },
-      prixMin: {
-        label: "Prix min",
-        inputType: "number",
-        validator:  [Validators.min(0) ]
-      },
-      prixMax: {
-        label: "Prix max",
-        inputType: "number",
-        validator: Validators.min(0)
-      }
-    }
-  }
 }
 
 

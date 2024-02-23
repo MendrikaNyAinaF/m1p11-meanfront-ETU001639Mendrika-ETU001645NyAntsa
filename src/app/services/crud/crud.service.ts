@@ -37,12 +37,14 @@ export class CrudService {
 
   findAll(params?: SearchParams) { //de la forme {search:{key: value,...}, page:{size:10, number:1}}
     const body = params ?{body: params }: {};
-    console.log(body,params);
-    return this.baseApi.get(this.crudUrl+"?criteria="+params, {body});
+    // console.log(body,params);
+    const base64= btoa(JSON.stringify(params));
+    return this.baseApi.get(this.crudUrl+"?criteria="+base64, {body});
   }
 
   update(id: string, body: any) {
     delete body.id;
+    delete body._id;
     return this.baseApi.put(`${this.crudUrl}/${id}`, body );
   }
 

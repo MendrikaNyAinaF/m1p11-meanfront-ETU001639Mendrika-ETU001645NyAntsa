@@ -13,6 +13,7 @@ export class ServiceCrudService extends CrudService {
 
   /* search params: nom/description, tranche de prix, */
   override findAll(params?: SearchParams) {
+    console.log(params);
     if (params) {
       const searchNom = (".*" + (params.search.nom || "") + ".*").replace(".*.*", ".*");
       let search: any = {
@@ -34,12 +35,18 @@ export class ServiceCrudService extends CrudService {
       }
       params.search = search;
     }
-    // console.log(JSON.stringify(params));
+    console.log(params);
     return super.findAll(params);
+    // return this.baseApi.get(this.crudUrl, {body:params});
   }
 
   override create(body: any) {
     console.log(body);
     return super.create(body);
+  }
+  override update(id:string, body: any) {
+    console.log(body);
+    delete body._id;
+    return super.update(id, body);
   }
 }

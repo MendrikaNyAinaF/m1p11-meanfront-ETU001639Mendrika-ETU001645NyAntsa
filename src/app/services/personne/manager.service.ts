@@ -15,7 +15,7 @@ export class ManagerService extends PersonneService {
 
     getDefaultLogin(){
       return {
-        email: "ranjalahynyantsa@gmail.com",
+        email: "ranjalahynyantsa+test@gmail.com",
         password: "passwordNotCryptedYet123!"
       }
     }

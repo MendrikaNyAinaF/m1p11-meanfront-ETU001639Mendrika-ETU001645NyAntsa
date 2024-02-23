@@ -50,10 +50,14 @@ export class ManagerLayoutComponent extends FullComponent implements OnInit {
     // }
   }
 
-
   logout() {
     this.storageService.logout();
     this.router.navigate(["/manager/login"]);
   }
-
+  getManagerPhoto(){
+    if(this.manager.photo){
+      return this.manager.photo;
+    }
+    return "assets/images/favicon.png";
+  }
 }

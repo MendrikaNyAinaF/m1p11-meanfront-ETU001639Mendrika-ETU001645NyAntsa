@@ -15,6 +15,7 @@ export class ImageInputComponent extends InputCommon implements OnInit {
 
   ngOnInit() {
     this.form.get(this.key)?.setValue(undefined);
+    if(this.default()) this.preview=this.props.default;
   }
   selectedImg?: File;
   selectedImgName: string = "";
@@ -45,5 +46,10 @@ export class ImageInputComponent extends InputCommon implements OnInit {
       this.selectedImgName = this.selectedImg.name;
       console.log("selectedImgName: ", this.preview);
     }
+  }
+  default() {
+    if (this.props.default != null && this.props.default != undefined && this.props.default != "")
+      return true;
+    return false;
   }
 }

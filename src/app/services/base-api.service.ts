@@ -24,12 +24,15 @@ export class BaseApiService implements HttpInterceptor{
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if(this.jwtToken === null){
+      this.jwtToken = this.storage.getItem(this.jwtTokenKey);
+    }
     const request = req.clone({
       headers: req.headers.set('Authorization', this.jwtToken || ''),
     });
     return next.handle(request);
   }
-  
+
   get(url: string, options?: HttpOptions) {
     return new Promise((resolve, reject) => {
       this.http.get(url, options).subscribe((data) => {

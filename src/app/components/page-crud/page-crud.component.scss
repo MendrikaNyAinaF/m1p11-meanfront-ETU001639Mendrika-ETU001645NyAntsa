@@ -7,3 +7,8 @@
   margin-top: 20px;
   max-width:500px;
 }
+
+.scrollable-container {
+  max-height: 300px; /* ou toute autre valeur de hauteur maximale souhaitée */
+  overflow-y: auto; /* Activer la barre de défilement verticale lorsque le contenu dépasse la hauteur maximale */
+}

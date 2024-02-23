@@ -34,7 +34,12 @@ export class ServiceCrudService extends CrudService {
       }
       params.search = search;
     }
-    console.log(JSON.stringify(params));
+    // console.log(JSON.stringify(params));
     return super.findAll(params);
+  }
+
+  override create(body: any) {
+    console.log(body);
+    return super.create(body);
   }
 }

@@ -29,6 +29,7 @@ import { PageTypeExpenseComponent } from './manager/page-type-expense/page-type-
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TestingComponent } from './testing/testing.component';
 import { PageEmployeeCrudComponent } from './manager/page-employee-crud/page-employee-crud.component';
+import { ClientEmployeePreferenceComponent } from './client/client-employee-preference/client-employee-preference.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { PageEmployeeCrudComponent } from './manager/page-employee-crud/page-emp
         BannerSpecialOfferComponent,
         ClientProfilComponent,
         RegisterClientComponent,
-        PageEmployeeCrudComponent
+        PageEmployeeCrudComponent,
+        ClientEmployeePreferenceComponent
     ],
     exports: [
         SpinnerComponent

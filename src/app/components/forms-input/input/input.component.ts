@@ -7,6 +7,17 @@ import { InputCommon } from '../input-common.class';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']
 })
-export class InputComponent extends InputCommon {
+export class InputComponent extends InputCommon  {
+  
   @Input() props !: InputProps;
+  // ngOnInit(): void {
+  //   if (this.props.type == 'datetime-local' && this.props.default!=undefined && this.props.default.length>15) {
+  //     this.props.default = this.props.default.substring(0,16);
+  //     this.form.patchValue({
+  //       [this.key]: this.props.default
+  //     });
+  //   }
+  // }
+
+
 }

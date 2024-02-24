@@ -56,8 +56,34 @@ export class AppointmentService {
 
   //c'est un client qui peut modifier un rendez vous, soit modifier l'heure ou la date ou les serviecs
   update(id: string, body: any) {
+    const client = this.storageService.getCurrentUserInfo();
+
+    //objet rendez vous
+    const appointment: any = {
+      appointment: {
+        client: {
+          $oid: client.id,
+        },
+        date_heure_debut: {
+          $date: body.date_heure_debut + ":00.000+00:00",
+        }
+      }
+      , details: []
+    }
+
+    //details du rendez vous
+    body.services.forEach((service: any) => {
+      appointment.details.push({
+        service: {
+          $oid: service.service
+        },
+        employee: {
+          $oid: service.employee
+        }
+      });
+    }); console.log(appointment);
     //TODO traitement
-    return this.baseApi.put(`${this.baseUrl}/appointement/${id}`, body);
+    return this.baseApi.put(`${this.baseUrl}/appointment/${id}/update`, appointment);
   }
 
   //c'est un client qui peut annuler un rendez vous
@@ -119,6 +145,7 @@ findAllByClient(params: any) {
   }
   // console.log(search);
   const base64 = btoa(JSON.stringify(search));
+  console.log(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`);
   return this.baseApi.get(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`, { body: search });
 }
 

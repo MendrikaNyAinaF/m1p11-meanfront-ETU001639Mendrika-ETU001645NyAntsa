@@ -47,16 +47,29 @@ export class AppointmentCalendarComponent implements OnInit {
     this.findAllServices();
     this.findAllAppointment(this.startDate, this.endDate);
   }
+
+  formatEventToAppointment(arg: any) {
+    return {
+      title: arg._def.title,
+      date: arg._instance.range.start,
+      services: arg._def.extendedProps.services,
+      _id: arg._def.extendedProps._id
+    }
+  }
+
   handleDateClick(arg: any) {
-    const temp = { title: arg.event._def.title, date: arg.event._instance.range.start, services: arg.event._def.extendedProps.services, _id: arg.event._def.extendedProps._id };
+    const temp = this.formatEventToAppointment(arg.event);
     this.openUpdateForm(temp);
   }
   handleEventDrop(eventDropInfo: EventDropArg) {
     const { event, oldEvent } = eventDropInfo;
-    // console.log(eventDropInfo);
-    // console.log(oldEvent);
-    // const temp = { title: arg.event._def.title, date: arg.event._instance.range.start, services: arg.event._def.extendedProps.services, _id: arg.event._def.publicId };
-    this.openUpdateForm(event, event.startStr);
+    const currentDate=  new Date().toISOString();
+    if(oldEvent.startStr<=currentDate){
+      eventDropInfo.revert();
+      return;
+    }
+    console.log(event.startStr," ", oldEvent.startStr)
+    this.openUpdateForm(this.formatEventToAppointment(event), event.startStr, true);
   }
 
   /* pour prendre les données */
@@ -75,8 +88,8 @@ export class AppointmentCalendarComponent implements OnInit {
     const color = appointment.status.code === "ENC" ? "#fb9678" : appointment.status.code === "TEP" ? "#03c9d7" : "#e46a76";
     return {
       title: 'Rendez-vous',
-      date: appointment.date_heure_debut,
-      end: appointment.date_heure_fin,
+      date: (appointment.date_heure_debut!=undefined && appointment.date_heure_debut.length>15)?appointment.date_heure_debut.substring(0, 16):appointment.date_heure_debut,
+      end: (  appointment.date_heure_fin!=undefined && appointment.date_heure_fin.length>15)?appointment.date_heure_fin.substring(0, 16):appointment.date_heure_fin,
       _id: appointment._id,
       prix: appointment.prix,
       status: appointment.status,
@@ -93,7 +106,7 @@ export class AppointmentCalendarComponent implements OnInit {
   }
   findAllEmployee() {
     this.employeeService.findAllByPreference().then((data: any) => {
-      console.log(data);
+      // console.log(data);
       this.employeeData = data.data;
     }).catch((error: any) => {
       console.error(error);
@@ -115,12 +128,12 @@ export class AppointmentCalendarComponent implements OnInit {
     });
   }
 
-  async openUpdateForm(appointment: any, newDateEvent?: any) {
+  async openUpdateForm(appointment: any, newDateEvent?: any, dragAndDrop:boolean=false) {
     console.log(appointment);
-    
-    const appointmentData = await this.findAppointment(appointment._id);
+
+    const appointmentData :any= await this.findAppointment(appointment._id);
     if (newDateEvent) {
-      appointment.date_heure_debut = newDateEvent;
+      appointmentData.date_heure_debut = newDateEvent;
     }
     const dialogRefUpdate = this.dialog.open(AppointmentUpdateComponent, {
       data: {
@@ -135,6 +148,11 @@ export class AppointmentCalendarComponent implements OnInit {
         this.findAllAppointment(this.startDate, this.endDate);
       }
     });
+    if(dragAndDrop){
+      dialogRefUpdate.afterClosed().subscribe((result: any) => {
+        this.findAllAppointment(this.startDate, this.endDate);
+      });
+    }
   }
   findAppointment(id: string) {
     return new Promise((resolve, reject) => {

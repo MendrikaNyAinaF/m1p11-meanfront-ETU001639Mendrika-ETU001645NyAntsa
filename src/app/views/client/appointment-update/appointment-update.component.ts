@@ -47,65 +47,62 @@ export class AppointmentUpdateComponent implements OnInit {
       date: {
         type: 'datetime-local',
         label: 'Date et heure du rendez-vous',
-
+        default: this.appointmentData.date_heure_debut.substring(0, 16),
         validators: Validators.required
-      },
-      service: {
-        type: 'select',
-        label: 'Service demander',
-        validators: Validators.required,
-        options: this.serviceData,
-        getText: (item: any) => item.nom + " - " + item.prix + " Ar",
-        getValue: (item: any) => item._id
-      },
-      employee: {
-        type: 'select',
-        label: 'Employé',
-        options: this.employeeData,
-        getText: (item: any) => item.nom + " " + item.prenom,
-        getValue: (item: any) => item._id
       }
     }
     this.createForm();
   }
+  getValueOnIndex(index:number, props:string){
+    const serviceFA= <FormArray>this.form.controls['services'];
+    const row=(<FormGroup>serviceFA.at(index)).get(props);
+    return row?.value;
+  }
 
-  buildServiceProps=(id?:string)=>{
+  buildServiceProps=(index:number)=>{
+    // const row=id?this.appointmentData.services.find((elt:any)  => elt._id === id):null;
     return {
       type: 'select',
       label: 'Service demander',
       validators: Validators.required,
       options: this.serviceData,
-      default: id,
+      default: this.getValueOnIndex(index, 'service'),
       getText: (item: any) => item.nom + " - " + item.prix + " Ar",
       getValue: (item: any) => item._id
     }
   }
 
-  buildEmployeeProps=(id?:string)=>{
+  buildEmployeeProps=(index:number)=>{
+    // console.log(id);
+    // const row=id?this.appointmentData.services.find((elt:any)  => elt._id === id):null;
+    // console.log(this.getValueOnIndex(index, 'employee'));
     return {
       type: 'select',
       label: 'Employé',
       options: this.employeeData,
-      default: id,
+      default:this.getValueOnIndex(index, 'employee'),
       getText: (item: any) => item.nom + " " + item.prenom,
       getValue: (item: any) => item._id
     }
+    
   }
 
   /*pour la gestion du formulaire , pour prendre le formulaire dynamique */
   createForm() {
     this.form = new FormGroup({
-      date: new FormControl(this.appointmentData.date_heure_debut, Validators.required),
+      date_heure_debut: new FormControl(this.appointmentData.date_heure_debut.substring(0, 16), Validators.required),
       services: new FormArray([])
     });
     for (let service of this.appointmentData.services) {
       const serviceForm = new FormGroup({
-        service: new FormControl(service.service, Validators.required),
-        employee: new FormControl(service.employee || '')
+        _id: new FormControl(service._id),
+        service: new FormControl(service.service._id, Validators.required),
+        employee: new FormControl(service.employee._id || '')
       });
       (<FormArray>this.form.controls['services']).push(serviceForm);
     }
   }
+
   getFormService(): any {
     return (<FormArray>this.form.controls['services']).controls;
   }
@@ -127,36 +124,27 @@ export class AppointmentUpdateComponent implements OnInit {
 
 
 
-
-  loaderSubmit: boolean = false;
   /*pour la création de nouveau rendez-vous */
   handleCreateSubmit() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
-      this.loaderSubmit = true;
       this.appointmentService.update(this.appointmentData._id, this.form.value).then((res: any) => {
         this.update.emit("update");
-        this.alertService.alertSuccess(res?.data?.message || "Le traitement a été effectué avec succès");
-        this.loaderSubmit = false;
+        this.alertService.alertSuccess(res?.message || "Le traitement a été effectué avec succès");
       }).catch((error: any) => {
-        this.alertService.alertError(error?.data?.message || "Une erreur s'est produite lors du traitement");
-        this.loaderSubmit = false;
+        this.alertService.alertError(error?.error?.message || "Une erreur s'est produite lors du traitement");
         console.error(error);
       });
     }
   }
 
-  loaderDelete: boolean = false;
   handleDeleteSubmit() {
-    this.loaderDelete = true;
     this.appointmentService.cancel(this.appointmentData._id).then((res: any) => {
       this.update.emit("delete");
-      this.alertService.alertSuccess(res?.data?.message || "Le traitement a été effectué avec succès");
-      this.loaderDelete = false;
+      this.alertService.alertSuccess(res?.message  || "Le traitement a été effectué avec succès");
       this.close();
     }).catch((error: any) => {
-      this.alertService.alertError(error?.data?.message || "Une erreur s'est produite lors du traitement");
-      this.loaderDelete = false;
+      this.alertService.alertError(error?.error?.message || "Une erreur s'est produite lors du traitement");
       console.error(error);
     });
   }

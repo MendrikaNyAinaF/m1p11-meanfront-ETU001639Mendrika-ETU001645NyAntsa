@@ -1,8 +1,20 @@
 <mat-card>
      <mat-card-content>
           <h1>Liste des rendez vous</h1>
-          <button mat-raised-button  color="primary" (click)="openCreateForm()">Nouveau rendez vous</button>
-          <br/>
+          <div>
+               <button mat-raised-button color="primary" (click)="openCreateForm()">Nouveau rendez vous</button>
+          </div>
+          <br />
+
+          <div>
+               <h4>Légendes</h4>
+               <span class="badge badge-info rounded-pill" style="display:block">Rendez vous payé</span>
+               <br/>
+               <span class="badge badge-primary rounded-pill"  style="display:block">Rendez vous non payé</span>
+          </div>
+          <br />
+          <br />
+
           <full-calendar [options]="calendarOptions">
           </full-calendar>
 

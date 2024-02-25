@@ -88,14 +88,13 @@ export class AppointmentService {
 
   //c'est un client qui peut annuler un rendez vous
   cancel(id: string) {
-    //TODO traitement
-    return this.baseApi.delete(`${this.baseUrl}/appointement/${id}`);
+    return this.baseApi.delete(`${this.baseUrl}/appointment/${id}/cancel`);
   }
 
   //payer un rendezvous, c'est un client qui paie le rendez vous
-  pay(id: string) {
-    //TODO traitement
-    return this.baseApi.put(`${this.baseUrl}/appointement/${id}/pay`);
+  pay(id: string, mode_paiement: string) {
+    const body={mode_paiement:mode_paiement};
+    return this.baseApi.post(`${this.baseUrl}/appointment/${id}/pay`, body);
   }
 
   formatDate(date:any) {

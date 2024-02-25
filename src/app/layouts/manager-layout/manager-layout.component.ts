@@ -35,6 +35,11 @@ export class ManagerLayoutComponent extends FullComponent implements OnInit {
     link: "/manager/type-expenses",
     icon: "disc",
     menu: "Gestion des types de dépenses",
+  },
+  {
+    link:"/manager/special-offer",
+    icon:"award",
+    menu:"Gestion des offres spéciales"
   }
 ];
   constructor(private storageService: StorageService,

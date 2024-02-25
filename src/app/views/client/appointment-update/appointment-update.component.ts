@@ -17,6 +17,11 @@ export class AppointmentUpdateComponent implements OnInit {
   employeeData!: any[];
   appointmentData!: any;
   appointmentId!: string;
+
+  canUpdate: boolean = true;
+  canPaid: boolean = true;
+  canDelete: boolean = true;
+
   close!: () => void;
 
   //form: date, liste des services et préférence
@@ -31,16 +36,11 @@ export class AppointmentUpdateComponent implements OnInit {
     this.serviceData = data.serviceData;
     this.employeeData = data.employeeData;
     this.appointmentData = data.appointmentData;
+    this.canUpdate = data.canUpdate!=undefined?data.canUpdate: true;
+    this.canPaid = data.canPaid!=undefined?data.canPaid: true;
+    this.canDelete = data.canDelete!=undefined?data.canDelete: true;
     this.close = data.close;
   }
-  // findAppointment(){
-  //   this.appointmentService.findById(this.appointmentId).then((res: any) => {
-  //     console.log(res)
-  //     this.appointmentData = res.data;
-  //   }).catch((error: any) => {
-  //     console.error(error);
-  //   });
-  // }
 
   async ngOnInit() {
     this.formProps = {
@@ -53,13 +53,18 @@ export class AppointmentUpdateComponent implements OnInit {
     }
     this.createForm();
   }
-  getValueOnIndex(index:number, props:string){
-    const serviceFA= <FormArray>this.form.controls['services'];
-    const row=(<FormGroup>serviceFA.at(index)).get(props);
-    return row?.value;
+  getValueOnIndex(index: number, props: string) {
+    try {
+      const serviceFA = <FormArray>this.form.controls['services'];
+      const row = (<FormGroup>serviceFA.at(index)).get(props);
+      return row?.value;
+    }catch(e){
+      console.error(e);
+      return null;
+    }    
   }
 
-  buildServiceProps=(index:number)=>{
+  buildServiceProps = (index: number) => {
     // const row=id?this.appointmentData.services.find((elt:any)  => elt._id === id):null;
     return {
       type: 'select',
@@ -72,7 +77,7 @@ export class AppointmentUpdateComponent implements OnInit {
     }
   }
 
-  buildEmployeeProps=(index:number)=>{
+  buildEmployeeProps = (index: number) => {
     // console.log(id);
     // const row=id?this.appointmentData.services.find((elt:any)  => elt._id === id):null;
     // console.log(this.getValueOnIndex(index, 'employee'));
@@ -80,11 +85,11 @@ export class AppointmentUpdateComponent implements OnInit {
       type: 'select',
       label: 'Employé',
       options: this.employeeData,
-      default:this.getValueOnIndex(index, 'employee'),
+      default: this.getValueOnIndex(index, 'employee'),
       getText: (item: any) => item.nom + " " + item.prenom,
       getValue: (item: any) => item._id
     }
-    
+
   }
 
   /*pour la gestion du formulaire , pour prendre le formulaire dynamique */
@@ -131,6 +136,7 @@ export class AppointmentUpdateComponent implements OnInit {
       this.appointmentService.update(this.appointmentData._id, this.form.value).then((res: any) => {
         this.update.emit("update");
         this.alertService.alertSuccess(res?.message || "Le traitement a été effectué avec succès");
+        this.close();
       }).catch((error: any) => {
         this.alertService.alertError(error?.error?.message || "Une erreur s'est produite lors du traitement");
         console.error(error);
@@ -141,7 +147,7 @@ export class AppointmentUpdateComponent implements OnInit {
   handleDeleteSubmit() {
     this.appointmentService.cancel(this.appointmentData._id).then((res: any) => {
       this.update.emit("delete");
-      this.alertService.alertSuccess(res?.message  || "Le traitement a été effectué avec succès");
+      this.alertService.alertSuccess(res?.message || "Le traitement a été effectué avec succès");
       this.close();
     }).catch((error: any) => {
       this.alertService.alertError(error?.error?.message || "Une erreur s'est produite lors du traitement");
@@ -152,6 +158,7 @@ export class AppointmentUpdateComponent implements OnInit {
 
   goToPayment() {
     this.router.navigate([`/client/appointment/${this.appointmentData._id}/payment`]);
+    this.close();
   }
 
 }

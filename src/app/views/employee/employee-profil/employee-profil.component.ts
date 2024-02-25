@@ -1,62 +1,61 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Column } from 'src/app/components/interfaces';
-import { EmployeeService } from 'src/app/services/personne/employee.service';
-
+import { EmployeeService as EmpService } from 'src/app/services/personne/employee.service';
+import { EmployeeService as EmpCrud } from 'src/app/services/employee/employee.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 @Component({
   selector: 'app-employee-profil',
   templateUrl: './employee-profil.component.html',
   styleUrls: ['./employee-profil.component.scss']
 })
 export class EmployeeProfilComponent implements OnInit {
-  employee:any;
-  foundEmp=true;
-  loader=false;
+  employee: any;
+  foundEmp = true;
 
-  scheduleColumns:Column[]=[
+  scheduleColumns: Column[] = [
     {
-      name:"Heure de début",
-      selector:(row:any)=>row.heure_debut,
+      name: "Heure de début",
+      selector: (row: any) => row.heure_debut,
     },
     {
-      name:"Heure de fin",
-      selector:(row:any)=>row.heure_fin,
+      name: "Heure de fin",
+      selector: (row: any) => row.heure_fin,
     },
     {
-      name:"Plage de date de mise en application",
-      selector:(row:any)=> row.date_debut+" à "+row.date_fin
+      name: "Plage de date de mise en application",
+      selector: (row: any) => row.date_debut + " à " + row.date_fin
     }
   ]
 
   constructor(
-    private employeeService: EmployeeService) { 
+    private employeeService: EmpService,
+    private employeeCrud: EmpCrud,
+    private storageService: StorageService) {
   }
 
   ngOnInit(): void {
     this.getEmployee();
   }
 
-  getEmployee(){
-    this.employee={
-      "nom":"Jerry",
-      "prenom":"Chrome",
-      "genre":"fille",
-      email:"test@gmail.com",
-      telephone: "02035190431",
-      date_naissance: "2025-01-24",
-      photo:"",
-      horaires:[]
-    }
-    return;
-    this.loader=true;
-    this.employeeService.getConnectedUser().then((data:any)=>{
-      this.employee = data;
-      this.foundEmp=true;
-      this.loader=false;
-    }).catch((error:any)=>{
-        console.error(error);
-        this.foundEmp=false;
-        this.loader=false;
+  getEmployee() {
+    const id = this.storageService.getCurrentUserInfo().id;
+    this.employeeCrud.findOne(id).then((data: any) => {
+      console.log(data.data[0])
+      this.employee = data.data.length > 0 ? data.data[0] : {};
+      this.foundEmp = true;
+      this.getSchedule();
+    }).catch((error: any) => {
+      console.error(error);
+      this.foundEmp = false;
+    });
+  }
+  getSchedule() {
+    this.employeeService.findCurrentSchedule().then((data: any) => {
+      if (data.data && data.data.length > 0)
+        this.employee.horaires = [data.data];
+    }).catch((error: any) => {
+      console.error(error);
     });
   }
 }

@@ -18,7 +18,7 @@ export class EmployeeService extends PersonneService{
   }
   getDefaultLogin(){
     return {
-      email: "rajaonarivonynyantsa@gmail.com",
+      email: "mendrika.nyainaf@gmail.com",
       password: "passwordNotCryptedYet123!"
     }
   }
@@ -26,6 +26,10 @@ export class EmployeeService extends PersonneService{
     const client=this.storage.getCurrentUserInfo(); 
     //TODO 
     return this.baseApi.get(`${this.baseUrl}/employees/favourites/${client.id}`);
+  }
 
+  findCurrentSchedule(){
+    const employee=this.storage.getCurrentUserInfo();
+    return this.baseApi.get(`${this.baseUrl}/employee/${employee.id}/schedule/current`);
   }
 }

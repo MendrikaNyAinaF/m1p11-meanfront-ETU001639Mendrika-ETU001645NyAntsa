@@ -35,9 +35,14 @@ export class PageExpenseComponent implements OnInit {
       },
       type_depense: {
         label: "type_depense",
-        inputType: "text",
+        inputType: "select",
         validators: Validators.required,
         inColumn: true,
+        selectProps: {
+          selectData: () => this.getTypeExpense(), //fonction pour prendre les données du select
+          getterValueSelect:(item: any) => item._id, //fonction pour prendre la valeur qu'on va mettre dans le select
+          getterTextSelect: (item: any) => item.nom //fonction pour prendre le text qu'on va mettre dans le select
+        },
       },
       montant: {
         label: "Montant",
@@ -57,18 +62,17 @@ export class PageExpenseComponent implements OnInit {
     this.fieldsFilter = {
       annee_mois: {
         label: "Année mois",
-        inputType: "month",
-        options:[],
-        validators:[Validators.required]
+        inputType: "month"
       }
     }
     this.getTypeExpense();
   }
 
-
   getTypeExpense=()=>{
-    this.typeExpenseService.findAll().then((res:any)=>{
-      this.typeDepenseData=res.data;
-    }).catch((error)=> console.error(error))
+    return new Promise ((resolve,reject)=>{
+      this.typeExpenseService.findAll().then((res:any)=>{
+        resolve(res.data);
+      }).catch((error)=> reject(error))
+    })
   }
 }

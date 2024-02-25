@@ -96,16 +96,14 @@ export class PageCrudComponent implements OnInit {
 
   /* prendre les données depuis un appel API */
   getDataList() {
-    this.loaderList = true;
     this.crudService.findAll(this.getFilterData())
       .then((data: any) => {
-        this.dataList = data;
-        // console.log(data);
-        this.loaderList = false;
+        console.log(data);
+        this.dataList = data.data;
+
       })
       .catch((err: any) => {
         console.error(err);
-        this.loaderList = false;
       });
   }
   handleSubmitChange(status: string) {

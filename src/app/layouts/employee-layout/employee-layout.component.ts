@@ -13,7 +13,7 @@ export class EmployeeLayoutComponent extends FullComponent implements OnInit {
 
   employee!: any;
   override sidebarMenu: sidebarMenu[] = [{
-    link: "/employee/appointment",
+    link: "/employee/calendar",
     icon: "activity",
     menu: "Calendrier des rendez vous",
   },

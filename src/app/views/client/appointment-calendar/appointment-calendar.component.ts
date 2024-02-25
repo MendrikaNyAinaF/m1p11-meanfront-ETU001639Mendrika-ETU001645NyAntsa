@@ -24,10 +24,7 @@ export class AppointmentCalendarComponent implements OnInit {
     initialView: 'timeGridWeek',
     plugins: [timeGridPlugin, interactionPlugin, dayGridPlugin],
     eventClick: this.handleDateClick.bind(this),
-    events: [
-      { title: 'event 1', date: '2024-02-11', services: [''], _id: "" },
-      { title: 'event 2', date: '2024-02-12', services: [''], _id: "" }
-    ],
+    events: [],
     editable: true,
     eventDrop: this.handleEventDrop.bind(this),
     datesSet: (dateInfo) => {

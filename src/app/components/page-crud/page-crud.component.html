@@ -30,13 +30,13 @@
                     <app-table-paginate [data]="dataList" [columns]="columns" [editable]="pageProps.update"
                          [updateFormProps]="updateFormProps" [deletable]="pageProps.delete"
                          [deleteAction]="deleteAction" [length]="totalLength" [rowsPerPage]="lengthPage"
-                         [currentPage]="currentPage" [loader]="loaderList"
+                         [currentPage]="currentPage" 
                          (currentPageChange)="handlePageChange($event)" [onRowClick]="onRowClick"></app-table-paginate>
                </ng-container>
                <ng-template #elseListNoPagination>
                     <app-table [data]="dataList" [columns]="columns" [editable]="pageProps.update"
                          [updateFormProps]="updateFormProps" [deletable]="pageProps.delete"
-                         [deleteAction]="deleteAction" [loader]="loaderList" [onRowClick]="onRowClick"></app-table>
+                         [deleteAction]="deleteAction"  [onRowClick]="onRowClick"></app-table>
                </ng-template>
           </ng-container>
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { PageServiceCrudComponent } from './manager/page-service-crud/page-service-crud.component';
 import { ComponentsModule } from '../components/components.module';
 import { LoginComponent } from './login/login.component';
@@ -29,6 +29,9 @@ import { PageTypeExpenseComponent } from './manager/page-type-expense/page-type-
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TestingComponent } from './testing/testing.component';
 import { PageEmployeeCrudComponent } from './manager/page-employee-crud/page-employee-crud.component';
+import { ClientEmployeePreferenceComponent } from './client/client-employee-preference/client-employee-preference.component';
+import { ClientServicePreferenceComponent } from './client/client-service-preference/client-service-preference.component';
+import { DetailsModalComponent } from './client/client-service-preference/details-modal/details-modal.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +51,10 @@ import { PageEmployeeCrudComponent } from './manager/page-employee-crud/page-emp
         BannerSpecialOfferComponent,
         ClientProfilComponent,
         RegisterClientComponent,
-        PageEmployeeCrudComponent
+        PageEmployeeCrudComponent,
+        ClientEmployeePreferenceComponent,
+        ClientServicePreferenceComponent,
+        DetailsModalComponent
     ],
     exports: [
         SpinnerComponent
@@ -65,7 +71,8 @@ import { PageEmployeeCrudComponent } from './manager/page-employee-crud/page-emp
         FullCalendarModule,
         ReactiveFormsModule,
         NgApexchartsModule,
-        RouterLinkWithHref
+        RouterLinkWithHref,
+        NgOptimizedImage
     ]
 })
 export class ViewsModule { }

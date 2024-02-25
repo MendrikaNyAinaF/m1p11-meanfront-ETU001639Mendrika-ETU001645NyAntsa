@@ -33,6 +33,9 @@ import { ClientEmployeePreferenceComponent } from './client/client-employee-pref
 import { ClientServicePreferenceComponent } from './client/client-service-preference/client-service-preference.component';
 import { DetailsModalComponent } from './client/client-service-preference/details-modal/details-modal.component';
 import { EmployeeCalendarComponent } from './employee/employee-calendar/employee-calendar.component';
+import { AppointmentNumberComponent } from './stat/appointment-number/appointment-number.component';
+import { DashboardBSComponent } from './dashboard-bs/dashboard-bs.component';
+
 
 @NgModule({
     declarations: [
@@ -56,7 +59,9 @@ import { EmployeeCalendarComponent } from './employee/employee-calendar/employee
         ClientEmployeePreferenceComponent,
         ClientServicePreferenceComponent,
         DetailsModalComponent,
-        EmployeeCalendarComponent
+        EmployeeCalendarComponent,
+        AppointmentNumberComponent,
+        DashboardBSComponent
     ],
     exports: [
         SpinnerComponent

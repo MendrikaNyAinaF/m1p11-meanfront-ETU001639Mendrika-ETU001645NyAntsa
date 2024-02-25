@@ -63,7 +63,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
             provide: HTTP_INTERCEPTORS,
             useClass: BaseApiService,
             multi: true,
-        },
+        }
+        ,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,

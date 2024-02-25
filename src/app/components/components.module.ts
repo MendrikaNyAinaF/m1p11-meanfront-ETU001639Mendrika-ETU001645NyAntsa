@@ -33,6 +33,7 @@ import { TablePaginateComponent } from './table-paginate/table-paginate.componen
 import { CreateFormComponent, PageCrudComponent } from './page-crud/page-crud.component';
 import { CheckboxComponent } from './forms-input/checkbox/checkbox.component';
 import { OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
+import { FullSizeImageDialogComponent } from './full-size-image-dialog/full-size-image-dialog.component';
 @NgModule({
   declarations: [
     AlertsComponent,
@@ -64,7 +65,8 @@ import { OnePageCrudComponent } from './one-page-crud/one-page-crud.component';
     PageCrudComponent,
     CheckboxComponent,
     CreateFormComponent,
-    OnePageCrudComponent
+    OnePageCrudComponent,
+    FullSizeImageDialogComponent
   ],
   imports: [
     CommonModule,

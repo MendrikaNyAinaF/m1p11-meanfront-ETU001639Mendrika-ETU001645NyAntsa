@@ -3,6 +3,7 @@ import { TableCommon } from '../table-common.class';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteAction, FormProps } from '../interfaces';
 import { AlertService } from '../alert.service';
+import {FullSizeImageDialogComponent} from "../full-size-image-dialog/full-size-image-dialog.component";
 
 @Component({
   selector: 'app-table',
@@ -39,6 +40,14 @@ export class TableComponent extends TableCommon implements OnInit {
       }
     });
   }
+
+    openFullSizeImage(imageUrl: any) {
+    console.log(imageUrl);
+    this.dialog.open(FullSizeImageDialogComponent, {
+      data: imageUrl
+    });
+
+    }
 }
 /* Modal update form */
 @Component({

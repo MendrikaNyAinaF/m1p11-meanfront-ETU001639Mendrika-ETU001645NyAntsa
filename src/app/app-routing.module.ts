@@ -41,6 +41,8 @@ import {
 } from "./views/client/client-employee-preference/client-employee-preference.component";
 import { EmployeeCalendarComponent } from './views/employee/employee-calendar/employee-calendar.component';
 import { PageExpenseComponent } from './views/manager/page-expense/page-expense.component';
+import { PageSpecialOfferComponent } from './views/manager/page-special-offer/page-special-offer.component';
+import { BannerSpecialOfferComponent } from './views/client/banner-special-offer/banner-special-offer.component';
 
 const routes: Routes = [
     {
@@ -60,7 +62,8 @@ const routes: Routes = [
             { path: "client/profil", component: ClientProfilComponent },
             { path: "alerts", component: AlertsComponent },
             { path: "client/services/preference", component: ClientServicePreferenceComponent },
-            { path: "client/employees/preference", component: ClientEmployeePreferenceComponent }
+            { path: "client/employees/preference", component: ClientEmployeePreferenceComponent },
+            { path: "client/special-offer", component: BannerSpecialOfferComponent}
         ]
     },
     /**manager */
@@ -71,6 +74,7 @@ const routes: Routes = [
             { path: "manager/services", component: PageServiceCrudComponent },
             { path: "manager/type-expenses", component: PageTypeExpenseComponent },
             { path: "manager/expenses", component: PageExpenseComponent },
+            { path: "manager/special-offer", component: PageSpecialOfferComponent },
             { path: "progress", component: ProgressComponent },
             { path: "employee", component: PageEmployeeCrudComponent }
         ]

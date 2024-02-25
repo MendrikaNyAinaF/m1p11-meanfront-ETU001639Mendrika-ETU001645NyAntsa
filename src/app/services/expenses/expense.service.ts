@@ -12,19 +12,21 @@ export class ExpenseService extends CrudService {
   }
   override create(body: any) {
     const formatBody = {
-      type_depense:{ "$oid": body.type_depense },
+      type_depense: body.type_depense ,
       montant: body.montant,
       annee_mois: body.annee_mois.replace("-", "/"),
     }
-    return super.create(formatBody);
+    return this.baseApi.post(`${this.baseUrl}/depense`, formatBody);
+
   }
 
   override update(id: string, body: any) {
     const formatBody = {
-      type_depense: { "$oid": body.type_depense },
+      type_depense: body.type_depense ,
       montant: body.montant,
+      _id: id,
     }
-    return this.baseApi.post(`${this.baseUrl}/depense-crud/${id}`, formatBody);
+    return this.baseApi.post(`${this.baseUrl}/depense`, formatBody);
   }
 
   /* search params: date, */

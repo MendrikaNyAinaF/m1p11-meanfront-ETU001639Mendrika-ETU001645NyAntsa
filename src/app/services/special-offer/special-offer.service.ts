@@ -24,4 +24,7 @@ export class SpecialOfferService extends CrudService{
       });
     });
   }
+  override create(body: any) {
+    return this.baseApi.post(`${this.baseUrl}/offre_special`, body);
+  }
 }

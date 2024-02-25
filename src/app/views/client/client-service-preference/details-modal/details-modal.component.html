@@ -1,0 +1,14 @@
+<!-- details-modal.component.html -->
+<div class="modal">
+    <div class="modal-content">
+        <div class="image-container">
+            <img src="{{ service.photo }}" alt="Card Image" class="card-image">
+        </div>
+        <h2>{{ selectedService.nom }} Details</h2>
+        <p>{{ selectedService.description }}</p>
+        <ul>
+            <li>Prix : {{service.prix}} Ar</li>
+            <li>Durée : {{service.duree}} Minutes</li>
+        </ul>
+    </div>
+</div>

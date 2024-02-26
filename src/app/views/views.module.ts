@@ -34,10 +34,11 @@ import { ClientServicePreferenceComponent } from './client/client-service-prefer
 import { DetailsModalComponent } from './client/client-service-preference/details-modal/details-modal.component';
 import { EmDetailsDialogComponent } from './client/client-employee-preference/em-details-dialog/em-details-dialog.component';
 import { AppointmentCommissionComponent } from './employee/appointment-commission/appointment-commission.component';
-import { EmployeeCalendarComponent } from './employee/employee-calendar/employee-calendar.component';
+import { DetailApppointmentDialogComponent, EmployeeCalendarComponent } from './employee/employee-calendar/employee-calendar.component';
 import { AppointmentNumberComponent } from './stat/appointment-number/appointment-number.component';
 import { DashboardBSComponent } from './dashboard-bs/dashboard-bs.component';
 import { PageEmployeeDetailComponent } from './manager/page-employee-crud/page-employee-detail/page-employee-detail.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -67,7 +68,9 @@ import { PageEmployeeDetailComponent } from './manager/page-employee-crud/page-e
         EmployeeCalendarComponent,
         AppointmentNumberComponent,
         DashboardBSComponent,
-        PageEmployeeDetailComponent
+        PageEmployeeDetailComponent,
+        DetailApppointmentDialogComponent,
+        NotFoundComponent
     ],
     exports: [
         SpinnerComponent

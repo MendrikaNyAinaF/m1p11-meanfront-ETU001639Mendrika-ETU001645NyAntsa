@@ -50,7 +50,7 @@ export class FormComponent implements OnInit {
         })
         .catch((res?: any) => {
           if (this.withSweetAlert)
-          this.alertService.alertError(res?.message || "Une erreur s'est produite lors du traitement");
+          this.alertService.alertError(res?.error?.message||res?.message || "Une erreur s'est produite lors du traitement");
           this.loaderSubmit = false;
           this.submit.emit("error")
         });

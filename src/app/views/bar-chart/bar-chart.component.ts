@@ -33,7 +33,7 @@ export type ChartOptions = {
     styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit {
-    @Input() data: Partial<ChartOptions> | any;
+    @Input() data!: Partial<ChartOptions> | any;
     public chartOptions: Partial<ChartOptions> | any;
 
     constructor() {
@@ -83,6 +83,7 @@ export class BarChartComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log(this.data)
         this.chartOptions.series = this.data['series']
         let xTitle = this.data['xTitle']
         xTitle !== undefined ? this.chartOptions.xaxis.title.text = xTitle : null

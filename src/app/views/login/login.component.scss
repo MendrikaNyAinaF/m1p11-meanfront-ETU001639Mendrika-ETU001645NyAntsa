@@ -1,12 +1,31 @@
-.card-login{
-     max-width:60%;
-     margin:  auto;
-     margin-top:8%;
-}
-.form-container{
-     padding: 16px;
-}
-.full-width{
-     width: 100%;
+.card-login {
+     margin: auto;
+     margin-top: 8%;
 }
 
+
+@media (max-width: 600px) {
+     .card-login {
+          max-width: 100%;
+     }
+}
+@media (min-width: 900px) {
+     .card-login {
+          max-width: 70%;
+     }
+}
+
+@media (min-width: 1200px) {
+     .card-login {
+          max-width: 60%;
+     }
+
+}
+
+.form-container {
+     padding: 16px;
+}
+
+.full-width {
+     width: 100%;
+}

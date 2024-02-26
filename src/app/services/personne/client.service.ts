@@ -13,8 +13,9 @@ export class ClientService extends PersonneService {
       super(baseApi, storage,{role:"client"});
     }
 
-  update(id:string, data:any){
-    return this.baseApi.put(`client-crud/${id}`,data);
+  update( data:any){
+    const client= this.storage.getCurrentUserInfo();
+    return this.baseApi.put(`${this.baseApi.baseUrl}/client/${client.id}`,data);
   }
 
   getDefaultLogin(){

@@ -35,7 +35,7 @@ export class PersonneService {
   getConnectedUser(){
     const currentUser= this.storage.getCurrentUserInfo();
     return new Promise((resolve, reject) => {
-      this.baseApi.get(`${this.baseUrl}/${this.personRole}-crud/${currentUser.id}`).then((res: any) => {
+      this.baseApi.get(`${this.baseUrl}/personne-crud/${currentUser.id}`).then((res: any) => {
         resolve(res.data);
       }).catch((error: any) => {
         reject(error.error);

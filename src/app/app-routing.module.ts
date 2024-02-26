@@ -39,12 +39,13 @@ import {
 import {
     ClientEmployeePreferenceComponent
 } from "./views/client/client-employee-preference/client-employee-preference.component";
-import {AppointmentCommissionComponent} from "./views/employee/appointment-commission/appointment-commission.component";
+import { AppointmentCommissionComponent } from "./views/employee/appointment-commission/appointment-commission.component";
 import { EmployeeCalendarComponent } from './views/employee/employee-calendar/employee-calendar.component';
 import { PageExpenseComponent } from './views/manager/page-expense/page-expense.component';
 import { PageSpecialOfferComponent } from './views/manager/page-special-offer/page-special-offer.component';
 import { BannerSpecialOfferComponent } from './views/client/banner-special-offer/banner-special-offer.component';
 import { DashboardBSComponent } from './views/dashboard-bs/dashboard-bs.component';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 const routes: Routes = [
     {
@@ -62,7 +63,6 @@ const routes: Routes = [
             { path: "client/appointment", component: AppointmentCalendarComponent },
             { path: "client/appointment/:id/payment", component: AppointmentPaymentComponent },
             { path: "client/profil", component: ClientProfilComponent },
-            { path: "alerts", component: AlertsComponent },
             { path: "client/services/preference", component: ClientServicePreferenceComponent },
             { path: "client/employees/preference", component: ClientEmployeePreferenceComponent },
             { path: "client/special-offer", component: BannerSpecialOfferComponent }
@@ -78,7 +78,7 @@ const routes: Routes = [
             { path: "manager/expenses", component: PageExpenseComponent },
             { path: "manager/special-offer", component: PageSpecialOfferComponent },
             { path: "manager/dashboard", component: DashboardBSComponent },
-            { path: "progress", component: ProgressComponent },
+
             { path: "employee", component: PageEmployeeCrudComponent }
         ]
     },
@@ -87,46 +87,51 @@ const routes: Routes = [
         path: "",
         component: EmployeeLayoutComponent,
         children: [
-            {path: "employee/profil", component: EmployeeProfilComponent},
-            {path: "chips", component: ChipsComponent},
-            {path: "appointments/commission", component : AppointmentCommissionComponent},
+            { path: "employee/profil", component: EmployeeProfilComponent },
+            { path: "chips", component: ChipsComponent },
+            { path: "appointments/commission", component: AppointmentCommissionComponent },
             { path: "employee/calendar", component: EmployeeCalendarComponent },
         ]
     },
-    {
-        path: "",
-        component: FullComponent,
-        children: [
-            { path: "", redirectTo: "/home", pathMatch: "full" },
-            { path: "home", component: DashboardComponent },
-            { path: "forms", component: FormsComponent },
-            { path: "table", component: ProductComponent },
-            { path: "grid-list", component: GridListComponent },
-            { path: "menu", component: MenuComponent },
-            { path: "tabs", component: TabsComponent },
-            { path: "expansion", component: ExpansionComponent },
-            { path: "toolbar", component: ToolbarComponent },
-            { path: "progress-snipper", component: ProgressSnipperComponent },
-            { path: "snackbar", component: SnackbarComponent },
-            { path: "slider", component: SliderComponent },
-            { path: "slide-toggle", component: SlideToggleComponent },
-            { path: "tooltip", component: TooltipsComponent },
-            { path: "button", component: ButtonsComponent },
-            { path: "singlepage", component: SinglePageComponent },
-            { path: "service", component: PageServiceCrudComponent },
-            { path: "client/appointement", component: AppointmentCalendarComponent },
-            { path: "client/appointment/:id/payment", component: AppointmentPaymentComponent },
-            { path: "manager/type-expense", component: PageTypeExpenseComponent },
-            //     Ny Antsa
-            //     path for bar chart
-            { path: "bar-chart", component: BarChartComponent },
-            { path: "testing", component: TestingComponent }
-        ]
-    },
+    { path: "notfound", component: NotFoundComponent },
+    { path: "", redirectTo: "/manager/login", pathMatch: "full" },  
+    { path: "**", redirectTo: "/notfound", pathMatch: "full" },
+    // {
+    //     path: "",
+    //     component: FullComponent,
+    //     children: [
+    //         { path: "", redirectTo: "/home", pathMatch: "full" },
+    //         { path: "home", component: DashboardComponent },
+    // { path: "progress", component: ProgressComponent },
+    //         { path: "forms", component: FormsComponent },
+    //         { path: "table", component: ProductComponent },
+    //         { path: "grid-list", component: GridListComponent },
+    //         { path: "menu", component: MenuComponent },
+    //         { path: "tabs", component: TabsComponent },
+    //         { path: "expansion", component: ExpansionComponent },
+    //         { path: "toolbar", component: ToolbarComponent },
+    //         { path: "progress-snipper", component: ProgressSnipperComponent },
+    //         { path: "snackbar", component: SnackbarComponent },
+    //         { path: "slider", component: SliderComponent },
+    // { path: "alerts", component: AlertsComponent },
+
+    //         { path: "slide-toggle", component: SlideToggleComponent },
+    //         { path: "tooltip", component: TooltipsComponent },
+    //         { path: "button", component: ButtonsComponent },
+    //         { path: "singlepage", component: SinglePageComponent },
+    //         { path: "service", component: PageServiceCrudComponent },
+    //         { path: "client/appointement", component: AppointmentCalendarComponent },
+    //         { path: "client/appointment/:id/payment", component: AppointmentPaymentComponent },
+    //         { path: "manager/type-expense", component: PageTypeExpenseComponent },
+    //         //     Ny Antsa
+    //         //     path for bar chart
+    //         { path: "bar-chart", component: BarChartComponent },
+    //         { path: "testing", component: TestingComponent }
+    //     ]
+    // },
 
 
-    { path: "", redirectTo: "/home", pathMatch: "full" },
-    { path: "**", redirectTo: "/home", pathMatch: "full" },
+
 ];
 
 @NgModule({

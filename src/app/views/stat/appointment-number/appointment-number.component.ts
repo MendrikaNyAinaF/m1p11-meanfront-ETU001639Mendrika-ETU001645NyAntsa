@@ -13,10 +13,21 @@ export class AppointmentNumberComponent implements OnInit {
   filterInputs!: any;
   formAction!: any;
   numberAppointment: any[] = [];
+  isDataThere: boolean = false;
   chartOptions: any = {
     series: [],
-    xaxis: {},
-    yaxis: {}
+    xaxis: {
+      categories: [],
+      title: {
+        text: "Date"
+      }
+    },
+    yaxis: {
+      title: {
+        text: "Nombre de rendez-vous"
+      }
+    }
+
   };
 
 
@@ -24,11 +35,10 @@ export class AppointmentNumberComponent implements OnInit {
     private statService: StatService) { }
 
   ngOnInit(): void {
-    const dates:any[]=this.dateUtil.getFirstAndLastDateInCurrentMonth();
-    this.getNumberAppointments({ byWhat: this.byWhat, startDate: dates[0], endDate:dates[1] });
+    const dates: any[] = this.dateUtil.getFirstAndLastDateInCurrentMonth();
+    this.getNumberAppointments({ byWhat: this.byWhat, startDate: dates[0], endDate: dates[1] });
     this.buildFilterFormProps();
     this.buildFormAction();
-    
   }
 
   buildFilterFormProps() {
@@ -87,22 +97,17 @@ export class AppointmentNumberComponent implements OnInit {
           data: this.numberAppointment.map((e: any) => e.count)
         }
       ],
-      xaxis: {
-        categories: this.numberAppointment.map((e: any) => e.date),
-        title: {
-          text: "Date"
-        }
-      },
-      yaxis: {
-        title: {
-          text: "Nombre de rendez-vous"
-        }
-      }
+      xCategories: this.numberAppointment.map((e: any) => e.date),
+      xTitle: "Date",
+      yTitle: "Nombre de rendez-vous",
+
     }
+    this.isDataThere = true;
     console.log(this.chartOptions)
   }
 
-  getNumberAppointments=(data:any)=> {
+  getNumberAppointments = (data: any) => {
+    this.isDataThere = false;
     return new Promise((resolve, reject) => {
       this.statService.findNumberAppointments(data).then((data: any) => {
         console.log(data)
@@ -115,6 +120,7 @@ export class AppointmentNumberComponent implements OnInit {
       });
     });
   }
+
 }
 
 

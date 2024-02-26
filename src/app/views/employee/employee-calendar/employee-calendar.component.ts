@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
+import { DateUtilService } from 'src/app/services/utils/date-util.service';
 
 @Component({
   selector: 'app-employee-calendar',
@@ -43,14 +44,14 @@ export class EmployeeCalendarComponent implements OnInit {
     return {
       title: arg._def.title,
       date: arg._instance.range.start,
-      services: arg._def.extendedProps.services,
-      _id: arg._def.extendedProps._id
+      data: arg._def.extendedProps.data
     }
   }
 
   handleDateClick(arg: any) {
     const temp = this.formatEventToAppointment(arg.event);
-    //this.openUpdateForm(temp);
+    console.log(temp)
+    this.openDetailDialog(temp.data);
   }
 
 
@@ -69,16 +70,37 @@ export class EmployeeCalendarComponent implements OnInit {
   formatAppointment = (appointment: any) => {
     let color = "#e46a76";
     return {
-      title: 'Rendez-vous',
+      title: appointment.service?.nom,
       date: (appointment.date_heure_debut != undefined && appointment.date_heure_debut.length > 15) ? appointment.date_heure_debut.substring(0, 16) : appointment.date_heure_debut,
       end: (appointment.date_heure_fin != undefined && appointment.date_heure_fin.length > 15) ? appointment.date_heure_fin.substring(0, 16) : appointment.date_heure_fin,
-      _id: appointment._id,
-      prix: appointment.prix,
-      status: appointment.status,
+      data: appointment,
       color: color
     }
   }
 
+  openDetailDialog(appointment: any) {
+    const dialogRefCreate = this.dialog.open(DetailApppointmentDialogComponent, {
+      data: {
+        appointment: appointment
+      }
+    });
+  }
+}
 
- 
+/* Modal detail appointment*/
+@Component({
+  selector: 'app-detail-appointment-dialog',
+  templateUrl: './detail-appointment.component.html',
+  styleUrls: ['./employee-calendar.component.scss']
+})
+export class DetailApppointmentDialogComponent {
+  appointment!: any;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dateUtil: DateUtilService) {
+    this.appointment = data.appointment;
+  }
+
+  convertDate(date: string) {
+    if (date === undefined || date == null || date == "") return "";
+    return this.dateUtil.formatStartDateAppointment(date);
+  }
 }

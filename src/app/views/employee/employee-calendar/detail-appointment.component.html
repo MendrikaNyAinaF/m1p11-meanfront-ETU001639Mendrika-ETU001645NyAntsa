@@ -1,0 +1,10 @@
+<ng-container >
+     <h4>Détails</h4>
+     <ul>
+          <li>Date et heure début: {{convertDate(appointment?.date_heure_debut)}} </li>
+          <li>Date et heure fin: {{convertDate(appointment?.date_heure_fin)}}</li>
+          <li>Client: {{appointment?.client}} </li>
+          <li>Service: {{appointment?.service?.nom}} </li>
+          <li>Commission: {{appointment?.service?.commission}} </li>
+     </ul>
+</ng-container>

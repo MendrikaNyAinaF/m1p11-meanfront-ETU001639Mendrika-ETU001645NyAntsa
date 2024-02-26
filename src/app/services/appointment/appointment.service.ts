@@ -180,9 +180,9 @@ export class AppointmentService {
         ]
       }
     }
-    // console.log(search);
+    // console.log(employee.id);
     const base64 = btoa(JSON.stringify(search));
-    console.log(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`);
-    return this.baseApi.get(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`, { body: search });
+    // console.log(search);
+    return this.baseApi.get(`${this.baseUrl}/rendez_vous-crud/employee?criteria=${base64}`, { body: search });
   }
 }

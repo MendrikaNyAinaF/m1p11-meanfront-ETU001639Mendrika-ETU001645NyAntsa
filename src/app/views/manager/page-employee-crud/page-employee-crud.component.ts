@@ -3,6 +3,8 @@ import {PageCrudProps} from "../../../components/page-crud/page-crud.component";
 import {EmployeeService} from "../../../services/employee/employee.service";
 import {Validators} from "@angular/forms";
 import {GenderService} from "../../../services/gender/gender.service";
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
     selector: 'app-page-employee-crud',
@@ -21,7 +23,12 @@ export class PageEmployeeCrudComponent implements OnInit {
         paginate: true,
     };
 
-    constructor(public employeeService: EmployeeService, public genderService:GenderService) {
+    constructor(private router: Router, private route: ActivatedRoute, public employeeService: EmployeeService, public genderService: GenderService) {
+    }
+
+    showDetails = (row: any) => {
+        console.log(row);
+        this.router.navigate(['/employee/'+row._id])
     }
 
     ngOnInit(): void {
@@ -77,7 +84,7 @@ export class PageEmployeeCrudComponent implements OnInit {
                 label: "Date d'embauche",
                 inputType: "hidden",
             },
-            photo : {
+            photo: {
                 label: "Photo",
                 inputType: "img",
                 inColumn: true,

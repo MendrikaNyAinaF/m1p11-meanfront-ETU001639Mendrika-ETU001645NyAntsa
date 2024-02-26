@@ -45,6 +45,9 @@ import { PageExpenseComponent } from './views/manager/page-expense/page-expense.
 import { PageSpecialOfferComponent } from './views/manager/page-special-offer/page-special-offer.component';
 import { BannerSpecialOfferComponent } from './views/client/banner-special-offer/banner-special-offer.component';
 import { DashboardBSComponent } from './views/dashboard-bs/dashboard-bs.component';
+import {
+    PageEmployeeDetailComponent
+} from "./views/manager/page-employee-crud/page-employee-detail/page-employee-detail.component";
 
 const routes: Routes = [
     {
@@ -91,6 +94,7 @@ const routes: Routes = [
             {path: "chips", component: ChipsComponent},
             {path: "appointments/commission", component : AppointmentCommissionComponent},
             { path: "employee/calendar", component: EmployeeCalendarComponent },
+            { path : "employee/:id", component: PageEmployeeDetailComponent}
         ]
     },
     {

@@ -215,7 +215,7 @@ export class PageCrudComponent implements OnInit {
             };
             //pour prendre les données du select
             if (this.fields[key].inputType == "select") {
-                inputs[key].options = await this.fields[key].selectProps.selectData();
+                inputs[key].options = (await this.fields[key].selectProps.selectData()).data;
                 console.log("Options ", inputs[key].options);
                 inputs[key].getValue = this.fields[key].selectProps.getterValueSelect;
                 inputs[key].getText = this.fields[key].selectProps.getterTextSelect;

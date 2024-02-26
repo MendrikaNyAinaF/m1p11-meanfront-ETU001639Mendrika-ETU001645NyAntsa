@@ -37,6 +37,7 @@ import { AppointmentCommissionComponent } from './employee/appointment-commissio
 import { EmployeeCalendarComponent } from './employee/employee-calendar/employee-calendar.component';
 import { AppointmentNumberComponent } from './stat/appointment-number/appointment-number.component';
 import { DashboardBSComponent } from './dashboard-bs/dashboard-bs.component';
+import { PageEmployeeDetailComponent } from './manager/page-employee-crud/page-employee-detail/page-employee-detail.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { DashboardBSComponent } from './dashboard-bs/dashboard-bs.component';
         AppointmentCommissionComponent,
         EmployeeCalendarComponent,
         AppointmentNumberComponent,
-        DashboardBSComponent
+        DashboardBSComponent,
+        PageEmployeeDetailComponent
     ],
     exports: [
         SpinnerComponent

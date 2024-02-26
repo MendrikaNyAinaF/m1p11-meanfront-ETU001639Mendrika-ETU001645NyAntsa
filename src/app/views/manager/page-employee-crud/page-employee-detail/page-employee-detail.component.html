@@ -1,0 +1,45 @@
+<!-- employee-profile.component.html -->
+
+<div class="employee-profile">
+    <div class="profile-picture">
+        <img src={{employee?.photo}} alt="Employee Picture">
+    </div>
+    <div class="profile-details">
+        <h2>{{employee.nom + " " + employee.prenom}}</h2>
+        <p>Genre: {{employee.genre.nom}}</p>
+        <p>Email: {{employee.email}}</p>
+        <p>Téléphone: {{employee.telephone}}</p>
+        <p>Date de naissance : {{employee.date_naissance}}</p>
+        <br>
+        <br>
+        <h3>Fixer un nouvel horaire de travail</h3>
+        <form [formGroup]="horaireForm" (ngSubmit)="onSubmit()" class="horaire-form">
+            <mat-form-field>
+                <input matInput formControlName="horaireDebut" type="time">
+                <mat-error *ngIf="horaireForm.get('horaireDebut')?.hasError('required')">
+                    Horaire début obligatoire
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput formControlName="horaireFin" type="time">
+                <mat-error *ngIf="horaireForm.get('horaireFin')?.hasError('required')">
+                    Horaire fin obligatoire
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <br>
+            <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+            <br>
+            <br>
+            <br>
+            <div *ngIf="success" class="success-message">
+                {{ message }}
+            </div>
+
+            <div *ngIf="!success" class="error-message">
+                {{ message }}
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -19,7 +19,7 @@ export class PageSpecialOfferComponent implements OnInit {
     filter: false,
     paginate: true,
   };
-  serviceData:any[]=[];
+  serviceData: any[] = [];
 
   constructor(public specialOfferService: SpecialOfferService,
     public serviceCrud: ServiceCrudService) {
@@ -43,10 +43,12 @@ export class PageSpecialOfferComponent implements OnInit {
         label: "Service",
         inputType: "select",
         validators: [Validators.required],
+        selectProps: {
+          selectData: () => this.getService(),
+          getterValueSelect: (item: any) => item._id,
+          getterTextSelect: (item: any) => item.nom,
+        },
         inColumn: true,
-        options: this.serviceData,
-        getValue: (item: any) => item._id,
-        getText: (item: any) => item.nom,
       },
       date_heure_debut: {
         label: "Date et heure du début de l'offre",
@@ -67,10 +69,13 @@ export class PageSpecialOfferComponent implements OnInit {
     }
   }
 
-  getService=()=>{
-    this.serviceCrud.findAll().then((res:any)=>{
-      this.serviceData=res.data;
-    }).catch((error)=> console.error(error))
-  }
+  getService = () => {
+    return new Promise((resolve, reject) => {
+      this.serviceCrud.findAll().then((res: any) => {
+        this.serviceData = res.data;
+        resolve(res.data);
+      }).catch((error) => reject(error))
+    });
 
+  }
 }

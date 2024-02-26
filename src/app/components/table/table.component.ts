@@ -3,7 +3,7 @@ import { TableCommon } from '../table-common.class';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteAction, FormProps } from '../interfaces';
 import { AlertService } from '../alert.service';
-import {FullSizeImageDialogComponent} from "../full-size-image-dialog/full-size-image-dialog.component";
+import { FullSizeImageDialogComponent } from "../full-size-image-dialog/full-size-image-dialog.component";
 
 @Component({
   selector: 'app-table',
@@ -31,7 +31,7 @@ export class TableComponent extends TableCommon implements OnInit {
 
   /* ouvrir le dialog du formulaire de suppression */
   openDeleteDialog(id: any) {
-    
+
     this.dialog.open(RowDeleteDialogComponent, {
       data: {
         uid: id,
@@ -41,13 +41,13 @@ export class TableComponent extends TableCommon implements OnInit {
     });
   }
 
-    openFullSizeImage(imageUrl: any) {
+  openFullSizeImage(imageUrl: any) {
     console.log(imageUrl);
     this.dialog.open(FullSizeImageDialogComponent, {
       data: imageUrl
     });
 
-    }
+  }
 }
 /* Modal update form */
 @Component({
@@ -67,17 +67,24 @@ export class RowEditDialogComponent implements OnInit {
   ngOnInit(): void {
     this.row = this.data.row;
     this.formProps = this.data.formProps;
-    this.handleSubmitChange = (status:string)=>{
+    this.handleSubmitChange = (status: string) => {
       this.data.handleSubmitChange(status);
-      if(status === "success"){
+      if (status === "success") {
         this.dialogRef.close();
       }
     }
 
     /* définir les valeurs par défaut */
     for (let key in this.formProps.inputs) {
-      if (key in this.row)
-        this.formProps.inputs[key].default = this.row[key];
+      if (key in this.row) {
+        if (this.formProps.inputs[key].type === "select") {
+          this.formProps.inputs[key].default = this.formProps.inputs[key].getValue(this.row[key]);
+          this.formProps.inputs[key].default= this.formProps.inputs[key].default.$oid|| this.formProps.inputs[key].default;
+        } else {
+          this.formProps.inputs[key].default = this.row[key];
+        }
+
+      }
     }
   }
 }

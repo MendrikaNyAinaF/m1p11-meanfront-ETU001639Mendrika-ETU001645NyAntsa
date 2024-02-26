@@ -24,10 +24,7 @@ export class AppointmentCalendarComponent implements OnInit {
     initialView: 'timeGridWeek',
     plugins: [timeGridPlugin, interactionPlugin, dayGridPlugin],
     eventClick: this.handleDateClick.bind(this),
-    events: [
-      { title: 'event 1', date: '2024-02-11', services: [''], _id: "" },
-      { title: 'event 2', date: '2024-02-12', services: [''], _id: "" }
-    ],
+    events: [],
     editable: true,
     eventDrop: this.handleEventDrop.bind(this),
     datesSet: (dateInfo) => {
@@ -63,12 +60,12 @@ export class AppointmentCalendarComponent implements OnInit {
   }
   handleEventDrop(eventDropInfo: EventDropArg) {
     const { event, oldEvent } = eventDropInfo;
-    const currentDate=  new Date().toISOString();
-    if(oldEvent.startStr<=currentDate){
+    const currentDate = new Date().toISOString();
+    if (oldEvent.startStr <= currentDate) {
       eventDropInfo.revert();
       return;
     }
-    console.log(event.startStr," ", oldEvent.startStr)
+    // console.log(event.startStr," ", oldEvent.startStr)
     this.openUpdateForm(this.formatEventToAppointment(event), event.startStr, true);
   }
 
@@ -76,7 +73,7 @@ export class AppointmentCalendarComponent implements OnInit {
   findAllAppointment = (startDate: string, endDate: string) => {
     this.appointmentService.findAllByClient({ date_debut: startDate, date_fin: endDate }).then((result: any) => {
       console.log(result)
-      result = result.map((elt: any) => this.formatAppointment(elt));
+      result = result.data.map((elt: any) => this.formatAppointment(elt));
       this.calendarOptions.events = result;
 
     }).catch((error: any) => {
@@ -85,11 +82,14 @@ export class AppointmentCalendarComponent implements OnInit {
   }
 
   formatAppointment = (appointment: any) => {
-    const color = appointment.status.code === "ENC" ? "#fb9678" : appointment.status.code === "TEP" ? "#03c9d7" : "#e46a76";
+    let color = "#fb9678";
+    if (appointment.status != undefined && appointment.status.code != undefined) {
+      color = appointment.status.code === "ENC" ? "#fb9678" : appointment.status.code === "TEP" ? "#03c9d7" : "#e46a76";
+    }
     return {
       title: 'Rendez-vous',
-      date: (appointment.date_heure_debut!=undefined && appointment.date_heure_debut.length>15)?appointment.date_heure_debut.substring(0, 16):appointment.date_heure_debut,
-      end: (  appointment.date_heure_fin!=undefined && appointment.date_heure_fin.length>15)?appointment.date_heure_fin.substring(0, 16):appointment.date_heure_fin,
+      date: (appointment.date_heure_debut != undefined && appointment.date_heure_debut.length > 15) ? appointment.date_heure_debut.substring(0, 16) : appointment.date_heure_debut,
+      end: (appointment.date_heure_fin != undefined && appointment.date_heure_fin.length > 15) ? appointment.date_heure_fin.substring(0, 16) : appointment.date_heure_fin,
       _id: appointment._id,
       prix: appointment.prix,
       status: appointment.status,
@@ -99,7 +99,7 @@ export class AppointmentCalendarComponent implements OnInit {
   findAllServices() {
     this.serviceCrud.findAll().then((data: any) => {
       // console.log(data)
-      this.serviceData = data;
+      this.serviceData = data.data;
     }).catch((error: any) => {
       console.error(error);
     });
@@ -128,27 +128,47 @@ export class AppointmentCalendarComponent implements OnInit {
     });
   }
 
-  async openUpdateForm(appointment: any, newDateEvent?: any, dragAndDrop:boolean=false) {
+  async openUpdateForm(appointment: any, newDateEvent?: any, dragAndDrop: boolean = false) {
     console.log(appointment);
-
-    const appointmentData :any= await this.findAppointment(appointment._id);
+    var canUpdate = true;
+    var canDelete = true;
+    var canPaid = true;
+    const appointmentData: any = await this.findAppointment(appointment._id);
     if (newDateEvent) {
       appointmentData.date_heure_debut = newDateEvent;
+    }
+    //empecher le changement si le rendez vous est payé
+    if (appointmentData.status.code === "TEP") {
+      canPaid = false;
+      canUpdate = false;
+      canDelete = false;
+    }
+    //empecher le changement si le rendez vous est passé sauf le paiement si pas encore payé
+    const currentDate = new Date().toISOString();
+    if (appointmentData.date_heure_debut <= currentDate) {
+      canUpdate = false;
+      canDelete = false;
     }
     const dialogRefUpdate = this.dialog.open(AppointmentUpdateComponent, {
       data: {
         employeeData: this.employeeData,
         serviceData: this.serviceData,
         appointmentData: appointmentData,
+        canUpdate: canUpdate,
+        canPaid: canPaid,
+        canDelete: canDelete,
+        close: () => {
+          dialogRefUpdate.close();
+        }
       }
     });
 
     dialogRefUpdate.componentInstance.update.subscribe((event: string) => {
-      if (event === 'update') {
+      if (event === 'update' || event === 'delete' ) {
         this.findAllAppointment(this.startDate, this.endDate);
       }
     });
-    if(dragAndDrop){
+    if (dragAndDrop) {
       dialogRefUpdate.afterClosed().subscribe((result: any) => {
         this.findAllAppointment(this.startDate, this.endDate);
       });

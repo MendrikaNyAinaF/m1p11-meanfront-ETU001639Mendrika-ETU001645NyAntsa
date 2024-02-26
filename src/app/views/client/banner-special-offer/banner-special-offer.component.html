@@ -1,19 +1,21 @@
-<div class="scroll-container hide-scrollbar" fxLayout="row wrap" fxLayoutGap="30px grid">
-     <div fxFlex.md="30%" fxFlex.lg="30%" fxFlex.xl="30%" fxFlex.sm="100%" *ngFor="let item of specialOffers;let i=index ">
-          <mat-card class="overflow-hidden">
+
+<mat-card>
+     <ul class="cards">
+          <li class="card" *ngFor="let item of specialOffers;let i=index ">
                <div>
-                    <img src="{{ image[i%3] }}" class="w-100" alt="">
-               </div>
-               <mat-card-content>
                     <div>
-                         <p class="fs-18 lh-lg fw-medium">
-                              Du {{item.date_heure_debut}} au {{item.date_heure_fin}}, {{item.remise}}% de réduction sur {{item.service.nome}}
+                         <img src="{{ image[i%4] }}" class="w-100" alt="">
+                    </div>
+                    <div class="card-content">
+                         <p class="lh-lg fw-medium">
+                              Du {{convertDate(item.date_heure_debut)}} au {{convertDate(item.date_heure_fin)}}, {{item.remise}}% de réduction sur
+                              {{item.service.nom}}
                          </p>
                          <p class="op-7">
                               {{item.description}}
                          </p>
                     </div>
-               </mat-card-content>
-          </mat-card>
-     </div>
-</div>
+               </div>
+          </li>
+     </ul>
+</mat-card>

@@ -27,7 +27,7 @@ export class ClientLayoutComponent extends FullComponent implements OnInit {
     menu: "Voir les services proposés",
   },
   {
-    link: "/home",
+    link: "/client/special-offer",
     icon: "tag",
     menu: "Nos offres spéciales",
   }

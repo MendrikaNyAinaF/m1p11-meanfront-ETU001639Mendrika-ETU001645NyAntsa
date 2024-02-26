@@ -2,7 +2,7 @@ import { HttpClient, HttpContext, HttpEvent, HttpHandler, HttpHeaders, HttpInter
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage/storage.service';
 import { Observable } from 'rxjs';
-
+import {environment} from '../../environments/environment';
 export interface HttpOptions {
   params?: HttpParams | {
     [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
@@ -19,6 +19,7 @@ export class BaseApiService implements HttpInterceptor{
   userInfo: string = "user_Info";
   jwtTokenKey: string = "jwtToken";
 
+  public baseUrl: string = environment.apiUrl;
   constructor(private http: HttpClient, private storage: StorageService) {
     this.jwtToken = this.storage.getItem(this.jwtTokenKey);
   }

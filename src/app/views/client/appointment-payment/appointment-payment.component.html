@@ -2,10 +2,10 @@
      <mat-card-content>
           <div>
                <p class="fs-18 lh-lg fw-medium">
-                    Paiement du rendez vous du {{appointment.date_heure_debut}}
+                    Paiement du rendez vous du {{formatDate(appointment?.date_heure_debut)}}
                </p>
                <div>
-                    <app-table [data]="getAppointmentServices()" [columns]="columns">
+                    <app-table [data]="appointment.services" [columns]="columns">
                     </app-table>
                </div>
                <br />
@@ -16,9 +16,13 @@
                <br />
 
                <form [formGroup]="form">
-                    <!-- <app-inputs [form]="form" [props]="inputs[key]" [key]="key">
-                    </app-inputs> -->
-                    <button mat-raised-button class="me-8 mb-8" color="primary">Payer</button>
+                    <div>
+
+                         <app-inputs [form]="form" [props]="inputPaiement" key="mode_paiement"></app-inputs>
+                    </div>
+                    <button mat-raised-button class="me-8 mb-8" color="primary" type="submit" (click)="handlePayment()">Payer</button>
+                    <button mat-raised-button class="text-right me-8 mb-8" color="warn"
+                         (click)="retour()">Retour</button>
                </form>
           </div>
      </mat-card-content>

@@ -11,26 +11,36 @@ export class ExpenseService extends CrudService {
     super(api, { name: "depense" });
   }
   override create(body: any) {
-    const formatBody={
-      type_depense: body.type_depense,
-      montant: body.montant
+    const formatBody = {
+      type_depense: body.type_depense ,
+      montant: body.montant,
+      annee_mois: body.annee_mois.replace("-", "/"),
     }
-    return super.create(formatBody);
+    return this.baseApi.post(`${this.baseUrl}/depense`, formatBody);
+
   }
 
   override update(id: string, body: any) {
-    const formatBody={
-      type_depense: body.type_depense,
+    const formatBody = {
+      type_depense: body.type_depense ,
       montant: body.montant,
+      _id: id,
     }
-    return this.baseApi.post(`${this.baseUrl}/${this.crudName}`,formatBody );
+    return this.baseApi.post(`${this.baseUrl}/depense`, formatBody);
   }
 
   /* search params: date, */
-  override findAll(params?: SearchParams) {
-    return new Promise((resolve, reject) => {
-      if(!params || !params.search || !params.search.date_mois || params.search.date_mois=="") reject({message: "Il faut une date et un mois"})   
-      resolve(super.findAll(params));
-    });
+  override findAll(params?: any) {
+    console.log(params)
+    if (params != undefined && params.annee_mois != undefined) {
+      params['search'] = { annee_mois: params.annee_mois.replaceAll('-', '/') };
+    }
+    if (params == undefined || params?.search == undefined || params.search.annee_mois == undefined || params.search.annee_mois == "") {
+      const date = new Date();
+      const month = date.getMonth() + 1;
+      params = { search: { annee_mois: `${date.getFullYear()}/${month > 10 ? month : '0' + month}` } };
+    }
+    console.log(params)
+    return super.findAll(params);
   }
 }

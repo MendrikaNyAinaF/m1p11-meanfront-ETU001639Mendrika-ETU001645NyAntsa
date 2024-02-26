@@ -88,69 +88,101 @@ export class AppointmentService {
 
   //c'est un client qui peut annuler un rendez vous
   cancel(id: string) {
-    //TODO traitement
-    return this.baseApi.delete(`${this.baseUrl}/appointement/${id}`);
+    return this.baseApi.delete(`${this.baseUrl}/appointment/${id}/cancel`);
   }
 
   //payer un rendezvous, c'est un client qui paie le rendez vous
-  pay(id: string) {
-    //TODO traitement
-    return this.baseApi.put(`${this.baseUrl}/appointement/${id}/pay`);
+  pay(id: string, mode_paiement: string) {
+    const body = { mode_paiement: mode_paiement };
+    return this.baseApi.post(`${this.baseUrl}/appointment/${id}/pay`, body);
   }
 
-  formatDate(date:any) {
-  // Vérifier si le paramètre est une date
-  if (Object.prototype.toString.call(date) === '[object Date]') {
-    // Extraire l'année, le mois et le jour de la date
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Ajouter un zéro initial si nécessaire
-    const day = String(date.getDate()).padStart(2, '0'); // Ajouter un zéro initial si nécessaire
+  formatDate(date: any) {
+    // Vérifier si le paramètre est une date
+    if (Object.prototype.toString.call(date) === '[object Date]') {
+      // Extraire l'année, le mois et le jour de la date
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Ajouter un zéro initial si nécessaire
+      const day = String(date.getDate()).padStart(2, '0'); // Ajouter un zéro initial si nécessaire
 
-    // Retourner la date formatée en "YYYY-MM-dd"
-    return `${year}-${month}-${day}`;
-  } else {
-    // Si le paramètre n'est pas une date, retourner le paramètre tel quel
-    return date;
-  }
-}
-/** params de la form: {date_debut, date_fin} */
-findAllByClient(params: any) {
-  
-  const client = this.storageService.getCurrentUserInfo();
-
-  const search = {
-    "search": {
-      "$and": [
-        {
-          "date_heure_debut": {
-            "$gte": {
-              "$date": this.formatDate(params.date_debut)
-            }
-          }
-        },
-        {
-          "date_heure_fin": {
-            "$lte": {
-              "$date": this.formatDate(params.date_fin)
-            }
-          }
-        },
-        {
-          "client": {
-            "$oid": client.id
-          }
-        }
-      ]
+      // Retourner la date formatée en "YYYY-MM-dd"
+      return `${year}-${month}-${day}`;
+    } else {
+      // Si le paramètre n'est pas une date, retourner le paramètre tel quel
+      return date;
     }
   }
-  // console.log(search);
-  const base64 = btoa(JSON.stringify(search));
-  console.log(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`);
-  return this.baseApi.get(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`, { body: search });
-}
+  /** params de la form: {date_debut, date_fin} */
+  findAllByClient(params: any) {
 
-findById(id: string) {
-  //TODO traitement
-  return this.baseApi.get(`${this.baseUrl}/appointment/${id}`);
-}
+    const client = this.storageService.getCurrentUserInfo();
+
+    const search = {
+      "search": {
+        "$and": [
+          {
+            "date_heure_debut": {
+              "$gte": {
+                "$date": this.formatDate(params.date_debut)
+              }
+            }
+          },
+          {
+            "date_heure_fin": {
+              "$lte": {
+                "$date": this.formatDate(params.date_fin)
+              }
+            }
+          },
+          {
+            "client": {
+              "$oid": client.id
+            }
+          }
+        ]
+      }
+    }
+    // console.log(search);
+    const base64 = btoa(JSON.stringify(search));
+    console.log(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`);
+    return this.baseApi.get(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`, { body: search });
+  }
+
+  findById(id: string) {
+    //TODO traitement
+    return this.baseApi.get(`${this.baseUrl}/appointment/${id}`);
+  }
+
+  findAllByEmploye(params: any) {
+    const employee = this.storageService.getCurrentUserInfo();
+    const search = {
+      "search": {
+        "$and": [
+          {
+            "date_heure_debut": {
+              "$gte": {
+                "$date": this.formatDate(params.date_debut)
+              }
+            }
+          },
+          {
+            "date_heure_fin": {
+              "$lte": {
+                "$date": this.formatDate(params.date_fin)
+              }
+            }
+          },
+          {
+            "employee": {
+              "$oid": employee.id
+            }
+          }
+        ]
+      }
+    }
+    // console.log(search);
+    const base64 = btoa(JSON.stringify(search));
+    console.log(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`);
+    return this.baseApi.get(`${this.baseUrl}/rendez_vous-crud?criteria=${base64}`, { body: search });
+  }
 }

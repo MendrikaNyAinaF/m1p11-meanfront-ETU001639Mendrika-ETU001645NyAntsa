@@ -1,1 +1,26 @@
-<p>client-employee-preference works!</p>
+<!-- card.component.html -->
+<div *ngFor="let employee of employees">
+    <div class="card" [ngClass]="{ 'selected': employee.favourite }">
+        <div class="content">
+            <div class="text">
+                <h2>{{ employee.nom+" "+employee.prenom }}</h2>
+                <p>{{ employee.genre.nom}}</p>
+                <ul>
+                    <li>Numéro : {{employee.telephone}}</li>
+                    <li>Date de naissance : {{employee.date_naissance}}</li>
+                </ul>
+            </div>
+            <div class="image-container">
+                <img src="{{ employee.photo }}" alt="Card Image" class="card-image">
+            </div>
+            <div class="details-icon-container">
+                <i class="details-icon" (click)="showDetails(employee._id)">&#9432;</i>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="heart-container">
+            <i class="heart-icon" [ngClass]="{ 'filled': employee.favourite }" (click)="updateFavourite(employee._id)">&#10084;</i>
+        </div>
+    </div>
+</div>

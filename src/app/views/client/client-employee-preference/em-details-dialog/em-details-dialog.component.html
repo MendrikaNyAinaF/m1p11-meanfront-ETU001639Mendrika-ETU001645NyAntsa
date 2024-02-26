@@ -1,0 +1,14 @@
+
+<div class="modal">
+    <div class="modal-content">
+        <div class="image-container">
+            <img src="{{ employee.photo }}" alt="Card Image" class="card-image">
+        </div>
+        <h2>{{ employee.nom + " " + employee.prenom }}</h2>
+        <p>{{ employee.genre.nom}}</p>
+        <ul>
+            <li>Numéro : {{employee.telephone}}</li>
+            <li>Date de naissance : {{employee.date_naissance}}</li>
+        </ul>
+    </div>
+</div>

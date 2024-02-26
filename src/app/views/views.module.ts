@@ -32,6 +32,8 @@ import { PageEmployeeCrudComponent } from './manager/page-employee-crud/page-emp
 import { ClientEmployeePreferenceComponent } from './client/client-employee-preference/client-employee-preference.component';
 import { ClientServicePreferenceComponent } from './client/client-service-preference/client-service-preference.component';
 import { DetailsModalComponent } from './client/client-service-preference/details-modal/details-modal.component';
+import { EmDetailsDialogComponent } from './client/client-employee-preference/em-details-dialog/em-details-dialog.component';
+import { AppointmentCommissionComponent } from './employee/appointment-commission/appointment-commission.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +56,9 @@ import { DetailsModalComponent } from './client/client-service-preference/detail
         PageEmployeeCrudComponent,
         ClientEmployeePreferenceComponent,
         ClientServicePreferenceComponent,
-        DetailsModalComponent
+        DetailsModalComponent,
+        EmDetailsDialogComponent,
+        AppointmentCommissionComponent
     ],
     exports: [
         SpinnerComponent

@@ -40,8 +40,7 @@ export class EmployeeService extends CrudService {
         }
         console.log(params);
         // encore params to base64 string
-        let paramsString = btoa(JSON.stringify(params));
-        return super.findAll(paramsString);
+        return super.findAll(params);
     }
 
 

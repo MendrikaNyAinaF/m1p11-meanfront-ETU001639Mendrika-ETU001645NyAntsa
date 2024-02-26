@@ -58,7 +58,5 @@ export class ClientServicePreferenceComponent implements OnInit {
             data: service,
             hasBackdrop: true,
         });
-
-
     }
 }

@@ -1,0 +1,15 @@
+/* details-modal.component.scss */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  padding: 30px;
+}
+
+.card-image {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 2pt;
+}

@@ -39,6 +39,7 @@ import {
 import {
     ClientEmployeePreferenceComponent
 } from "./views/client/client-employee-preference/client-employee-preference.component";
+import {AppointmentCommissionComponent} from "./views/employee/appointment-commission/appointment-commission.component";
 
 const routes: Routes = [
     {
@@ -79,6 +80,7 @@ const routes: Routes = [
         children: [
             {path: "employee/profil", component: EmployeeProfilComponent},
             {path: "chips", component: ChipsComponent},
+            {path: "appointments/commission", component : AppointmentCommissionComponent}
         ]
     },
     {

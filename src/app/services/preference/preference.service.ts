@@ -19,6 +19,17 @@ export class PreferenceService {
     updateServicesFavourite(_id: string) {
         const user = JSON.parse(localStorage.getItem('user') || '{}');
         const query = "?serviceId=" + _id;
-        return this.http.put(environment.apiUrl + "/preference/update/" + user.id+query, {_id});
+        return this.http.put(environment.apiUrl + "/preference/update/" + user.id + query, {_id});
+    }
+
+    getEmployeesPreference() {
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        return this.http.get(environment.apiUrl + "/employees/favourites/" + user.id);
+    }
+
+    updateEmployeesFavourite(_id: string) {
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        const query = "?employeeId=" + _id;
+        return this.http.put(environment.apiUrl + "/preference/update/" + user.id + query, {_id});
     }
 }

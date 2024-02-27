@@ -51,6 +51,18 @@
    
            </mat-menu>
          </div>
+         <!--notification-->
+         <div >
+          <button mat-button class="fs-16 pt-4 pb-4 ps-8 pe-8 text-light-muted" [matMenuTriggerFor]="menu">
+            <i-feather name="chevron-down" class="feather-base mt-n2"></i-feather>
+          </button>
+          <mat-menu #menu="matMenu" class="profile-dropdown">  
+            <div class="p-16">
+              <button mat-button class="btn btn-info w-100" (click)="logout()">Se déconnecter</button>
+            </div>
+  
+          </mat-menu>
+        </div>
        </mat-toolbar>
    
        <!-- Content -->

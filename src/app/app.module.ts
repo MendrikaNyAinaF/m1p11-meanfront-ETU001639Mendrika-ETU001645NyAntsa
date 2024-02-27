@@ -39,10 +39,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
         FooterComponent,
     ],
     imports: [
+        AppRoutingModule,
         HttpClientModule,
         CommonModule,
         BrowserModule,
-        AppRoutingModule,
         BrowserAnimationsModule,
         FeatherModule.pick(allIcons),
         DemoFlexyModule,
@@ -56,7 +56,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
         ReactiveFormsModule,
         MatInputModule,
         MatButtonModule,
-        MatFormFieldModule
+        MatFormFieldModule,
     ],
     providers: [
         {

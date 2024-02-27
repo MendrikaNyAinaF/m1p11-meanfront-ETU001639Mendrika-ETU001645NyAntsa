@@ -2,6 +2,7 @@ import { FormGroup } from "@angular/forms";
 import { Component, Input, OnInit } from "@angular/core";
 import { Column, DeleteAction, FormProps } from "./interfaces";
 import { MatTableDataSource } from "@angular/material/table";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -47,6 +48,8 @@ export class TableCommon implements OnInit {
   @Input() set deletable(val: boolean) {
     this._deletable = val || false;
   }
+
+
   get data() {
     return this._data;
   }

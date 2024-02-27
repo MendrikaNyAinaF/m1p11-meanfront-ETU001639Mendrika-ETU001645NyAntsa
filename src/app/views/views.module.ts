@@ -37,6 +37,7 @@ import { AppointmentCommissionComponent } from './employee/appointment-commissio
 import { DetailApppointmentDialogComponent, EmployeeCalendarComponent } from './employee/employee-calendar/employee-calendar.component';
 import { AppointmentNumberComponent } from './stat/appointment-number/appointment-number.component';
 import { DashboardBSComponent } from './dashboard-bs/dashboard-bs.component';
+import { PageEmployeeDetailComponent } from './manager/page-employee-crud/page-employee-detail/page-employee-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 
@@ -67,6 +68,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         EmployeeCalendarComponent,
         AppointmentNumberComponent,
         DashboardBSComponent,
+        PageEmployeeDetailComponent,
         DetailApppointmentDialogComponent,
         NotFoundComponent
     ],

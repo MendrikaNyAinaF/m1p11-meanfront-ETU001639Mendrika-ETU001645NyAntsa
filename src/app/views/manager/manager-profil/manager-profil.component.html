@@ -1,0 +1,7 @@
+<mat-card >
+     <mat-card-content>
+          <h3>Vos informations personnelles</h3>
+          <app-form [inputs]="inputs" [action]="profilBtnProps"
+                              (submit)="handleSubmitChange($event)" *ngIf="isHere"></app-form>
+     </mat-card-content>
+</mat-card>

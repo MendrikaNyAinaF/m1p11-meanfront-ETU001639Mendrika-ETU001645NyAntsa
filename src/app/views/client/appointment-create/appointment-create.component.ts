@@ -14,6 +14,7 @@ export class AppointmentCreateComponent implements OnInit {
   formProps!: any;
   serviceData!: any[];
   employeeData!: any[];
+  close!: () => void;
 
   //form: date, liste des services et préférence
   constructor(
@@ -24,6 +25,7 @@ export class AppointmentCreateComponent implements OnInit {
     ) {
     this.serviceData = data.serviceData;
     this.employeeData = data.employeeData;
+    this.close = data.close;
   }
 
   ngOnInit(): void {
@@ -95,6 +97,7 @@ export class AppointmentCreateComponent implements OnInit {
         this.create.emit("new");
         this.alertService.alertSuccess(res?.message || "Le traitement a été effectué avec succès");
         this.loaderSubmit = false;
+        this.close();
       }).catch((error:any)=>{ 
         this.alertService.alertError(error?.error?.message || "Une erreur s'est produite lors du traitement");
         this.loaderSubmit = false;

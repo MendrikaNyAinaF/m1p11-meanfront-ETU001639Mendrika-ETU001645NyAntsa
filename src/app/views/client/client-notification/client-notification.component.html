@@ -1,0 +1,22 @@
+<mat-card>
+     <mat-card-content>
+          <h3>Vos dernières notifications</h3>
+          <div style="display:flex; align-items: center;text-align: center;justify-content: center;" >
+               <button mat-fab class="mb-8 me-8" [disabled]="disabledPrevious()" color="primary" ><
+               </button>
+               <button mat-fab class="mb-8 me-8"[disabled]="disabledNext()" color="primary">>
+               </button>
+          </div>
+          <div class="d-flex" *ngFor="let notif of notifications">
+               <p class="fw-bold ps-16 pe-20 fs-12">{{convertDate( notif.date_creation) }}</p>
+               <div class="activity-border">
+                    <div class="deep">
+                         <div class="activity-ring">
+                              <div class="ring {{notif.ringColor }}"></div>
+                         </div>
+                    </div>
+                    <p class="ps-20 pe-16 activity-message">{{ notif.contenu }}</p>
+               </div>
+          </div>
+     </mat-card-content>
+</mat-card>

@@ -42,6 +42,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { WorktimeComponent } from './manager/statistics/worktime/worktime.component';
 import { TurnoverComponent } from './manager/statistics/turnover/turnover.component';
 import { IncomeComponent } from './manager/statistics/income/income.component';
+import { ClientNotificationComponent } from './client/client-notification/client-notification.component';
+import { ManagerProfilComponent } from './manager/manager-profil/manager-profil.component';
 
 
 @NgModule({
@@ -76,7 +78,9 @@ import { IncomeComponent } from './manager/statistics/income/income.component';
         NotFoundComponent,
         WorktimeComponent,
         TurnoverComponent,
-        IncomeComponent
+        IncomeComponent,
+        ClientNotificationComponent,
+        ManagerProfilComponent
     ],
     exports: [
         SpinnerComponent

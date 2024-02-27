@@ -19,4 +19,8 @@ export class ManagerService extends PersonneService {
         password: "passwordNotCryptedYet123!"
       }
     }
+    update( data:any){
+      const client= this.storage.getCurrentUserInfo();
+      return this.baseApi.put(`${this.baseApi.baseUrl}/admin/${client.id}`,data);
+    }
 }

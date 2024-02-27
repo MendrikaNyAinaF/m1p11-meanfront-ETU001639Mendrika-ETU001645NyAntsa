@@ -9,6 +9,7 @@ import { EmployeeService } from 'src/app/services/personne/employee.service';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
 import { AppointmentCreateComponent } from '../appointment-create/appointment-create.component';
 import { AppointmentUpdateComponent } from '../appointment-update/appointment-update.component';
+import frLocale from '@fullcalendar/core/locales/fr';
 
 @Component({
   selector: 'app-appointment-calendar',
@@ -29,7 +30,8 @@ export class AppointmentCalendarComponent implements OnInit {
     eventDrop: this.handleEventDrop.bind(this),
     datesSet: (dateInfo) => {
       this.findAllAppointment(dateInfo.startStr, dateInfo.endStr);
-    }
+    },
+    locale: frLocale
   }
   constructor(public dialog: MatDialog,
     private appointmentService: AppointmentService,

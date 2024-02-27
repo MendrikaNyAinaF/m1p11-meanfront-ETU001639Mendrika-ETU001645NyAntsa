@@ -50,6 +50,7 @@ import {
 } from "./views/manager/page-employee-crud/page-employee-detail/page-employee-detail.component";
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ClientNotificationComponent } from './views/client/client-notification/client-notification.component';
+import { ManagerProfilComponent } from './views/manager/manager-profil/manager-profil.component';
 
 const routes: Routes = [
     {
@@ -83,7 +84,7 @@ const routes: Routes = [
             { path: "manager/expenses", component: PageExpenseComponent },
             { path: "manager/special-offer", component: PageSpecialOfferComponent },
             { path: "manager/dashboard", component: DashboardBSComponent },
-
+            { path: "manager/profil", component: ManagerProfilComponent },
             { path: "employee", component: PageEmployeeCrudComponent }
         ]
     },
@@ -99,7 +100,7 @@ const routes: Routes = [
             { path: "employee/:id", component: PageEmployeeDetailComponent }
         ]
     },
-    
+
     {
         path: "",
         component: FullComponent,

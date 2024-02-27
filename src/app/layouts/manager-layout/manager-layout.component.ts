@@ -65,4 +65,7 @@ export class ManagerLayoutComponent extends FullComponent implements OnInit {
     }
     return "assets/images/favicon.png";
   }
+  toProfil() {
+    this.router.navigate(["/manager/profil"]);
+  }
 }

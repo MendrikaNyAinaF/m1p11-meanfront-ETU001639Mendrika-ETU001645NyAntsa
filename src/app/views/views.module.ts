@@ -40,6 +40,7 @@ import { DashboardBSComponent } from './dashboard-bs/dashboard-bs.component';
 import { PageEmployeeDetailComponent } from './manager/page-employee-crud/page-employee-detail/page-employee-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ClientNotificationComponent } from './client/client-notification/client-notification.component';
+import { ManagerProfilComponent } from './manager/manager-profil/manager-profil.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { ClientNotificationComponent } from './client/client-notification/client
         PageEmployeeDetailComponent,
         DetailApppointmentDialogComponent,
         NotFoundComponent,
-        ClientNotificationComponent
+        ClientNotificationComponent,
+        ManagerProfilComponent
     ],
     exports: [
         SpinnerComponent

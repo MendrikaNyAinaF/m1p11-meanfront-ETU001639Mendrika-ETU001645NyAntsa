@@ -30,7 +30,7 @@ export class ClientNotificationComponent implements OnInit {
   formatNotification(notif: any) {
     notif.firstWord = notif.contenu.split(" ").slice(0, 10).join(" ");
     notif.type = notif.type_notification?.code == "PUB" ? "PUB" : "RAPPEL";
-    notif.badge = notif.type_notification?.code == "PUB" ? "badge-info" : "badge -primary";
+    notif.badge = notif.type_notification?.code == "PUB" ? "badge-info" : "badge-primary";
     notif.ringColor = notif.type_notification?.code == "PUB" ? "ring-info" : "ring-primary";
     return notif;
   }

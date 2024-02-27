@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { SubmitProps } from 'src/app/components/interfaces';
-import { ClientService } from 'src/app/services/personne/client.service';
+import { ManagerService } from 'src/app/services/personne/manager.service';
 
 @Component({
-  selector: 'app-client-profil',
-  templateUrl: './client-profil.component.html',
-  styleUrls: ['./client-profil.component.scss']
+  selector: 'app-manager-profil',
+  templateUrl: './manager-profil.component.html',
+  styleUrls: ['./manager-profil.component.scss']
 })
-export class ClientProfilComponent implements OnInit {
-  client!: any;
+export class ManagerProfilComponent implements OnInit {
+  manager!: any;
   foundClient = true;
   isHere: boolean = false;
 
@@ -17,16 +17,15 @@ export class ClientProfilComponent implements OnInit {
   profilBtnProps!: SubmitProps;
 
 
-  constructor(private clientService: ClientService) { }
+  constructor(private managerService: ManagerService) { }
 
   ngOnInit(): void {
     this.getClient();
   }
-
   getClient = () => {
-    this.clientService.getConnectedUser().then((data: any) => {
-      console.log(data[0]);
-      this.client = (data && data.length > 0) ? data[0] : data;
+    this.managerService.getConnectedUser().then((data: any) => {
+      // console.log(data);
+      this.manager = (data && data.length > 0) ? data[0] : data;
       this.foundClient = true;
       this.isHere = true;
       this.buildForm();
@@ -41,7 +40,7 @@ export class ClientProfilComponent implements OnInit {
     this.profilBtnProps = {
       label: 'Modifier les informations',
       submit: (data: any) => {
-        return this.clientService.update(data);
+        return this.managerService.update(data);
       },
       color: 'primary',
     }
@@ -49,43 +48,30 @@ export class ClientProfilComponent implements OnInit {
       nom: {
         label: "Nom",
         type: "text",
-        default: this.client.nom,
+        default: this.manager.nom,
         validators: Validators.required,
         class: "w-100 fs-16"
       },
       prenom: {
         label: "Prénom",
         type: "text",
-        default: this.client.prenom,
+        default: this.manager.prenom,
         validators: Validators.required,
         class: "w-100 fs-16"
       },
       email: {
         label: "Email",
         type: "email",
-        default: this.client.email,
+        default: this.manager.email,
         validators: [Validators.required, Validators.email],
         class: "w-100 fs-16"
       },
       telephone: {
         label: "Téléphone",
         type: "text",
-        default: this.client.telephone,
-        validators: Validators.required,
+        default: this.manager.telephone,
         class: "w-100 fs-16"
-      },
-      date_naissance: {
-        label: "Date de naissance",
-        type: "date",
-        default: this.client.date_naissance,
-        class: "w-100 fs-16"
-      },
-      photo: {
-        label: "Photo",
-        type: "image",
-        default: this.client.photo,
-        class: "w-100 fs-16"
-      },
+      }
     }
   }
   handleSubmitChange(event: string) {

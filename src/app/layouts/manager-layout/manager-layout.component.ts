@@ -50,9 +50,9 @@ export class ManagerLayoutComponent extends FullComponent implements OnInit {
 
   ngOnInit(): void {
     this.manager = this.storageService.getCurrentUserInfo();
-    // if (this.manager.role !== "ADMIN") {
-    //   this.router.navigate(["/manager/login"]);
-    // }
+    if (this.manager.role !== "ADMIN") {
+      this.router.navigate(["/manager/login"]);
+    }
   }
 
   logout() {

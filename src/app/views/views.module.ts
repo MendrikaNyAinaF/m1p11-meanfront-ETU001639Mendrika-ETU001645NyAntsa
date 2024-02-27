@@ -39,6 +39,7 @@ import { AppointmentNumberComponent } from './stat/appointment-number/appointmen
 import { DashboardBSComponent } from './dashboard-bs/dashboard-bs.component';
 import { PageEmployeeDetailComponent } from './manager/page-employee-crud/page-employee-detail/page-employee-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ClientNotificationComponent } from './client/client-notification/client-notification.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
         DashboardBSComponent,
         PageEmployeeDetailComponent,
         DetailApppointmentDialogComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        ClientNotificationComponent
     ],
     exports: [
         SpinnerComponent

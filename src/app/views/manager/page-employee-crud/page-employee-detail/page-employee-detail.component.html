@@ -14,13 +14,14 @@
         <br>
         <h3>Fixer un nouvel horaire de travail</h3>
         <form [formGroup]="horaireForm" (ngSubmit)="onSubmit()" class="horaire-form">
-            <mat-form-field>
+            <mat-form-field>Date début :
                 <input matInput formControlName="horaireDebut" type="time">
                 <mat-error *ngIf="horaireForm.get('horaireDebut')?.hasError('required')">
                     Horaire début obligatoire
                 </mat-error>
             </mat-form-field>
-            <mat-form-field>
+            <br>
+            <mat-form-field>Date fin :
                 <input matInput formControlName="horaireFin" type="time">
                 <mat-error *ngIf="horaireForm.get('horaireFin')?.hasError('required')">
                     Horaire fin obligatoire
@@ -41,5 +42,11 @@
             </div>
         </form>
     </div>
-
 </div>
+
+<app-page-crud
+        [pageProps]="pageProps"
+        [fields]="fields"
+        [crudService]="horaireService"
+>
+</app-page-crud>

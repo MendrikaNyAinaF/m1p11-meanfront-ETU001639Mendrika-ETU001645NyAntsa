@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {EmployeeService} from "../../../../services/employee/employee.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HoraireServiceService} from "../../../../services/horaire/horaire-service.service";
+import {PageCrudProps} from "../../../../components/page-crud/page-crud.component";
 
 @Component({
     selector: 'app-page-employee-detail',
@@ -15,8 +16,17 @@ export class PageEmployeeDetailComponent implements OnInit {
     horaireForm: FormGroup;
     success: any;
     message: any;
+    fields: any = {};
+    pageProps: PageCrudProps = {
+        create: false,
+        update: false,
+        delete: false,
+        list: true,
+        filter: false,
+        paginate: true,
+    };
 
-    constructor(private fb: FormBuilder, private route: ActivatedRoute, private employeeService: EmployeeService, private horaireService: HoraireServiceService) {
+    constructor(private fb: FormBuilder, private route: ActivatedRoute, private employeeService: EmployeeService, public horaireService: HoraireServiceService) {
         this.horaireForm = this.fb.group({
             horaireDebut: ['', Validators.required],
             horaireFin: ['', Validators.required],
@@ -24,6 +34,34 @@ export class PageEmployeeDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.fields = {
+            _id: {
+                label: "id",
+                inputType: "hidden",
+                hidden: true,
+            },
+            date_debut: {
+                label: "Date debut",
+                inputType: "date",
+                inColumn: true,
+            },
+            date_fin: {
+                label: "Date fin",
+                inputType: "date",
+                inColumn: true,
+            },
+            heure_debut: {
+                label: "Heure debut",
+                inputType: "time",
+                inColumn: true,
+            },
+            heure_fin: {
+                label: "Heure fin",
+                inputType: "time",
+                inColumn: true,
+            }
+        }
+
         //   get id from url params
         this.route.params.subscribe(params => {
                 const id = params['id'];

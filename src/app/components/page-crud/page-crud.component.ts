@@ -116,7 +116,7 @@ export class PageCrudComponent implements OnInit {
         this.loaderList = true;
         this.crudService.findAll(this.getFilterData())
             .then((data: any) => {
-                console.log("Data ", data)
+                console.log("Data ", data.data)
                 this.dataList = data;
                 (data !== undefined && data !== null && !Array.isArray(data)) ? this.dataList = data.data : this.dataList = data;
                 // console.log(data);

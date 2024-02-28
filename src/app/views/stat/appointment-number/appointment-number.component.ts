@@ -100,7 +100,9 @@ export class AppointmentNumberComponent implements OnInit {
       xCategories: this.numberAppointment.map((e: any) => e.date),
       xTitle: "Date",
       yTitle: "Nombre de rendez-vous",
-
+      onHoverFormatter: function (val: any) {
+        return val 
+      }
     }
     this.isDataThere = true;
     console.log(this.chartOptions)

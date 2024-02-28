@@ -13,7 +13,13 @@
 
                          <app-form [inputs]="loginInputs" [action]="loginBtnProps"
                               (submit)="handleSubmitChange($event)"></app-form>
+
+                         <div *ngIf="isClient()">
+                              <br>
+                              <button mat-button color="accent" (click)="toRegister()"  >Vous n'avez pas encore de compte?</button>
+                         </div>
                     </div>
+
                </mat-grid-tile>
           </mat-grid-list>
      </mat-card-content>

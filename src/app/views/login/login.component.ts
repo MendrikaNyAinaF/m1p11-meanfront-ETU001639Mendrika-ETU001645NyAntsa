@@ -84,6 +84,11 @@ export class LoginComponent implements OnInit {
     if (event === 'success') {
       this.router.navigate([this.personneService[this.loginRole].redirect]);
     }
-
+  }
+  isClient(){
+    return this.loginRole === 'client';
+  }
+  toRegister(){
+    this.router.navigate(['/client/register']);
   }
 }

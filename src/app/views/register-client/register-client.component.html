@@ -1,11 +1,11 @@
-<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" class="container">
-    <div fxFlex="50" fxLayoutAlign="center center" fxLayout.xs="100%" >
+<div fxLayout="row">
+    <div fxFlex="50" fxLayoutAlign="center center" fxLayout.xs="100%">
         <img src="assets/images/login-img.jpg" alt="Registration Image" class="registration-image">
     </div>
 
     <div fxFlex="50" fxFlex.xs="100%" class="form-container">
-        <h2>Register</h2>
-        <p>Create a client account</p>
+        <h2>Inscription</h2>
+        <p>Création d'un compte client</p>
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
             <mat-form-field>
                 <input matInput formControlName="lastName" placeholder="Nom">
@@ -52,7 +52,7 @@
                     <mat-option *ngFor="let gender of genders" [value]="gender._id">{{gender.nom}}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="registrationForm.get('gender')?.hasError('required')">
-                    Gender is required
+                    Genre obligatoire
                 </mat-error>
             </mat-form-field>
 
@@ -63,13 +63,13 @@
                     {{ hide ? 'visibility_off' : 'visibility' }}
                 </mat-icon>
                 <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">
-                    Mot de passe obligatoire
+                    Le mot de passe obligatoire
                 </mat-error>
                 <mat-error *ngIf="registrationForm.get('password')?.hasError('minlength')">
-                    Mot de passe doit contenir au moins 6 caractères
+                    Le mot de passe doit contenir au moins 6 caractères
                 </mat-error>
                 <mat-error *ngIf="registrationForm.get('password')?.hasError('pattern')">
-                    Mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre
+                    Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre
                 </mat-error>
 
             </mat-form-field>
@@ -82,7 +82,7 @@
                     (change)="selectFile($event)">
             <br>
             <br>
-            <button mat-raised-button color="primary" type="submit">Register</button>
+            <button mat-raised-button color="primary" type="submit">S'inscrire</button>
             <br>
             <br>
             <br>

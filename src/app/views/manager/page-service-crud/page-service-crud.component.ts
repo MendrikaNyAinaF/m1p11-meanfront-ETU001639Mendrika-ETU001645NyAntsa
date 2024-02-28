@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { PageCrudProps } from 'src/app/components/page-crud/page-crud.component';
 import { ServiceCrudService } from 'src/app/services/service/service-crud.service';
+import {MoneyService} from "../../../services/utils/money.service";
+import {TimeService} from "../../../services/utils/time.service";
+import {PercentageService} from "../../../services/utils/percentage.service";
 @Component({
   selector: 'app-page-service-crud',
   templateUrl: './page-service-crud.component.html',
@@ -34,18 +37,21 @@ export class PageServiceCrudComponent {
       inputType: "number",
       validators: [Validators.required, Validators.min(0)],
       inColumn: true,
+      formatter : MoneyService.formatMoney
     },
     duree: {
       label: "Durée",
       inputType: "number",
       validators: [Validators.required, Validators.min(0)],
       inColumn: true,
+      formatter : TimeService.formatDurationMinutes
     },
     commission: {
       label: "Commission",
       inputType: "number",
       validators: [Validators.required, Validators.min(0)],
       inColumn: true,
+      formatter : PercentageService.formatPercentage
     },
     description: {
       label: "Description",

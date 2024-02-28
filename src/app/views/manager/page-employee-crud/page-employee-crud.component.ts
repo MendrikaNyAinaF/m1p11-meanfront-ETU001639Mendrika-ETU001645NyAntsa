@@ -28,7 +28,7 @@ export class PageEmployeeCrudComponent implements OnInit {
 
     showDetails = (row: any) => {
         console.log(row);
-        this.router.navigate(['/manager/employee/'+row._id])
+        this.router.navigate(['/manager/employee/' + row._id])
     }
 
     ngOnInit(): void {
@@ -67,6 +67,11 @@ export class PageEmployeeCrudComponent implements OnInit {
                 inputType: "email",
                 validators: Validators.email,
                 inColumn: true,
+            }, password: {
+                label: "Mot de passe",
+                inputType: "password",
+                validators: Validators.required,
+                inColumn: false,
             },
             telephone: {
                 label: "Téléphone",

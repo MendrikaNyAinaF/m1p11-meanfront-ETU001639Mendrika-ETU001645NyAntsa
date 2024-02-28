@@ -95,7 +95,7 @@ const routes: Routes = [
         component: EmployeeLayoutComponent,
         children: [
             { path: "employee/profil", component: EmployeeProfilComponent },
-            { path: "appointments/commission", component: AppointmentCommissionComponent },
+            { path: "employee/commission", component: AppointmentCommissionComponent },
             { path: "employee/calendar", component: EmployeeCalendarComponent },
         ]
     },

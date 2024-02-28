@@ -146,17 +146,17 @@ export class PageCrudComponent implements OnInit {
                         let rowValue = row[key];
                         if (row[key] != null && row[key] != undefined && typeof row[key] === 'object') {
                             rowValue = row[key].nom;
-                        }
+                        }else
                         // check if there an operator +-/* in the key
                         if (key.includes('*')) {
                             let operationRows = key.split('*');
                             let firstValue = this.getChildValue(row, operationRows[0]);
                             let secondValue = this.getChildValue(row, operationRows[1]);
-                            if (operationRows.length == 3) {
-                                rowValue = (firstValue * secondValue) / 100;
-                            }
-                            rowValue = firstValue * secondValue;
-                        }
+                            // if (operationRows.length == 3) {
+                            //     rowValue = (firstValue * secondValue) / 100;
+                            // }
+                            rowValue = (firstValue * secondValue)/100;
+                        }else
                         // check if key contains a dot
                         if (key.includes('.')) {
                             rowValue = this.getChildValue(row, key);

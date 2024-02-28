@@ -30,9 +30,18 @@ export class EmployeeService extends CrudService {
                         }
                     },
                     {
-                        'type._id': {
-                            '$oid': "65c220963fe8b2bd4b8f7d78"
-                        },
+                        "$or": [
+                            {
+                                'type._id': {
+                                    '$oid': "65c220963fe8b2bd4b8f7d78"
+                                }
+                            }, {
+                                'type': {
+                                    "$oid": "65c220963fe8b2bd4b8f7d78"
+                                }
+                            }
+                        ]
+
                     }
                 ]
             }
@@ -49,14 +58,19 @@ export class EmployeeService extends CrudService {
         delete body._id;
         this.setEmployeeBaseData(body)
         console.log("body", body);
-        const response = await this.imgurService.uploadImage(body.photo?.split(',')[1] as string);
-        console.log('Fetch response:', response);
+        try {
+            const response = await this.imgurService.uploadImage(body.photo?.split(',')[1] as string);
+            console.log('Fetch response:', response);
 
-        if (response.ok) {
-            const res = await response.json();
-            console.log(res);
-            body.photo = res.data.link;
+            if (response.ok) {
+                const res = await response.json();
+                console.log(res);
+                body.photo = res.data.link;
+            }
+        } catch (e) {
+            //     do nothing
         }
+
         return super.create(body);
 
 

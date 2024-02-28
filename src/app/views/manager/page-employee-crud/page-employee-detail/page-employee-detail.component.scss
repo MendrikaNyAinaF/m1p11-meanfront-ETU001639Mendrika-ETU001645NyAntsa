@@ -11,8 +11,8 @@
 
 .profile-picture {
     width: 100%;
-    height: 200px;
-    overflow: hidden;
+    height: 400px;
+    object-fit: contain;
 }
 
 .profile-picture img {

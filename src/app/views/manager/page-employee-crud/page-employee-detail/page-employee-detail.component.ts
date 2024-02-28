@@ -66,6 +66,22 @@ export class PageEmployeeDetailComponent implements OnInit {
         }
 
         //   get id from url params
+        // this.route.params.subscribe(params => {
+        //         const id = params['id'];
+        //         console.log(id);
+        //         this.employeeService.findOne(id).then(
+        //             (employee: any) => {
+        //                 // @ts-ignore
+        //                 this.employee = employee.data;
+        //                 localStorage.setItem('employee', JSON.stringify(this.employee._id));
+        //             }
+        //         );
+        //     }
+        // );
+        this.setEmployee();
+    }
+
+    setEmployee() {
         this.route.params.subscribe(params => {
                 const id = params['id'];
                 console.log(id);
@@ -90,10 +106,11 @@ export class PageEmployeeDetailComponent implements OnInit {
                 heure_fin: horaireFin
             }
             this.horaireService.saveHoraire(this.employee._id, horaire).subscribe((res: any) => {
-                    console.log("res",res)
+                    console.log("res", res)
                     // check if res.code starts with 2xx
-                    this.success = res.code===201 ?  true: false;
+                    this.success = res.code === 201 ? true : false;
                     this.message = res.message;
+                    window.location.reload();
                 }
             )
         }

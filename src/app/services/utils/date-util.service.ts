@@ -28,6 +28,7 @@ export class DateUtilService {
     }
 
     static formatDate(date: string) {
+        if(date===undefined || date==null || date=="") return "";
         const dateObject = DateTime.fromISO(date);
         const dateWithGMT= dateObject.setLocale('fr').toLocaleString(DateTime.DATETIME_FULL);
     //     remove last 6 characters

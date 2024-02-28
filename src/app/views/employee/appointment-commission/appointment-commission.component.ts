@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PageCrudProps} from "../../../components/page-crud/page-crud.component";
 import {AppointmentCommissionService} from "../../../services/appointmentCommission/appointment-commission.service";
+import {DateUtilService} from "../../../services/utils/date-util.service";
+import {MoneyService} from "../../../services/utils/money.service";
 
 @Component({
     selector: 'app-appointment-commission',
@@ -38,20 +40,23 @@ export class AppointmentCommissionComponent implements OnInit {
                 label: "Service",
                 inputType: "text",
                 inColumn: true,
-            },'service.commission*service.prix*':{
+            },'service.commission*prix*':{
                 label: "Commission",
                 inputType: "text",
                 inColumn: true,
+                formatter : MoneyService.formatMoney
             },
             date_heure_debut:{
                 label: "Date et heure de début",
                 inputType: "datetime-local",
                 inColumn: true,
+                formatter : DateUtilService.formatDate
             },
             date_heure_fin:{
                 label: "Date et heure de fin",
                 inputType: "datetime-local",
                 inColumn: true,
+                formatter : DateUtilService.formatDate
             },
             photo: {
                 label: "Photo",

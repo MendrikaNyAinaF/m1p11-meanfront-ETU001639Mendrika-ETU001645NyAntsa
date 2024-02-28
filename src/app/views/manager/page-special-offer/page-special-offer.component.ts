@@ -3,6 +3,8 @@ import { Validators } from '@angular/forms';
 import { PageCrudProps } from 'src/app/components/page-crud/page-crud.component';
 import { ServiceCrudService } from 'src/app/services/service/service-crud.service';
 import { SpecialOfferService } from 'src/app/services/special-offer/special-offer.service';
+import { DateUtilService } from 'src/app/services/utils/date-util.service';
+import { PercentageService } from 'src/app/services/utils/percentage.service';
 
 @Component({
   selector: 'app-page-special-offer',
@@ -22,7 +24,8 @@ export class PageSpecialOfferComponent implements OnInit {
   serviceData: any[] = [];
 
   constructor(public specialOfferService: SpecialOfferService,
-    public serviceCrud: ServiceCrudService) {
+    public serviceCrud: ServiceCrudService,
+    public dateUtil: DateUtilService) {
   }
 
   ngOnInit(): void {
@@ -37,7 +40,7 @@ export class PageSpecialOfferComponent implements OnInit {
         label: "Remise en %",
         inputType: "number",
         validators: [Validators.required, Validators.min(0)],
-        inColumn: true,
+        inColumn: true
       },
       service: {
         label: "Service",
@@ -55,12 +58,14 @@ export class PageSpecialOfferComponent implements OnInit {
         inputType: "datetime-local",
         validators: [Validators.required],
         inColumn: true,
+        formatter:(row:any)=>{ return row!==undefined?this.dateUtil.formatStartDateAppointment(row):row},
       },
       date_heure_fin: {
         label: "Date et heure de fin de l'offre",
         inputType: "datetime-local",
         validators: [Validators.required],
         inColumn: true,
+        formatter:(row:any)=>{ return row!==undefined?this.dateUtil.formatStartDateAppointment(row):row},
       },
       description: {
         label: "Description",
@@ -72,8 +77,8 @@ export class PageSpecialOfferComponent implements OnInit {
   getService = () => {
     return new Promise((resolve, reject) => {
       this.serviceCrud.findAll().then((res: any) => {
-        this.serviceData = res.data;
-        resolve(res.data);
+        this.serviceData = res;
+        resolve(res);
       }).catch((error) => reject(error))
     });
 

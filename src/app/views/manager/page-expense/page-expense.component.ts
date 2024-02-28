@@ -3,6 +3,7 @@ import { Validators } from '@angular/forms';
 import { PageCrudProps } from 'src/app/components/page-crud/page-crud.component';
 import { ExpenseService } from 'src/app/services/expenses/expense.service';
 import { TypeExpenseService } from 'src/app/services/expenses/type-expense.service';
+import { MoneyService } from 'src/app/services/utils/money.service';
 
 @Component({
   selector: 'app-page-expense',
@@ -49,6 +50,7 @@ export class PageExpenseComponent implements OnInit {
         inputType: "number",
         validators: [Validators.required, Validators.min(0)],
         inColumn: true,
+        formatter:MoneyService.formatMoney
       },
       annee_mois: {
         label: "Année mois",

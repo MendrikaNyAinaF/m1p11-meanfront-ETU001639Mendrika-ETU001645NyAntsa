@@ -17,7 +17,7 @@ export class PageEmployeeCrudComponent implements OnInit {
     pageProps: PageCrudProps = {
         create: true,
         update: true,
-        delete: true,
+        delete: false,
         list: true,
         filter: true,
         paginate: true,

@@ -27,4 +27,7 @@ export class TypeExpenseService extends CrudService {
     }
     return super.update(id, formatBody);
   }
+  override findAll(params?: any) {
+    return super.findAll({search:{status:1}});
+  }
 }

@@ -58,7 +58,7 @@
 
             <mat-form-field>
                 <input matInput formControlName="password" placeholder="Mot de passe" type="password"
-                       [type]="hide ? 'password' : 'text'">
+                    [type]="hide ? 'password' : 'text'">
                 <mat-icon matSuffix (click)="togglePasswordVisibility()">
                     {{ hide ? 'visibility_off' : 'visibility' }}
                 </mat-icon>
@@ -74,12 +74,8 @@
 
             </mat-form-field>
 
-            <input
-                    type="file"
-                    id="uploadPicture"
-                    class="hidden-input"
-                    accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
-                    (change)="selectFile($event)">
+            <input type="file" id="uploadPicture" class="hidden-input"
+                accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg" (change)="selectFile($event)">
             <br>
             <br>
             <button mat-raised-button color="primary" type="submit">S'inscrire</button>

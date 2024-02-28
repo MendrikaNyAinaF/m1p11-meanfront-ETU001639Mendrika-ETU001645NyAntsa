@@ -4,6 +4,10 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.card-login {
+  margin: auto;
+  margin-top: 8%;
+}
 
 .registration-image {
   max-width: 100%;
@@ -25,8 +29,13 @@ mat-form-field {
   .registration-image {
     display: none;
   }
+  
 }
-
+@media (min-width: 1200px) {
+  .container{
+    margin: auto 10%
+  }
+}
 .success-message {
   color: green;
   font-weight: bold;

@@ -21,8 +21,11 @@ export class PersonneService {
 
 
   login(data: any) { //in the format {username: string, password: string}
+    this.storage.removeItem('jwtToken');
+    this.storage.removeItem('user');
     return new Promise((resolve, reject) => {
       this.baseApi.post(`${this.baseUrl}/${this.personRole}/login`, data).then((res: any) => {
+
         this.storage.setItem('jwtToken', res.token);
         this.storage.setItem('user', JSON.stringify(res.user));
         resolve(res);
@@ -32,8 +35,8 @@ export class PersonneService {
     });
   }
 
-  getConnectedUser(){
-    const currentUser= this.storage.getCurrentUserInfo();
+  getConnectedUser() {
+    const currentUser = this.storage.getCurrentUserInfo();
     return new Promise((resolve, reject) => {
       this.baseApi.get(`${this.baseUrl}/personne-crud/${currentUser.id}`).then((res: any) => {
         resolve(res.data);

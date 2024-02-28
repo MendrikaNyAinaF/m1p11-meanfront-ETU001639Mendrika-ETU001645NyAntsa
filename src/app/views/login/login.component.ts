@@ -42,17 +42,17 @@ export class LoginComponent implements OnInit {
       manager: {
         service: this.managerService,
         redirect: '/manager/services',
-        title: 'Manager Login'
+        title: 'Manager login'
       },
       client: {
         service: this.clientService,
         redirect: '/client/appointment',
-        title: 'Client Login'
+        title: 'Client login'
       },
       employee: {
         service: this.employeeService,
-        redirect: '/employee/calendar',
-        title: 'Employee Login'
+        redirect: '/employee/profil',
+        title: 'Employee login'
       }
     };
     const defaultLogin= this.personneService[this.loginRole].service.getDefaultLogin();
@@ -82,13 +82,10 @@ export class LoginComponent implements OnInit {
 
   handleSubmitChange(event: string) {
     if (event === 'success') {
-      this.router.navigate([this.personneService[this.loginRole].redirect]);
+      console.log("success");
+      if(this.loginRole=="employee") window.location.href=this.personneService[this.loginRole].redirect;
+      else this.router.navigate([this.personneService[this.loginRole].redirect]);
     }
   }
-  isClient(){
-    return this.loginRole === 'client';
-  }
-  toRegister(){
-    this.router.navigate(['/client/register']);
-  }
+
 }

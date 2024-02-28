@@ -36,7 +36,7 @@ export class EmployeeLayoutComponent extends FullComponent implements OnInit {
 
   ngOnInit(): void {
     this.employee = this.storageService.getCurrentUserInfo();
-    if (this.employee.role !== "EMPLOYE") {
+    if (this.employee.role !== "EMP") {
       this.router.navigate(["/employee/login"]);
     }
   }

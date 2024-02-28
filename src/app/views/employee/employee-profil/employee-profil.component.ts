@@ -41,8 +41,8 @@ export class EmployeeProfilComponent implements OnInit {
   getEmployee() {
     const id = this.storageService.getCurrentUserInfo().id;
     this.employeeCrud.findOne(id).then((data: any) => {
-      console.log(data.data[0])
-      this.employee = data.data.length > 0 ? data.data[0] : {};
+      console.log(data.data)
+      this.employee = data.data.length > 0 ? data.data[0] : data.data;
       this.foundEmp = true;
       this.getSchedule();
     }).catch((error: any) => {

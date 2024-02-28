@@ -33,7 +33,7 @@
        <mat-toolbar class="header ps-24 pe-24">
          <div class="ms-auto">
            <button mat-button class="fs-16 pt-4 pb-4 ps-8 pe-8 text-light-muted" [matMenuTriggerFor]="menu">
-             <img src="assets/images/user2.webp" class="rounded-circle" alt="">
+             <img [src]="getEmployeePhoto()" class="rounded-circle" alt="">
              <span class="fw-light ms-8 text-secondary">Hi, </span>
              <span class="fw-bold ms-8">{{employee.nom}} {{employee.prenom}} </span>
              <i-feather name="chevron-down" class="feather-base mt-n2"></i-feather>

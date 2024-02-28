@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       },
       employee: {
         service: this.employeeService,
-        redirect: '/employee/profil',
+        redirect: '/employee/commission',
         title: 'Employee login'
       }
     };

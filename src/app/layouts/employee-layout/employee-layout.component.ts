@@ -49,4 +49,10 @@ export class EmployeeLayoutComponent extends FullComponent implements OnInit {
   toProfil() {
     this.router.navigate(["/employee/profil"]);
   }
+  getEmployeePhoto(){
+    if(this.employee.photo){
+      return this.employee.photo;
+    }
+    return "assets/images/favicon.png";
+  }
 }

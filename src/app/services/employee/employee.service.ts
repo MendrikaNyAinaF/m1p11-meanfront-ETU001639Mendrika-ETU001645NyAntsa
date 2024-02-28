@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {CrudService, SearchParams} from "../crud/crud.service";
-import {BaseApiService} from "../base-api.service";
-import {ImgurService} from "../imgur/imgur.service";
+import { Injectable } from '@angular/core';
+import { CrudService, SearchParams } from "../crud/crud.service";
+import { BaseApiService } from "../base-api.service";
+import { ImgurService } from "../imgur/imgur.service";
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +9,7 @@ import {ImgurService} from "../imgur/imgur.service";
 export class EmployeeService extends CrudService {
 
     constructor(api: BaseApiService, private imgurService: ImgurService) {
-        super(api, {name: 'personne'});
+        super(api, { name: 'personne' });
     }
 
     override findAll(params?: SearchParams) {
@@ -38,7 +38,10 @@ export class EmployeeService extends CrudService {
                             }, {
                                 'type': {
                                     "$oid": "65c220963fe8b2bd4b8f7d78"
-                                }
+                                },
+
+                            }, {
+                                'type.code': "EMP"
                             }
                         ]
 

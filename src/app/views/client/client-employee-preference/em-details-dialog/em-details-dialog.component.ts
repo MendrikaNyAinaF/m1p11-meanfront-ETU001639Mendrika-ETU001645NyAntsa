@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {DateUtilService} from "../../../../services/utils/date-util.service";
 
 @Component({
     selector: 'app-em-details-dialog',
@@ -17,4 +18,5 @@ export class EmDetailsDialogComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    protected readonly DateUtilService = DateUtilService;
 }

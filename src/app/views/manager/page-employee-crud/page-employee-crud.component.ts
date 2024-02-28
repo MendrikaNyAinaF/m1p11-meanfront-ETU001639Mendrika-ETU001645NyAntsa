@@ -28,7 +28,7 @@ export class PageEmployeeCrudComponent implements OnInit {
 
     showDetails = (row: any) => {
         console.log(row);
-        this.router.navigate(['/employee/'+row._id])
+        this.router.navigate(['/manager/employee/'+row._id])
     }
 
     ngOnInit(): void {

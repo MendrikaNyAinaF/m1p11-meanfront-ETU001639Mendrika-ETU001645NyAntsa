@@ -19,7 +19,8 @@ export class TableComponent extends TableCommon implements OnInit {
   }
 
   /* ouvrir le dialog du formulaire de modification */
-  openEditDialog(row: any) {
+  openEditDialog(row: any, $event: MouseEvent) {
+    $event.stopPropagation();
     this.dialog.open(RowEditDialogComponent, {
       data: {
         row: row,
@@ -30,7 +31,8 @@ export class TableComponent extends TableCommon implements OnInit {
   }
 
   /* ouvrir le dialog du formulaire de suppression */
-  openDeleteDialog(id: any) {
+  openDeleteDialog(id: any, $event: MouseEvent) {
+    $event.stopPropagation();
 
     this.dialog.open(RowDeleteDialogComponent, {
       data: {
@@ -41,7 +43,8 @@ export class TableComponent extends TableCommon implements OnInit {
     });
   }
 
-  openFullSizeImage(imageUrl: any) {
+  openFullSizeImage(imageUrl: any, $event: MouseEvent) {
+    $event.stopPropagation();
     console.log(imageUrl);
     this.dialog.open(FullSizeImageDialogComponent, {
       data: imageUrl

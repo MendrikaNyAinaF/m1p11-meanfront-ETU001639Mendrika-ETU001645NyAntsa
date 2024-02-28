@@ -4,6 +4,7 @@ import {EmployeeService} from "../../../../services/employee/employee.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HoraireServiceService} from "../../../../services/horaire/horaire-service.service";
 import {PageCrudProps} from "../../../../components/page-crud/page-crud.component";
+import {DateUtilService} from "../../../../services/utils/date-util.service";
 
 @Component({
     selector: 'app-page-employee-detail',
@@ -44,11 +45,13 @@ export class PageEmployeeDetailComponent implements OnInit {
                 label: "Date debut",
                 inputType: "date",
                 inColumn: true,
+                formatter: DateUtilService.formatDate
             },
             date_fin: {
                 label: "Date fin",
                 inputType: "date",
                 inColumn: true,
+                formatter: DateUtilService.formatDate
             },
             heure_debut: {
                 label: "Heure debut",
@@ -70,6 +73,7 @@ export class PageEmployeeDetailComponent implements OnInit {
                     (employee: any) => {
                         // @ts-ignore
                         this.employee = employee.data;
+                        localStorage.setItem('employee', JSON.stringify(this.employee._id));
                     }
                 );
             }

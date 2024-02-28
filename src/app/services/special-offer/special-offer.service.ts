@@ -5,21 +5,24 @@ import { BaseApiService } from '../base-api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class SpecialOfferService extends CrudService{
+export class SpecialOfferService extends CrudService {
 
   constructor(api: BaseApiService) {
     super(api, { name: 'offre_speciale' });
   }
 
-  override findAll(params?:SearchParams){
-    if(params) params.sort={date_heure_debut: -1};
+  override findAll(params?: SearchParams) {
+    if (params) params.sort = { date_heure_debut: -1, status:1 };
+    else
+      params = { search: { status: 0 } };
+
     return super.findAll(params);
   }
-  findCurrentsSpecialOffer=()=>{
+  findCurrentsSpecialOffer = () => {
     return new Promise((resolve, reject) => {
-      this.baseApi.get(`${this.baseUrl}/offre_special/actuels`).then((res:any)=>{
+      this.baseApi.get(`${this.baseUrl}/offre_special/actuels`).then((res: any) => {
         resolve(res.data);
-      }).catch((error:any)=>{
+      }).catch((error: any) => {
         reject(error.error);
       });
     });

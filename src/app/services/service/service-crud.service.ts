@@ -22,7 +22,8 @@ export class ServiceCrudService extends CrudService {
             $or: [
               { nom: { $regex: searchNom } },
               { description: { $regex: searchNom } }
-            ]
+            ],
+            status:1
           },
           { prix: { $gte: params.search.prixMin || -1 } }
         ]
@@ -34,6 +35,8 @@ export class ServiceCrudService extends CrudService {
         search.$and[1].prix.$lte = params.search.prixMax;
       }
       params.search = search;
+    }else{
+      params = {search:{status:1}};
     }
     console.log(params);
     return super.findAll(params);

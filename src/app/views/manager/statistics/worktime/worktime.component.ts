@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PageCrudProps} from "../../../../components/page-crud/page-crud.component";
 import {WorktimeService} from "../../../../services/statistics/worktime/worktime.service";
 import {MoneyService} from "../../../../services/utils/money.service";
+import {DateUtilService} from "../../../../services/utils/date-util.service";
 
 @Component({
     selector: 'app-worktime',
@@ -46,7 +47,7 @@ export class WorktimeComponent implements OnInit {
                 label: "Date d'embauche",
                 inputType: "date",
                 inColumn : true,
-                formatter : MoneyService.formatMoney
+                formatter : DateUtilService.formatDate
             },
             "personne.photo" :{
                 label : "Photo",

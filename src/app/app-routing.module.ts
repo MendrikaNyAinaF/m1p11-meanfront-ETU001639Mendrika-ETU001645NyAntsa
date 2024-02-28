@@ -85,7 +85,8 @@ const routes: Routes = [
             { path: "manager/special-offer", component: PageSpecialOfferComponent },
             { path: "manager/dashboard", component: DashboardBSComponent },
             { path: "manager/profil", component: ManagerProfilComponent },
-            { path: "employee", component: PageEmployeeCrudComponent }
+            { path: "manager/employees", component: PageEmployeeCrudComponent },
+            { path: "manager/employee/:id", component: PageEmployeeDetailComponent }
         ]
     },
     /**Employee */
@@ -97,7 +98,6 @@ const routes: Routes = [
             { path: "chips", component: ChipsComponent },
             { path: "appointments/commission", component: AppointmentCommissionComponent },
             { path: "employee/calendar", component: EmployeeCalendarComponent },
-            { path: "employee/:id", component: PageEmployeeDetailComponent }
         ]
     },
 

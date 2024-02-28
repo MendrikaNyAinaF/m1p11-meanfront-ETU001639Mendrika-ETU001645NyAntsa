@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {PreferenceService} from "../../../services/preference/preference.service";
 import {DetailsModalComponent} from "../client-service-preference/details-modal/details-modal.component";
 import {EmDetailsDialogComponent} from "./em-details-dialog/em-details-dialog.component";
+import {DateUtilService} from "../../../services/utils/date-util.service";
 
 @Component({
     selector: 'app-client-employee-preference',
@@ -23,6 +24,7 @@ export class ClientEmployeePreferenceComponent implements OnInit {
             },
             "telephone": "0349295269",
             "date_naissance": "2003-01-02",
+            "date_creation" : "2021-01-02",
             photo : "https://picsum.photos/200/300",
             favourite : true
         }
@@ -62,4 +64,5 @@ export class ClientEmployeePreferenceComponent implements OnInit {
         });
     }
 
+    protected readonly DateUtilService = DateUtilService;
 }

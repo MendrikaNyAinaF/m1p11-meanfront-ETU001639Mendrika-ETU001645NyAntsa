@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MoneyService} from "../../../../services/utils/money.service";
 
 @Component({
   selector: 'app-details-modal',
@@ -16,4 +17,5 @@ export class DetailsModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  protected readonly MoneyService = MoneyService;
 }

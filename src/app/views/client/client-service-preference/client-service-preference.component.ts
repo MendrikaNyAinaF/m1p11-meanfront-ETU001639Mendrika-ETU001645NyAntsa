@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {DetailsModalComponent} from "./details-modal/details-modal.component";
 import {PreferenceService} from "../../../services/preference/preference.service";
+import {MoneyService} from "../../../services/utils/money.service";
 
 @Component({
     selector: 'app-client-service-preference',
@@ -14,7 +15,7 @@ export class ClientServicePreferenceComponent implements OnInit {
         {
             "_id": "65c222d03fe8b2bd4b8f7d85",
             "nom": "Manicure",
-            "prix": 25000,
+            "prix":  25000,
             "duree": 60,
             "commission": 5,
             "description": "Manicure complète",
@@ -59,4 +60,6 @@ export class ClientServicePreferenceComponent implements OnInit {
             hasBackdrop: true,
         });
     }
+
+    protected readonly MoneyService = MoneyService;
 }

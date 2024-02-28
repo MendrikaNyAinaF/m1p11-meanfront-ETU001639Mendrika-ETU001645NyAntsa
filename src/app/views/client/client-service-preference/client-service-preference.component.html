@@ -6,8 +6,8 @@
                 <h2>{{ service.nom }}</h2>
                 <p>{{ service.description | slice:0:50 }}{{ service.description.length > 50 ? '...' : '' }}</p>
                 <ul>
-                    <li>Prix : {{service.prix}} Ar</li>
-                    <li>Durée : {{service.duree}} Minutes</li>
+                    <li>Prix : {{MoneyService.formatMoney(service.prix)}}</li>
+                    <li>Durée : {{service.duree}} minutes</li>
                 </ul>
             </div>
             <div class="image-container">

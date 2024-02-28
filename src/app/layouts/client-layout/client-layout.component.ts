@@ -19,12 +19,12 @@ export class ClientLayoutComponent extends FullComponent implements OnInit {
     menu: "Calendrier des rendez vous",
   },
   {
-    link: "/home",
+    link: "/client/employees/preference",
     icon: "smile",
     menu: "Voir les employés",
   },
   {
-    link: "/home",
+    link: "/client/services/preference",
     icon: "codesandbox",
     menu: "Voir les services proposés",
   },

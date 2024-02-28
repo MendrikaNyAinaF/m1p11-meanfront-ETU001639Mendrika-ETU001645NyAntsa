@@ -7,8 +7,8 @@
         <h2>{{ selectedService.nom }}</h2>
         <p>{{ selectedService.description }}</p>
         <ul>
-            <li>Prix : {{service.prix}} Ar</li>
-            <li>Durée : {{service.duree}} Minutes</li>
+            <li>Prix : {{MoneyService.formatMoney(service.prix)}}</li>
+            <li>Durée : {{service.duree}} minutes</li>
         </ul>
     </div>
 </div>

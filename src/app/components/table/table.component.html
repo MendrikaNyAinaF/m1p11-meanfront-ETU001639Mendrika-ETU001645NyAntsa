@@ -10,7 +10,7 @@
                          <!--si c'est une image-->
                          <ng-container *ngIf="col.type && col.type=='img'; else elseCell">
                               <td mat-cell class="fw-medium {{col.class}} table-image-box" *matCellDef="let element">
-                                   <img src="{{ col.selector(element) }}" class="w-20 table-image" alt="Image" (click)="openFullSizeImage(col.selector(element))">
+                                   <img src="{{ col.selector(element) }}" class="w-20 table-image" alt="Image" (click)="openFullSizeImage(col.selector(element), $event)">
                               </td>
                          </ng-container>
                          <ng-template #elseCell>
@@ -26,7 +26,7 @@
                     <ng-container matColumnDef="Edit">
                          <th mat-header-cell *matHeaderCellDef>Modifier</th>
                          <td mat-cell class="fw-medium" *matCellDef="let element">
-                              <button mat-icon-button (click)="openEditDialog(element)">
+                              <button mat-icon-button (click)="openEditDialog(element, $event)">
                                    <mat-icon color="accent">edit</mat-icon>
                               </button>
                          </td>
@@ -38,7 +38,7 @@
                     <ng-container matColumnDef="Delete">
                          <th mat-header-cell *matHeaderCellDef>Supprimer</th>
                          <td mat-cell class="fw-medium" *matCellDef="let element">
-                              <button mat-icon-button (click)="openDeleteDialog(element._id)">
+                              <button mat-icon-button (click)="openDeleteDialog(element._id, $event)">
                                    <mat-icon color="warn">delete</mat-icon>
                               </button>
                          </td>

@@ -19,10 +19,7 @@ export class EmployeeCalendarComponent implements OnInit {
     initialView: 'timeGridWeek',
     plugins: [timeGridPlugin, interactionPlugin, dayGridPlugin],
     eventClick: this.handleDateClick.bind(this),
-    events: [
-      { title: 'event 1', date: '2024-02-26', services: [''], _id: "" },
-      { title: 'event 2', date: '2024-02-27', services: [''], _id: "" }
-    ],
+    events: [],
     editable: false,
     // eventDrop: this.handleEventDrop.bind(this),
     datesSet: (dateInfo) => {

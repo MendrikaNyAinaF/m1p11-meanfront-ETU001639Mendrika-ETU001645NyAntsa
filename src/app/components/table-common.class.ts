@@ -94,5 +94,9 @@ export class TableCommon implements OnInit {
     if (this.actions) return;
     if (this.onRowClick) this.onRowClick(row);
   }
+  rowable(){
+    if (this.onRowClick!==undefined) return "rowable";
+    return "";
+  }
 
 }

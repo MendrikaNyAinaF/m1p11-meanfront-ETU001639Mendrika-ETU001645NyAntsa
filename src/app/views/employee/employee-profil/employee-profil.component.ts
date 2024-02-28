@@ -52,6 +52,7 @@ export class EmployeeProfilComponent implements OnInit {
   }
   getSchedule() {
     this.employeeService.findCurrentSchedule().then((data: any) => {
+      console.log(data)
       if (data.data && data.data.length > 0)
         this.employee.horaires = [data.data];
     }).catch((error: any) => {

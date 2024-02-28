@@ -34,7 +34,7 @@ export class PageExpenseComponent implements OnInit {
         hidden: true,
       },
       type_depense: {
-        label: "type_depense",
+        label: "Type de dépense",
         inputType: "select",
         validators: Validators.required,
         inColumn: true,
@@ -71,7 +71,8 @@ export class PageExpenseComponent implements OnInit {
   getTypeExpense=()=>{
     return new Promise ((resolve,reject)=>{
       this.typeExpenseService.findAll().then((res:any)=>{
-        resolve(res.data);
+        console.log("type depense:",res)
+        resolve(res);
       }).catch((error)=> reject(error))
     })
   }

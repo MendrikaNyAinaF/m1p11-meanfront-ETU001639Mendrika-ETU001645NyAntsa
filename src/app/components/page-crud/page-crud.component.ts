@@ -116,7 +116,7 @@ export class PageCrudComponent implements OnInit {
         this.loaderList = true;
         this.crudService.findAll(this.getFilterData())
             .then((data: any) => {
-                console.log("Data ", data)
+                console.log("Data ", data.data)
                 this.dataList = data;
                 (data !== undefined && data !== null && !Array.isArray(data)) ? this.dataList = data.data : this.dataList = data;
                 // console.log(data);
@@ -143,8 +143,9 @@ export class PageCrudComponent implements OnInit {
                     selector: (row: any) => {
                         // row[key]
                         //   check if row[key] is an object
+                        let rowValue = row[key];
                         if (row[key] != null && row[key] != undefined && typeof row[key] === 'object') {
-                            return row[key].nom;
+                            rowValue = row[key].nom;
                         }
                         // check if there an operator +-/* in the key
                         if (key.includes('*')) {
@@ -152,15 +153,20 @@ export class PageCrudComponent implements OnInit {
                             let firstValue = this.getChildValue(row, operationRows[0]);
                             let secondValue = this.getChildValue(row, operationRows[1]);
                             if (operationRows.length == 3) {
-                                return (firstValue * secondValue) / 100;
+                                rowValue = (firstValue * secondValue) / 100;
                             }
-                            return firstValue * secondValue;
+                            rowValue = firstValue * secondValue;
                         }
                         // check if key contains a dot
                         if (key.includes('.')) {
-                            return this.getChildValue(row, key);
+                            rowValue = this.getChildValue(row, key);
                         }
-                        return row[key];
+
+                        if (this.fields[key].formatter!==undefined) {
+                            rowValue=this.fields[key].formatter(rowValue);
+                        }
+
+                        return rowValue;
                     },
                     type: this.fields[key].inputType == "img" ? "img" : "text"
                 });

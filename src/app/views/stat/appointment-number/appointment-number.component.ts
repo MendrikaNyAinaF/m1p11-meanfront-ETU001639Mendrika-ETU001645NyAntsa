@@ -119,6 +119,7 @@ export class AppointmentNumberComponent implements OnInit {
         reject(err);
       });
     });
+
   }
 
 }

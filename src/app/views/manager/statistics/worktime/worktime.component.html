@@ -1,0 +1,17 @@
+<div class="info-container">
+    <h4>Total d'heures de travail par employé</h4>
+    <div class="alert alert-warning alert-text-warning d-flex fs-14 align-items-center rounded mb-16"
+         role="alert">
+        <i-feather name="alert-triangle" class="text-warning feather-base me-12"></i-feather>
+        Si c'est par mois, alors le système prend automatiquement le début du mois de départ et la fin du mois de
+        fin.
+    </div>
+</div>
+<br>
+<app-page-crud
+        [pageProps]="pageProps"
+        [fieldsFilter]="fieldsFilter"
+        [fields]="fields"
+        [crudService]="worktimeService"
+>
+</app-page-crud>

@@ -71,7 +71,8 @@ export class BarChartComponent implements OnInit {
             },
             fill: {
                 opacity: 1
-            },
+            }
+            ,
             tooltip: {
                 y: {
                     formatter: function (val: any) {
@@ -95,6 +96,7 @@ export class BarChartComponent implements OnInit {
         yTitle !== undefined ? this.chartOptions.yaxis.title.text = yTitle : null
 
         let onHoverFormatter = this.data['onHoverFormatter']
+        console.log(onHoverFormatter, this.data)
         onHoverFormatter !== undefined ? this.chartOptions.tooltip.y.formatter = onHoverFormatter : null;
     }
 }

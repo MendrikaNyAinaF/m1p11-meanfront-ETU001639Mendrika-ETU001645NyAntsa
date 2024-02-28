@@ -36,7 +36,7 @@ export class RegisterClientComponent implements OnInit {
         console.log('RegisterClientComponent');
         this.genderService.findAll().then((res: any) => {
                 console.log(res)
-                this.genders = res;
+                this.genders = res.data;
             }
         );
     }

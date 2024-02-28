@@ -17,39 +17,63 @@ export interface SearchParams {
 })
 export class CrudService {
 
-  baseUrl: string = environment.apiUrl;
-  crudName: string = 'crud';
-  crudUrl:string="";
+  private _baseUrl: string = environment.apiUrl;
+  private _crudName: string = 'crud';
+  private _crudUrl:string="";
 
   constructor(public baseApi: BaseApiService, @Inject(CRUD_DATA) public crudData: any) { 
-    this.crudName = this.crudData.name;
-    this.crudUrl = `${this.baseUrl}/${this.crudName}-crud`;
+    this._crudName = this.crudData.name;
+    this._crudUrl = `${this._baseUrl}/${this._crudName}-crud`;
   }
 
 
+  get baseUrl(): string {
+    return this._baseUrl;
+  }
+
+  set baseUrl(value: string) {
+    this._baseUrl = value;
+  }
+
+  get crudName(): string {
+    return this._crudName;
+  }
+
+  set crudName(value: string) {
+    this._crudName = value;
+  }
+
+  get crudUrl(): string {
+    return this._crudUrl;
+  }
+
+  set crudUrl(value: string) {
+    this._crudUrl = value;
+  }
+
   create(body: any) {
-    return this.baseApi.post(this.crudUrl, body );
+    return this.baseApi.post(this._crudUrl, body );
   }
 
   findOne(id: string) {
-    return this.baseApi.get(`${this.crudUrl}/${id}`);
+    return this.baseApi.get(`${this._crudUrl}/${id}`);
   }
 
   findAll(params?: SearchParams) { //de la forme {search:{key: value,...}, page:{size:10, number:1}}
     const body = params ?{body: params }: {};
     // console.log(body,params);
     const base64= btoa(JSON.stringify(params));
-    return this.baseApi.get(this.crudUrl+"?criteria="+base64, {body});
+    return this.baseApi.get(this._crudUrl+"?criteria="+base64, {body});
   }
 
   update(id: string, body: any) {
     delete body.id;
     delete body._id;
-    return this.baseApi.put(`${this.crudUrl}/${id}`, body );
+    return this.baseApi.put(`${this._crudUrl}/${id}`, body );
   }
 
   delete(id: string) {
-    return this.baseApi.delete(`${this.crudUrl}/${id}`);
+    return this.baseApi.delete(`${this._crudUrl}/${id}`);
   }
 
   /*fonction pour la valeur par defaut des select si on l'utilise pour un select

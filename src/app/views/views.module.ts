@@ -39,6 +39,9 @@ import { AppointmentNumberComponent } from './stat/appointment-number/appointmen
 import { DashboardBSComponent } from './dashboard-bs/dashboard-bs.component';
 import { PageEmployeeDetailComponent } from './manager/page-employee-crud/page-employee-detail/page-employee-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { WorktimeComponent } from './manager/statistics/worktime/worktime.component';
+import { TurnoverComponent } from './manager/statistics/turnover/turnover.component';
+import { IncomeComponent } from './manager/statistics/income/income.component';
 import { ClientNotificationComponent } from './client/client-notification/client-notification.component';
 import { ManagerProfilComponent } from './manager/manager-profil/manager-profil.component';
 
@@ -73,6 +76,9 @@ import { ManagerProfilComponent } from './manager/manager-profil/manager-profil.
         PageEmployeeDetailComponent,
         DetailApppointmentDialogComponent,
         NotFoundComponent,
+        WorktimeComponent,
+        TurnoverComponent,
+        IncomeComponent,
         ClientNotificationComponent,
         ManagerProfilComponent
     ],

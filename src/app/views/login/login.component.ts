@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.personneService = {
       manager: {
         service: this.managerService,
-        redirect: '/manager/services',
+        redirect: '/manager/dashboard',
         title: 'Manager login'
       },
       client: {

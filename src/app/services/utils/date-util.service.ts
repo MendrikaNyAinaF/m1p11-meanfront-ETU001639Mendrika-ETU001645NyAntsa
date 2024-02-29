@@ -34,7 +34,7 @@ export class DateUtilService {
 
     public getFirstAndLastDateInCurrentMonth() {
         const date = new Date();
-        return [new Date(date.getFullYear(), date.getMonth(), 1).toISOString().split('T')[0], new Date(date.getFullYear(), date.getMonth() + 1, 0).toISOString().split('T')[0]];
+        return [new Date(date.getFullYear(), date.getMonth(), 2).toISOString().split('T')[0], new Date(date.getFullYear(), date.getMonth() + 1, 1).toISOString().split('T')[0]];
     }
 
     static formatDate(date: string) {

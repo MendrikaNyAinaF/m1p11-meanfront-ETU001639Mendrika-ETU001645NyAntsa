@@ -100,39 +100,39 @@ const routes: Routes = [
         ]
     },
 
-    {
-        path: "",
-        component: FullComponent,
-        children: [
-            // { path: "", redirectTo: "/home", pathMatch: "full" },
-            { path: "home", component: DashboardComponent },
-            { path: "progress", component: ProgressComponent },
-            { path: "forms", component: FormsComponent },
-            { path: "table", component: ProductComponent },
-            { path: "grid-list", component: GridListComponent },
-            { path: "menu", component: MenuComponent },
-            { path: "tabs", component: TabsComponent },
-            { path: "expansion", component: ExpansionComponent },
-            { path: "toolbar", component: ToolbarComponent },
-            { path: "progress-snipper", component: ProgressSnipperComponent },
-            { path: "snackbar", component: SnackbarComponent },
-            { path: "slider", component: SliderComponent },
-            { path: "alerts", component: AlertsComponent },
+    // {
+    //     path: "",
+    //     component: FullComponent,
+    //     children: [
+    //         // { path: "", redirectTo: "/home", pathMatch: "full" },
+    //         { path: "home", component: DashboardComponent },
+    //         { path: "progress", component: ProgressComponent },
+    //         { path: "forms", component: FormsComponent },
+    //         { path: "table", component: ProductComponent },
+    //         { path: "grid-list", component: GridListComponent },
+    //         { path: "menu", component: MenuComponent },
+    //         { path: "tabs", component: TabsComponent },
+    //         { path: "expansion", component: ExpansionComponent },
+    //         { path: "toolbar", component: ToolbarComponent },
+    //         { path: "progress-snipper", component: ProgressSnipperComponent },
+    //         { path: "snackbar", component: SnackbarComponent },
+    //         { path: "slider", component: SliderComponent },
+    //         { path: "alerts", component: AlertsComponent },
 
-            { path: "slide-toggle", component: SlideToggleComponent },
-            { path: "tooltip", component: TooltipsComponent },
-            { path: "button", component: ButtonsComponent },
-            { path: "singlepage", component: SinglePageComponent },
-            { path: "service", component: PageServiceCrudComponent },
-            { path: "client/appointement", component: AppointmentCalendarComponent },
-            { path: "client/appointment/:id/payment", component: AppointmentPaymentComponent },
-            { path: "manager/type-expense", component: PageTypeExpenseComponent },
-            //     Ny Antsa
-            //     path for bar chart
-            { path: "bar-chart", component: BarChartComponent },
-            { path: "testing", component: TestingComponent }
-        ]
-    },
+    //         { path: "slide-toggle", component: SlideToggleComponent },
+    //         { path: "tooltip", component: TooltipsComponent },
+    //         { path: "button", component: ButtonsComponent },
+    //         { path: "singlepage", component: SinglePageComponent },
+    //         { path: "service", component: PageServiceCrudComponent },
+    //         { path: "client/appointement", component: AppointmentCalendarComponent },
+    //         { path: "client/appointment/:id/payment", component: AppointmentPaymentComponent },
+    //         { path: "manager/type-expense", component: PageTypeExpenseComponent },
+    //         //     Ny Antsa
+    //         //     path for bar chart
+    //         { path: "bar-chart", component: BarChartComponent },
+    //         { path: "testing", component: TestingComponent }
+    //     ]
+    // },
     { path: "notfound", component: NotFoundComponent },
     { path: "", redirectTo: "/manager/login", pathMatch: "full" },
     { path: "**", redirectTo: "/notfound", pathMatch: "full" },

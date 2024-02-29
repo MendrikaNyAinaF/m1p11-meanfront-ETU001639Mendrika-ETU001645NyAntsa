@@ -19,7 +19,7 @@ export class WorktimeComponent implements OnInit {
         delete: false,
         list: true,
         filter: true,
-        paginate: true,
+        paginate: false,
     };
 
     constructor(public worktimeService : WorktimeService) {

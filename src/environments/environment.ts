@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'https://back-mean-salon-backup.onrender.com',
   imgurClientId: 'ffb486f62fd1077',
   imgurUploadUrl:'https://api.imgur.com/3/image'
 };
